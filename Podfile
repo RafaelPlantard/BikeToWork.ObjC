@@ -4,7 +4,9 @@
 # use_frameworks!
 
 target 'BikeToWork' do
-
+	pod 'AFNetworking'
+	pod 'bricks-Mantle'
+	pod 'Mantle'
 end
 
 target 'BikeToWorkTests' do
