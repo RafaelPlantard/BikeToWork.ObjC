@@ -7,6 +7,7 @@
 //
 
 #import "BTWSessionManager+OpenWeatherApi.h"
+#import "BTWWheatherResponse.h"
 
 /*! @brief The app id for access the open wheather api. */
 static NSString *const kAppId = @"02a53a355fef3cbb8fa0898fbba375b4";
@@ -26,8 +27,10 @@ static NSString *const kWeatherApiEndPointBase = @"/data/2.5/%@";
     return [self GET:endPoint parameters:parametersWithAppId progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
         
+        NSError *errorsOnParse;
+        BTWWheatherResponse *response = [MTLJSONAdapter modelOfClass:[BTWWheatherResponse class] fromJSONDictionary:responseDictionary error:&errorsOnParse];
         
-        
+        success(response);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
     }];
