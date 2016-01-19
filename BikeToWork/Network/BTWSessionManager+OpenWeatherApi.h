@@ -7,6 +7,7 @@
 //
 
 #import "BTWSessionManager.h"
+#import "BTWWeatherRequest.h"
 
 /*! @brief The block that is called when a request returns a success response. */
 typedef void(^BTWSuccessBlock)(id response);
@@ -17,6 +18,6 @@ typedef void(^BTWFailureBlock)(NSError * error);
 /*! @brief The method set for requests and responses from Open Weather Api. */
 @interface BTWSessionManager (OpenWeatherApi)
 
-- (NSURLSessionDataTask *)getWeather;
+- (NSURLSessionDataTask *)getWeatherWith:(BTWWeatherRequest *)requestParameters OnSuccess:(BTWSuccessBlock)success OnFailure:(BTWFailureBlock)failure;
 
 @end

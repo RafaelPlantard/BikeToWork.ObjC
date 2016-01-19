@@ -8,6 +8,29 @@
 
 #import "BTWSessionManager+OpenWeatherApi.h"
 
+/*! @brief The app id for access the open wheather api. */
+static NSString *const kAppId = @"02a53a355fef3cbb8fa0898fbba375b4";
+
+static NSString *const kWeatherApiEndPointBase = @"/data/2.5/%@";
+
 @implementation BTWSessionManager (OpenWeatherApi)
+
+- (NSURLSessionDataTask *)getWeatherWith:(BTWWeatherRequest *)requestParameters OnSuccess:(BTWSuccessBlock)success OnFailure:(BTWFailureBlock)failure {
+    NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:requestParameters error:nil];
+    
+    NSMutableDictionary *parametersWithAppId = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    [parameters setValue:kAppId forKey:@"APPID"];
+    
+    NSString *endPoint = [NSString stringWithFormat:kWeatherApiEndPointBase, @"weather"];
+    
+    return [self GET:endPoint parameters:parametersWithAppId progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+        
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
 
 @end

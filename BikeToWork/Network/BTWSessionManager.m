@@ -11,9 +11,6 @@
 /*! @brief The base url for this session manager. */
 static NSString *const kBaseUrl = @"http://api.openweathermap.org";
 
-/*! @brief The app id for access the open wheather api. */
-static NSString *const kAppId = @"02a53a355fef3cbb8fa0898fbba375b4";
-
 @implementation BTWSessionManager
 
 - (instancetype)init
