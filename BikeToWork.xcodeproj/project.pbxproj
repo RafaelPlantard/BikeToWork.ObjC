@@ -16,6 +16,7 @@
 		53DEC81C1C4E753C0069B2D1 /* BikeToWorkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC81B1C4E753C0069B2D1 /* BikeToWorkTests.m */; };
 		53DEC82B1C4E76CC0069B2D1 /* BTWSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC82A1C4E76CC0069B2D1 /* BTWSessionManager.m */; };
 		53DEC8321C4E78110069B2D1 /* BTWModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8311C4E78110069B2D1 /* BTWModelBase.m */; };
+		920BF060AB7F10C59609CD54 /* libPods-BikeToWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9597F1D8C18F3F733BFF9ED6 /* libPods-BikeToWork.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,9 @@
 		53DEC82A1C4E76CC0069B2D1 /* BTWSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWSessionManager.m; sourceTree = "<group>"; };
 		53DEC8301C4E78110069B2D1 /* BTWModelBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWModelBase.h; sourceTree = "<group>"; };
 		53DEC8311C4E78110069B2D1 /* BTWModelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWModelBase.m; sourceTree = "<group>"; };
+		9597F1D8C18F3F733BFF9ED6 /* libPods-BikeToWork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BikeToWork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3237244D949E4B35E182207 /* Pods-BikeToWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeToWork.release.xcconfig"; path = "Pods/Target Support Files/Pods-BikeToWork/Pods-BikeToWork.release.xcconfig"; sourceTree = "<group>"; };
+		B6F2BDD62CA772C1C3834047 /* Pods-BikeToWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeToWork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BikeToWork/Pods-BikeToWork.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				920BF060AB7F10C59609CD54 /* libPods-BikeToWork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +71,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BBDB83287DFAB0DD9C49DC2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6F2BDD62CA772C1C3834047 /* Pods-BikeToWork.debug.xcconfig */,
+				B3237244D949E4B35E182207 /* Pods-BikeToWork.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		534983AEFB7D065E1E4D77B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9597F1D8C18F3F733BFF9ED6 /* libPods-BikeToWork.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		53DEC7F51C4E753C0069B2D1 = {
 			isa = PBXGroup;
 			children = (
 				53DEC8001C4E753C0069B2D1 /* BikeToWork */,
 				53DEC81A1C4E753C0069B2D1 /* BikeToWorkTests */,
 				53DEC7FF1C4E753C0069B2D1 /* Products */,
+				0BBDB83287DFAB0DD9C49DC2 /* Pods */,
+				534983AEFB7D065E1E4D77B8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,9 +184,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 53DEC8201C4E753C0069B2D1 /* Build configuration list for PBXNativeTarget "BikeToWork" */;
 			buildPhases = (
+				C1943F65BE213BCC22864E71 /* Check Pods Manifest.lock */,
 				53DEC7FA1C4E753C0069B2D1 /* Sources */,
 				53DEC7FB1C4E753C0069B2D1 /* Frameworks */,
 				53DEC7FC1C4E753C0069B2D1 /* Resources */,
+				B8CDFDFE513E10B46420E842 /* Embed Pods Frameworks */,
+				32ACA00D4CB64684E74D3EBF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -250,6 +277,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32ACA00D4CB64684E74D3EBF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BikeToWork/Pods-BikeToWork-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8CDFDFE513E10B46420E842 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BikeToWork/Pods-BikeToWork-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1943F65BE213BCC22864E71 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		53DEC7FA1C4E753C0069B2D1 /* Sources */ = {
@@ -386,6 +461,7 @@
 		};
 		53DEC8211C4E753C0069B2D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6F2BDD62CA772C1C3834047 /* Pods-BikeToWork.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BikeToWork/Info.plist;
@@ -397,6 +473,7 @@
 		};
 		53DEC8221C4E753C0069B2D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3237244D949E4B35E182207 /* Pods-BikeToWork.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BikeToWork/Info.plist;
@@ -449,6 +526,7 @@
 				53DEC8221C4E753C0069B2D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		53DEC8231C4E753C0069B2D1 /* Build configuration list for PBXNativeTarget "BikeToWorkTests" */ = {
 			isa = XCConfigurationList;
@@ -457,6 +535,7 @@
 				53DEC8251C4E753C0069B2D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
