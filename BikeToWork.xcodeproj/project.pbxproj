@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		532D6E001C4EB958002E8297 /* Trocchi-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */; };
+		532D6E011C4EB95C002E8297 /* SourceSansPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DF31C4EB93A002E8297 /* SourceSansPro-Black.ttf */; };
+		532D6E021C4EB95C002E8297 /* SourceSansPro-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DF41C4EB93A002E8297 /* SourceSansPro-BlackItalic.ttf */; };
+		532D6E031C4EB95C002E8297 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DF51C4EB93A002E8297 /* SourceSansPro-Bold.ttf */; };
+		532D6E041C4EB95C002E8297 /* SourceSansPro-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DF61C4EB93A002E8297 /* SourceSansPro-BoldItalic.ttf */; };
+		532D6E051C4EB95C002E8297 /* SourceSansPro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DF71C4EB93A002E8297 /* SourceSansPro-ExtraLight.ttf */; };
+		532D6E061C4EB95C002E8297 /* SourceSansPro-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DF81C4EB93A002E8297 /* SourceSansPro-ExtraLightItalic.ttf */; };
+		532D6E071C4EB95C002E8297 /* SourceSansPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DF91C4EB93A002E8297 /* SourceSansPro-Italic.ttf */; };
+		532D6E081C4EB95C002E8297 /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFA1C4EB93A002E8297 /* SourceSansPro-Light.ttf */; };
+		532D6E091C4EB95C002E8297 /* SourceSansPro-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFB1C4EB93A002E8297 /* SourceSansPro-LightItalic.ttf */; };
+		532D6E0A1C4EB95C002E8297 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFC1C4EB93A002E8297 /* SourceSansPro-Regular.ttf */; };
+		532D6E0B1C4EB95C002E8297 /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */; };
+		532D6E0C1C4EB95C002E8297 /* SourceSansPro-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */; };
 		53DEC8031C4E753C0069B2D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8021C4E753C0069B2D1 /* main.m */; };
 		53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8051C4E753C0069B2D1 /* BTWAppDelegate.m */; };
 		53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8081C4E753C0069B2D1 /* BTWHomeViewController.m */; };
@@ -25,6 +38,7 @@
 		53DEC84E1C4E9B3D0069B2D1 /* BTWClouds.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC84D1C4E9B3D0069B2D1 /* BTWClouds.m */; };
 		53DEC8511C4E9C720069B2D1 /* BTWSystemParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8501C4E9C720069B2D1 /* BTWSystemParameters.m */; };
 		53DEC8541C4E9EC60069B2D1 /* BTWWheatherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8531C4E9EC60069B2D1 /* BTWWheatherResponse.m */; };
+		53DEC85A1C4EB1290069B2D1 /* BTWResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8591C4EB1290069B2D1 /* BTWResultViewController.m */; };
 		920BF060AB7F10C59609CD54 /* libPods-BikeToWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9597F1D8C18F3F733BFF9ED6 /* libPods-BikeToWork.a */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +53,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		532D6DF31C4EB93A002E8297 /* SourceSansPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Black.ttf"; sourceTree = "<group>"; };
+		532D6DF41C4EB93A002E8297 /* SourceSansPro-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BlackItalic.ttf"; sourceTree = "<group>"; };
+		532D6DF51C4EB93A002E8297 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		532D6DF61C4EB93A002E8297 /* SourceSansPro-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BoldItalic.ttf"; sourceTree = "<group>"; };
+		532D6DF71C4EB93A002E8297 /* SourceSansPro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-ExtraLight.ttf"; sourceTree = "<group>"; };
+		532D6DF81C4EB93A002E8297 /* SourceSansPro-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		532D6DF91C4EB93A002E8297 /* SourceSansPro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Italic.ttf"; sourceTree = "<group>"; };
+		532D6DFA1C4EB93A002E8297 /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
+		532D6DFB1C4EB93A002E8297 /* SourceSansPro-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-LightItalic.ttf"; sourceTree = "<group>"; };
+		532D6DFC1C4EB93A002E8297 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
+		532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trocchi-Regular.ttf"; sourceTree = "<group>"; };
 		53DEC7FE1C4E753C0069B2D1 /* BikeToWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeToWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DEC8021C4E753C0069B2D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		53DEC8041C4E753C0069B2D1 /* BTWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTWAppDelegate.h; sourceTree = "<group>"; };
@@ -74,6 +101,8 @@
 		53DEC8501C4E9C720069B2D1 /* BTWSystemParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWSystemParameters.m; sourceTree = "<group>"; };
 		53DEC8521C4E9EC60069B2D1 /* BTWWheatherResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWWheatherResponse.h; sourceTree = "<group>"; };
 		53DEC8531C4E9EC60069B2D1 /* BTWWheatherResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWWheatherResponse.m; sourceTree = "<group>"; };
+		53DEC8581C4EB1290069B2D1 /* BTWResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWResultViewController.h; sourceTree = "<group>"; };
+		53DEC8591C4EB1290069B2D1 /* BTWResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWResultViewController.m; sourceTree = "<group>"; };
 		9597F1D8C18F3F733BFF9ED6 /* libPods-BikeToWork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BikeToWork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3237244D949E4B35E182207 /* Pods-BikeToWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeToWork.release.xcconfig"; path = "Pods/Target Support Files/Pods-BikeToWork/Pods-BikeToWork.release.xcconfig"; sourceTree = "<group>"; };
 		B6F2BDD62CA772C1C3834047 /* Pods-BikeToWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeToWork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BikeToWork/Pods-BikeToWork.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +136,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		532D6DF21C4EB90B002E8297 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */,
+				532D6DF31C4EB93A002E8297 /* SourceSansPro-Black.ttf */,
+				532D6DF41C4EB93A002E8297 /* SourceSansPro-BlackItalic.ttf */,
+				532D6DF51C4EB93A002E8297 /* SourceSansPro-Bold.ttf */,
+				532D6DF61C4EB93A002E8297 /* SourceSansPro-BoldItalic.ttf */,
+				532D6DF71C4EB93A002E8297 /* SourceSansPro-ExtraLight.ttf */,
+				532D6DF81C4EB93A002E8297 /* SourceSansPro-ExtraLightItalic.ttf */,
+				532D6DF91C4EB93A002E8297 /* SourceSansPro-Italic.ttf */,
+				532D6DFA1C4EB93A002E8297 /* SourceSansPro-Light.ttf */,
+				532D6DFB1C4EB93A002E8297 /* SourceSansPro-LightItalic.ttf */,
+				532D6DFC1C4EB93A002E8297 /* SourceSansPro-Regular.ttf */,
+				532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */,
+				532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		534983AEFB7D065E1E4D77B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +187,7 @@
 		53DEC8001C4E753C0069B2D1 /* BikeToWork */ = {
 			isa = PBXGroup;
 			children = (
+				532D6DF21C4EB90B002E8297 /* Resources */,
 				53DEC8261C4E75500069B2D1 /* Commons */,
 				53DEC8281C4E75570069B2D1 /* Controllers */,
 				53DEC82C1C4E77A10069B2D1 /* Models */,
@@ -193,6 +243,8 @@
 			children = (
 				53DEC8071C4E753C0069B2D1 /* BTWHomeViewController.h */,
 				53DEC8081C4E753C0069B2D1 /* BTWHomeViewController.m */,
+				53DEC8581C4EB1290069B2D1 /* BTWResultViewController.h */,
+				53DEC8591C4EB1290069B2D1 /* BTWResultViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -308,9 +360,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				532D6E061C4EB95C002E8297 /* SourceSansPro-ExtraLightItalic.ttf in Resources */,
+				532D6E071C4EB95C002E8297 /* SourceSansPro-Italic.ttf in Resources */,
+				532D6E021C4EB95C002E8297 /* SourceSansPro-BlackItalic.ttf in Resources */,
+				532D6E0A1C4EB95C002E8297 /* SourceSansPro-Regular.ttf in Resources */,
+				532D6E081C4EB95C002E8297 /* SourceSansPro-Light.ttf in Resources */,
 				53DEC8111C4E753C0069B2D1 /* LaunchScreen.storyboard in Resources */,
 				53DEC80E1C4E753C0069B2D1 /* Assets.xcassets in Resources */,
+				532D6E051C4EB95C002E8297 /* SourceSansPro-ExtraLight.ttf in Resources */,
+				532D6E041C4EB95C002E8297 /* SourceSansPro-BoldItalic.ttf in Resources */,
+				532D6E001C4EB958002E8297 /* Trocchi-Regular.ttf in Resources */,
+				532D6E0C1C4EB95C002E8297 /* SourceSansPro-SemiboldItalic.ttf in Resources */,
+				532D6E011C4EB95C002E8297 /* SourceSansPro-Black.ttf in Resources */,
+				532D6E031C4EB95C002E8297 /* SourceSansPro-Bold.ttf in Resources */,
 				53DEC80C1C4E753C0069B2D1 /* Main.storyboard in Resources */,
+				532D6E091C4EB95C002E8297 /* SourceSansPro-LightItalic.ttf in Resources */,
+				532D6E0B1C4EB95C002E8297 /* SourceSansPro-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +455,7 @@
 				53DEC83D1C4E87130069B2D1 /* BTWWeatherRequest.m in Sources */,
 				53DEC8511C4E9C720069B2D1 /* BTWSystemParameters.m in Sources */,
 				53DEC8411C4E90F10069B2D1 /* BTWCoordinate.m in Sources */,
+				53DEC85A1C4EB1290069B2D1 /* BTWResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

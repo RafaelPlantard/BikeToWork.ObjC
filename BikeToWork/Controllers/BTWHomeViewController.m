@@ -14,4 +14,14 @@
 
 @implementation BTWHomeViewController
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.navigationController.interactivePopGestureRecognizer setDelegate:nil];
+}
+
 @end
