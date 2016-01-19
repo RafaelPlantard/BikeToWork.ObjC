@@ -6,14 +6,13 @@
 //  Copyright © 2016 Data Empire. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "BTWAppDelegate.h"
 
-@interface AppDelegate ()
+@interface BTWAppDelegate ()
 
 @end
 
-@implementation AppDelegate
-
+@implementation BTWAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

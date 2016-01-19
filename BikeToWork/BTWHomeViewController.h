@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+/*! @brief The controller for orchestres the home view. */
+@interface BTWHomeViewController : UIViewController
 
 @end
-

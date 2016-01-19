@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		53DEC8031C4E753C0069B2D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8021C4E753C0069B2D1 /* main.m */; };
-		53DEC8061C4E753C0069B2D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8051C4E753C0069B2D1 /* AppDelegate.m */; };
-		53DEC8091C4E753C0069B2D1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8081C4E753C0069B2D1 /* ViewController.m */; };
+		53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8051C4E753C0069B2D1 /* BTWAppDelegate.m */; };
+		53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8081C4E753C0069B2D1 /* BTWHomeViewController.m */; };
 		53DEC80C1C4E753C0069B2D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DEC80A1C4E753C0069B2D1 /* Main.storyboard */; };
 		53DEC80E1C4E753C0069B2D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53DEC80D1C4E753C0069B2D1 /* Assets.xcassets */; };
 		53DEC8111C4E753C0069B2D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DEC80F1C4E753C0069B2D1 /* LaunchScreen.storyboard */; };
@@ -29,10 +29,10 @@
 /* Begin PBXFileReference section */
 		53DEC7FE1C4E753C0069B2D1 /* BikeToWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeToWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DEC8021C4E753C0069B2D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		53DEC8041C4E753C0069B2D1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		53DEC8051C4E753C0069B2D1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		53DEC8071C4E753C0069B2D1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		53DEC8081C4E753C0069B2D1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		53DEC8041C4E753C0069B2D1 /* BTWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTWAppDelegate.h; sourceTree = "<group>"; };
+		53DEC8051C4E753C0069B2D1 /* BTWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTWAppDelegate.m; sourceTree = "<group>"; };
+		53DEC8071C4E753C0069B2D1 /* BTWHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTWHomeViewController.h; sourceTree = "<group>"; };
+		53DEC8081C4E753C0069B2D1 /* BTWHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTWHomeViewController.m; sourceTree = "<group>"; };
 		53DEC80B1C4E753C0069B2D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		53DEC80D1C4E753C0069B2D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53DEC8101C4E753C0069B2D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -81,10 +81,9 @@
 		53DEC8001C4E753C0069B2D1 /* BikeToWork */ = {
 			isa = PBXGroup;
 			children = (
-				53DEC8041C4E753C0069B2D1 /* AppDelegate.h */,
-				53DEC8051C4E753C0069B2D1 /* AppDelegate.m */,
-				53DEC8071C4E753C0069B2D1 /* ViewController.h */,
-				53DEC8081C4E753C0069B2D1 /* ViewController.m */,
+				53DEC8261C4E75500069B2D1 /* Commons */,
+				53DEC8281C4E75570069B2D1 /* Controllers */,
+				53DEC8271C4E75540069B2D1 /* Network */,
 				53DEC80A1C4E753C0069B2D1 /* Main.storyboard */,
 				53DEC80D1C4E753C0069B2D1 /* Assets.xcassets */,
 				53DEC80F1C4E753C0069B2D1 /* LaunchScreen.storyboard */,
@@ -109,6 +108,31 @@
 				53DEC81D1C4E753C0069B2D1 /* Info.plist */,
 			);
 			path = BikeToWorkTests;
+			sourceTree = "<group>";
+		};
+		53DEC8261C4E75500069B2D1 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				53DEC8041C4E753C0069B2D1 /* BTWAppDelegate.h */,
+				53DEC8051C4E753C0069B2D1 /* BTWAppDelegate.m */,
+			);
+			name = Commons;
+			sourceTree = "<group>";
+		};
+		53DEC8271C4E75540069B2D1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		53DEC8281C4E75570069B2D1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				53DEC8071C4E753C0069B2D1 /* BTWHomeViewController.h */,
+				53DEC8081C4E753C0069B2D1 /* BTWHomeViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +179,7 @@
 		53DEC7F61C4E753C0069B2D1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = BTW;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Data Empire";
 				TargetAttributes = {
@@ -213,8 +238,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53DEC8091C4E753C0069B2D1 /* ViewController.m in Sources */,
-				53DEC8061C4E753C0069B2D1 /* AppDelegate.m in Sources */,
+				53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */,
+				53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */,
 				53DEC8031C4E753C0069B2D1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
