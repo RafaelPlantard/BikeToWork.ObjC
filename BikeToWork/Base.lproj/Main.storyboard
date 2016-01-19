@@ -242,9 +242,17 @@
                                     <constraint firstAttribute="width" constant="50" id="rJE-cl-iIB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Trocchi" family="Trocchi" pointSize="10"/>
-                                <state key="normal" title="tap for  a tip!">
+                                <state key="normal" title="tap for a tip!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="titleLabel.textAlignment">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="titleLabel.numberOfLines">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bike" translatesAutoresizingMaskIntoConstraints="NO" id="9ff-AQ-D0X">
                                 <rect key="frame" x="100" y="224" width="120" height="60"/>
