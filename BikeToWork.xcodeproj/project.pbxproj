@@ -93,9 +93,9 @@
 			children = (
 				53DEC8001C4E753C0069B2D1 /* BikeToWork */,
 				53DEC81A1C4E753C0069B2D1 /* BikeToWorkTests */,
-				53DEC7FF1C4E753C0069B2D1 /* Products */,
-				0BBDB83287DFAB0DD9C49DC2 /* Pods */,
 				534983AEFB7D065E1E4D77B8 /* Frameworks */,
+				0BBDB83287DFAB0DD9C49DC2 /* Pods */,
+				53DEC7FF1C4E753C0069B2D1 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,15 +111,15 @@
 		53DEC8001C4E753C0069B2D1 /* BikeToWork */ = {
 			isa = PBXGroup;
 			children = (
-				53DEC82C1C4E77A10069B2D1 /* Models */,
 				53DEC8261C4E75500069B2D1 /* Commons */,
 				53DEC8281C4E75570069B2D1 /* Controllers */,
+				53DEC82C1C4E77A10069B2D1 /* Models */,
 				53DEC8271C4E75540069B2D1 /* Network */,
-				53DEC80A1C4E753C0069B2D1 /* Main.storyboard */,
-				53DEC80D1C4E753C0069B2D1 /* Assets.xcassets */,
-				53DEC80F1C4E753C0069B2D1 /* LaunchScreen.storyboard */,
-				53DEC8121C4E753C0069B2D1 /* Info.plist */,
 				53DEC8011C4E753C0069B2D1 /* Supporting Files */,
+				53DEC80D1C4E753C0069B2D1 /* Assets.xcassets */,
+				53DEC8121C4E753C0069B2D1 /* Info.plist */,
+				53DEC80F1C4E753C0069B2D1 /* LaunchScreen.storyboard */,
+				53DEC80A1C4E753C0069B2D1 /* Main.storyboard */,
 			);
 			path = BikeToWork;
 			sourceTree = "<group>";
@@ -129,7 +129,7 @@
 			children = (
 				53DEC8021C4E753C0069B2D1 /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		53DEC81A1C4E753C0069B2D1 /* BikeToWorkTests */ = {
@@ -147,7 +147,7 @@
 				53DEC8041C4E753C0069B2D1 /* BTWAppDelegate.h */,
 				53DEC8051C4E753C0069B2D1 /* BTWAppDelegate.m */,
 			);
-			name = Commons;
+			path = Commons;
 			sourceTree = "<group>";
 		};
 		53DEC8271C4E75540069B2D1 /* Network */ = {
@@ -156,7 +156,7 @@
 				53DEC8291C4E76CC0069B2D1 /* BTWSessionManager.h */,
 				53DEC82A1C4E76CC0069B2D1 /* BTWSessionManager.m */,
 			);
-			name = Network;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		53DEC8281C4E75570069B2D1 /* Controllers */ = {
@@ -165,7 +165,7 @@
 				53DEC8071C4E753C0069B2D1 /* BTWHomeViewController.h */,
 				53DEC8081C4E753C0069B2D1 /* BTWHomeViewController.m */,
 			);
-			name = Controllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		53DEC82C1C4E77A10069B2D1 /* Models */ = {
@@ -174,7 +174,7 @@
 				53DEC8301C4E78110069B2D1 /* BTWModelBase.h */,
 				53DEC8311C4E78110069B2D1 /* BTWModelBase.m */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +364,7 @@
 				53DEC80B1C4E753C0069B2D1 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		53DEC80F1C4E753C0069B2D1 /* LaunchScreen.storyboard */ = {
@@ -372,6 +373,7 @@
 				53DEC8101C4E753C0069B2D1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
