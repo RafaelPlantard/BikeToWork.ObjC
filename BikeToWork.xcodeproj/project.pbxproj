@@ -15,6 +15,7 @@
 		53DEC8111C4E753C0069B2D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DEC80F1C4E753C0069B2D1 /* LaunchScreen.storyboard */; };
 		53DEC81C1C4E753C0069B2D1 /* BikeToWorkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC81B1C4E753C0069B2D1 /* BikeToWorkTests.m */; };
 		53DEC82B1C4E76CC0069B2D1 /* BTWSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC82A1C4E76CC0069B2D1 /* BTWSessionManager.m */; };
+		53DEC8321C4E78110069B2D1 /* BTWModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8311C4E78110069B2D1 /* BTWModelBase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		53DEC81D1C4E753C0069B2D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53DEC8291C4E76CC0069B2D1 /* BTWSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWSessionManager.h; sourceTree = "<group>"; };
 		53DEC82A1C4E76CC0069B2D1 /* BTWSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWSessionManager.m; sourceTree = "<group>"; };
+		53DEC8301C4E78110069B2D1 /* BTWModelBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWModelBase.h; sourceTree = "<group>"; };
+		53DEC8311C4E78110069B2D1 /* BTWModelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWModelBase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 		53DEC8001C4E753C0069B2D1 /* BikeToWork */ = {
 			isa = PBXGroup;
 			children = (
+				53DEC82C1C4E77A10069B2D1 /* Models */,
 				53DEC8261C4E75500069B2D1 /* Commons */,
 				53DEC8281C4E75570069B2D1 /* Controllers */,
 				53DEC8271C4E75540069B2D1 /* Network */,
@@ -138,6 +142,15 @@
 				53DEC8081C4E753C0069B2D1 /* BTWHomeViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		53DEC82C1C4E77A10069B2D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				53DEC8301C4E78110069B2D1 /* BTWModelBase.h */,
+				53DEC8311C4E78110069B2D1 /* BTWModelBase.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53DEC8321C4E78110069B2D1 /* BTWModelBase.m in Sources */,
 				53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */,
 				53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */,
 				53DEC82B1C4E76CC0069B2D1 /* BTWSessionManager.m in Sources */,
