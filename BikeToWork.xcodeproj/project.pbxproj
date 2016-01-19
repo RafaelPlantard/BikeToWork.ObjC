@@ -14,6 +14,7 @@
 		53DEC80E1C4E753C0069B2D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53DEC80D1C4E753C0069B2D1 /* Assets.xcassets */; };
 		53DEC8111C4E753C0069B2D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DEC80F1C4E753C0069B2D1 /* LaunchScreen.storyboard */; };
 		53DEC81C1C4E753C0069B2D1 /* BikeToWorkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC81B1C4E753C0069B2D1 /* BikeToWorkTests.m */; };
+		53DEC82B1C4E76CC0069B2D1 /* BTWSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC82A1C4E76CC0069B2D1 /* BTWSessionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		53DEC8171C4E753C0069B2D1 /* BikeToWorkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeToWorkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DEC81B1C4E753C0069B2D1 /* BikeToWorkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BikeToWorkTests.m; sourceTree = "<group>"; };
 		53DEC81D1C4E753C0069B2D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53DEC8291C4E76CC0069B2D1 /* BTWSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWSessionManager.h; sourceTree = "<group>"; };
+		53DEC82A1C4E76CC0069B2D1 /* BTWSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWSessionManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 		53DEC8271C4E75540069B2D1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				53DEC8291C4E76CC0069B2D1 /* BTWSessionManager.h */,
+				53DEC82A1C4E76CC0069B2D1 /* BTWSessionManager.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 			files = (
 				53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */,
 				53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */,
+				53DEC82B1C4E76CC0069B2D1 /* BTWSessionManager.m in Sources */,
 				53DEC8031C4E753C0069B2D1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
