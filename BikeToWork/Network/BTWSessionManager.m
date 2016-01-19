@@ -8,6 +8,43 @@
 
 #import "BTWSessionManager.h"
 
+/*! @brief The base url for this session manager. */
+static NSString *const kBaseUrl = @"http://api.openweathermap.org";
+
+/*! @brief The app id for access the open wheather api. */
+static NSString *const kAppId = @"02a53a355fef3cbb8fa0898fbba375b4";
+
 @implementation BTWSessionManager
+
+- (instancetype)init
+{
+    NSURLSessionConfiguration *defaultConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    NSURL *baseURL = [NSURL URLWithString:kBaseUrl];
+    
+    self = [super initWithBaseURL:baseURL sessionConfiguration:defaultConfiguration];
+    
+    if (self) {
+        self.requestSerializer = [AFJSONRequestSerializer serializer];
+        self.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        self.securityPolicy.allowInvalidCertificates = YES;
+        self.securityPolicy.validatesDomainName = NO;
+    }
+    
+    return self;
+}
+
++ (instancetype)sharedManager {
+    static BTWSessionManager *sessionManager;
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        sessionManager = [self new];
+    });
+    
+    return sessionManager;
+}
 
 @end

@@ -6,9 +6,12 @@
 //  Copyright © 2016 Data Empire. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <AFNetworking/AFHTTPSessionManager.h>
 
 /*! @brief A custom session manager for network requests. */
-@interface BTWSessionManager : NSObject
+@interface BTWSessionManager : AFHTTPSessionManager
+
+/*! @brief A singleton object for this session manager. */
++ (instancetype)sharedManager;
 
 @end

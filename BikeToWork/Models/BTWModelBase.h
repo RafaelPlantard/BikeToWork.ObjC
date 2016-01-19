@@ -2,7 +2,7 @@
 //  FDCMantleBase.h
 //  FirstDribbbleChallenge
 //
-//  Created by Douglas Barreto on 1/13/16.
+//  Created by Douglas Barreto and Rafael Ferreira on 1/13/16.
 //  Copyright © 2016 Data Empire. All rights reserved.
 //
 
