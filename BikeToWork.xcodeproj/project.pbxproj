@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		531517BB1C4F3F8800AF64BF /* BTWUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 531517BA1C4F3F8700AF64BF /* BTWUserSettings.m */; };
+		531517BE1C4F413C00AF64BF /* BTWUserNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 531517BD1C4F413C00AF64BF /* BTWUserNotify.m */; };
 		532D6E001C4EB958002E8297 /* Trocchi-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */; };
 		532D6E011C4EB95C002E8297 /* SourceSansPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DF31C4EB93A002E8297 /* SourceSansPro-Black.ttf */; };
 		532D6E021C4EB95C002E8297 /* SourceSansPro-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DF41C4EB93A002E8297 /* SourceSansPro-BlackItalic.ttf */; };
@@ -53,6 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		531517B91C4F3F8700AF64BF /* BTWUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWUserSettings.h; sourceTree = "<group>"; };
+		531517BA1C4F3F8700AF64BF /* BTWUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWUserSettings.m; sourceTree = "<group>"; };
+		531517BC1C4F413C00AF64BF /* BTWUserNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWUserNotify.h; sourceTree = "<group>"; };
+		531517BD1C4F413C00AF64BF /* BTWUserNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWUserNotify.m; sourceTree = "<group>"; };
 		532D6DF31C4EB93A002E8297 /* SourceSansPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Black.ttf"; sourceTree = "<group>"; };
 		532D6DF41C4EB93A002E8297 /* SourceSansPro-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BlackItalic.ttf"; sourceTree = "<group>"; };
 		532D6DF51C4EB93A002E8297 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
@@ -270,6 +276,10 @@
 				53DEC8501C4E9C720069B2D1 /* BTWSystemParameters.m */,
 				53DEC8521C4E9EC60069B2D1 /* BTWWheatherResponse.h */,
 				53DEC8531C4E9EC60069B2D1 /* BTWWheatherResponse.m */,
+				531517B91C4F3F8700AF64BF /* BTWUserSettings.h */,
+				531517BA1C4F3F8700AF64BF /* BTWUserSettings.m */,
+				531517BC1C4F413C00AF64BF /* BTWUserNotify.h */,
+				531517BD1C4F413C00AF64BF /* BTWUserNotify.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -441,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				531517BE1C4F413C00AF64BF /* BTWUserNotify.m in Sources */,
 				53DEC8381C4E80EA0069B2D1 /* BTWSessionManager+OpenWeatherApi.m in Sources */,
 				53DEC84E1C4E9B3D0069B2D1 /* BTWClouds.m in Sources */,
 				53DEC8321C4E78110069B2D1 /* BTWModelBase.m in Sources */,
@@ -450,6 +461,7 @@
 				53DEC8541C4E9EC60069B2D1 /* BTWWheatherResponse.m in Sources */,
 				53DEC82B1C4E76CC0069B2D1 /* BTWSessionManager.m in Sources */,
 				53DEC8031C4E753C0069B2D1 /* main.m in Sources */,
+				531517BB1C4F3F8800AF64BF /* BTWUserSettings.m in Sources */,
 				53DEC84B1C4E9A2B0069B2D1 /* BTWWind.m in Sources */,
 				53DEC8481C4E93FB0069B2D1 /* BTWTemperatures.m in Sources */,
 				53DEC83D1C4E87130069B2D1 /* BTWWeatherRequest.m in Sources */,
