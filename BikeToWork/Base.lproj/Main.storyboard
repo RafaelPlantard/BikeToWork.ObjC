@@ -398,6 +398,9 @@
                                     <constraint firstAttribute="height" constant="40" id="Z4s-Dw-mOW"/>
                                 </constraints>
                                 <state key="normal" image="Settings"/>
+                                <connections>
+                                    <action selector="backToSettings" destination="CJb-d7-xpD" eventType="touchUpInside" id="DDc-PN-orV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40784313725490196" green="0.70588235294117641" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
@@ -432,6 +435,7 @@
                         <outlet property="humidityImageView" destination="c9t-4K-my9" id="AWU-9L-Gah"/>
                         <outlet property="humidityLabel" destination="ZlW-5g-573" id="WXa-eM-hQr"/>
                         <outlet property="locationLabel" destination="PW5-Ee-l67" id="N41-sd-N8L"/>
+                        <outlet property="shareButton" destination="RGz-uw-FTd" id="lF5-hr-Nlh"/>
                         <outlet property="showTipButton" destination="Zw8-Sm-uda" id="PKi-Y2-YoB"/>
                         <outlet property="tapForTipButton" destination="Zw8-Sm-uda" id="IEo-ZU-Jjc"/>
                         <outlet property="temperatureImageView" destination="GY6-eP-vi0" id="NiI-3e-Qhq"/>

@@ -10,6 +10,8 @@
 #import "BTWUserSettings.h"
 #import "BTWWheatherResponse.h"
 
+#define HyperBlueDark   [UIColor colorWithRed:(39.0 / 255.0) green:(46.0 / 255.0) blue:(63.0 / 255.0) alpha:1.0]
+
 /*! @brief The controller for result view. */
 @interface BTWResultViewController : UIViewController
 
@@ -35,10 +37,14 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *temperatureImageView;
 
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
+
 /*! @brief The settings to check if the user can go to work with bike. */
 @property (nonatomic, strong) BTWUserSettings *settings;
 
 /*! @brief The response from API. */
 @property (nonatomic, strong) BTWWheatherResponse *currentWeather;
+
+- (IBAction)backToSettings;
 
 @end

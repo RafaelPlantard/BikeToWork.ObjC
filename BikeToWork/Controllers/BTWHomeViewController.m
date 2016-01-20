@@ -17,9 +17,9 @@ static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 
 @implementation BTWHomeViewController
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle {
+//    return UIStatusBarStyleLightContent;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
