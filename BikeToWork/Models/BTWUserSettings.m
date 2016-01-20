@@ -10,7 +10,18 @@
 
 @implementation BTWUserSettings
 
-- (BOOL)canGoToWorkWithBike:(BTWWheatherResponse *)weather {
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        self.currentWeather = [BTWWheatherResponse new];
+    }
+    
+    return self;
+}
+
+- (BOOL)canGoToWorkWithBike {
     return YES;
 }
 

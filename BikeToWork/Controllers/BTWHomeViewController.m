@@ -17,15 +17,16 @@ static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 
 @implementation BTWHomeViewController
 
-//- (UIStatusBarStyle)preferredStatusBarStyle {
-//    return UIStatusBarStyleLightContent;
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initializeSettingEnviroment];
     [self adjustSwipeGestureForBack];
     [self adjustAllComponents];
+}
+
+- (void)initializeSettingEnviroment {
+    settings = [BTWUserSettings new];
 }
 
 - (void)adjustSwipeGestureForBack {
@@ -82,7 +83,6 @@ static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
     BTWResultViewController *controller = (BTWResultViewController *)segue.destinationViewController;
     
     controller.settings = settings;
-    controller.currentWeather = weather;
 }
 
 @end

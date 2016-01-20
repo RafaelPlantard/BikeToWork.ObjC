@@ -37,6 +37,6 @@
 @property (nonatomic, strong) BTWWheatherResponse *currentWeather;
 
 /*! @brief Contains the logic for know whether the user will can go to work with its bike. */
-- (BOOL) canGoToWorkWithBike;
+- (BOOL)canGoToWorkWithBike;
 
 @end

@@ -17,7 +17,6 @@
 /*! @brief The controller for orchestres the home view. */
 @interface BTWHomeViewController : UIViewController {
     BTWUserSettings *settings;
-    BTWWheatherResponse *weather;
 }
 
 - (IBAction)choiceCity:(UIButton *)sender;

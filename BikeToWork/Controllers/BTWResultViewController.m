@@ -33,9 +33,7 @@ static NSString *const kDefaultBikeToWorkDayLabel = @"BIKE TO WORK DAY?";
 }
 
 - (void)colorizeToBike:(BOOL)canBike {
-    if (canBike) {
-        
-    } else {
+    if (!canBike) {
         self.view.backgroundColor = HyperBlueDark;
         self.canBikeLabel.text = @"no";
         [self.bikeImageView setImage:[UIImage imageNamed:@"NoIcon"]];
@@ -101,7 +99,7 @@ static NSString *const kDefaultBikeToWorkDayLabel = @"BIKE TO WORK DAY?";
         [self.showTipButton setImage:image forState:UIControlStateNormal];
     }
     
-    NSString *newCanBikeText = (isToClose) ? @"lets go bitches!" : originalText;
+    NSString *newCanBikeText = (isToClose) ? [self.settings.currentWeather seeCurrentTip] : originalText;
     UIFont *font = (isToClose) ? self.whenBikeLabel.font : bigFont;
     
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{

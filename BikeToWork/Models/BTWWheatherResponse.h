@@ -43,4 +43,10 @@
 /*! @brief The city id. */
 @property (nonatomic, strong) NSNumber *cityId;
 
+/*! @brief Based on the current weather return a tip. */
+- (NSString *)seeCurrentTip;
+
+/*! @brief Based on the current temperature returns the better image for show it. */
+- (NSString *)imageNameForTemperature;
+
 @end

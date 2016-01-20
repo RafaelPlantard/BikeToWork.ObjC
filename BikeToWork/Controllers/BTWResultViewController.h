@@ -44,9 +44,6 @@
 /*! @brief The settings to check if the user can go to work with bike. */
 @property (nonatomic, strong) BTWUserSettings *settings;
 
-/*! @brief The response from API. */
-@property (nonatomic, strong) BTWWheatherResponse *currentWeather;
-
 - (IBAction)backToSettings;
 
 - (IBAction)shareContent;

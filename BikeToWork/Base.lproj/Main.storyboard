@@ -295,13 +295,6 @@
                                                 <color key="textColor" red="0.38823529411764707" green="0.65490196078431373" blue="0.75294117647058822" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c9t-4K-my9">
-                                                <rect key="frame" x="65" y="61" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="HKO-3p-jKp"/>
-                                                    <constraint firstAttribute="height" constant="40" id="Wm3-ua-6bD"/>
-                                                </constraints>
-                                            </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" image="VerticalSeparator" translatesAutoresizingMaskIntoConstraints="NO" id="hhD-65-6tj">
                                                 <rect key="frame" x="139" y="11" width="2" height="88"/>
                                             </imageView>
@@ -311,11 +304,18 @@
                                                 <color key="textColor" red="0.38823529410000002" green="0.65490196079999996" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GY6-eP-vi0">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cloud" translatesAutoresizingMaskIntoConstraints="NO" id="GY6-eP-vi0">
                                                 <rect key="frame" x="175" y="61" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="VjL-Wl-WHV"/>
                                                     <constraint firstAttribute="width" constant="40" id="ylb-U8-cQf"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rain" translatesAutoresizingMaskIntoConstraints="NO" id="c9t-4K-my9">
+                                                <rect key="frame" x="65" y="61" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="HKO-3p-jKp"/>
+                                                    <constraint firstAttribute="height" constant="40" id="Wm3-ua-6bD"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -460,6 +460,8 @@
     </scenes>
     <resources>
         <image name="Bike" width="97" height="61"/>
+        <image name="Cloud" width="76" height="76"/>
+        <image name="Rain" width="76" height="76"/>
         <image name="Settings" width="32" height="32"/>
         <image name="Share" width="31" height="31"/>
         <image name="TapForTip" width="66" height="65"/>
