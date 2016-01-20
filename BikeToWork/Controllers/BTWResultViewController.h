@@ -39,6 +39,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *bikeToWorkDayLabel;
+
 /*! @brief The settings to check if the user can go to work with bike. */
 @property (nonatomic, strong) BTWUserSettings *settings;
 
@@ -46,5 +48,9 @@
 @property (nonatomic, strong) BTWWheatherResponse *currentWeather;
 
 - (IBAction)backToSettings;
+
+- (IBAction)shareContent;
+
+- (IBAction)showTip:(UIButton *)sender;
 
 @end

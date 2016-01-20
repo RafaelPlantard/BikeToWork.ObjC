@@ -11,7 +11,7 @@
 @implementation BTWUserSettings
 
 - (BOOL)canGoToWorkWithBike:(BTWWheatherResponse *)weather {
-    return NO;
+    return YES;
 }
 
 @end
