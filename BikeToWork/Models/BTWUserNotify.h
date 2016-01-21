@@ -17,7 +17,9 @@ typedef NS_ENUM(NSInteger, BTWNotificationRecurrence) {
     BTWNotificationRecurrenceEveryWednesday,
     BTWNotificationRecurrenceEveryThursday,
     BTWNotificationRecurrenceEveryFriday,
-    BTWNotificationRecurrenceEverySaturday
+    BTWNotificationRecurrenceEverySaturday,
+    
+    BTWNotificationRecurrenceOnceTime
 };
 
 /*! @brief The settings for the time and recurrence of the user notification. */
@@ -28,5 +30,11 @@ typedef NS_ENUM(NSInteger, BTWNotificationRecurrence) {
 
 /*! @brief The time for alarm the user. */
 @property (nonatomic, strong) NSString *time;
+
+/*! @brief Returns a string representation for a specific element of the enum of recurrences.*/
++ (NSString *)stringRepresentation:(BTWNotificationRecurrence)recurrence;
+
+/*! @brief Returns an array of strings that represents all strings representation of the enum of recurrence. */
++ (NSArray *)allStringRepresentation;
 
 @end

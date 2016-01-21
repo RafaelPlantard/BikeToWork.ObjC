@@ -25,11 +25,11 @@
 /*! @brief The maximum temperature. */
 @property (nonatomic, strong) NSNumber *maximumTemperature;
 
-/*! @brief The minimum pressure. */
-@property (nonatomic, strong) NSNumber *minimumPressure;
+/*! @brief The minimum humidity. */
+@property (nonatomic, strong) NSNumber *minimumHumidity;
 
-/*! @brief The maximum pressure. */
-@property (nonatomic, strong) NSNumber *maximumPressure;
+/*! @brief The maximum humidity. */
+@property (nonatomic, strong) NSNumber *maximumHumidity;
 
 /*! @brief The settings related with notification and its recurrence. */
 @property (nonatomic, strong) BTWUserNotify *notificationSettings;
