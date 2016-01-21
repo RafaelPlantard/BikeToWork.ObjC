@@ -145,7 +145,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bC-qN-bRL">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bC-qN-bRL">
                                         <rect key="frame" x="20" y="183" width="280" height="91"/>
                                         <string key="text">than 10% chance of raining, the temperature is higher than 10ºC and lower than 26ºC, and the air humidity varies between 40% and 70%.</string>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
@@ -158,7 +158,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Every work day at 7:30AM." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVg-gj-cVg">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Every work day at 7:30AM." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVg-gj-cVg">
                                         <rect key="frame" x="20" y="335" width="280" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -204,6 +204,7 @@
                     <navigationItem key="navigationItem" id="c00-9b-25F"/>
                     <connections>
                         <outlet property="celsiusButton" destination="Bq2-S2-Nis" id="ofs-hF-s3b"/>
+                        <outlet property="currentLocationButton" destination="iQP-v9-6ua" id="TCe-aR-Kug"/>
                         <outlet property="fahrenheitButton" destination="qmD-NT-4YC" id="Vvx-fF-gmF"/>
                         <outlet property="mainDataField" destination="1bC-qN-bRL" id="npV-BW-7pA"/>
                         <outlet property="repeatIntervalField" destination="PVg-gj-cVg" id="yYK-MH-X2t"/>

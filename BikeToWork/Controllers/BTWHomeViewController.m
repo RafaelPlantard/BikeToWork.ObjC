@@ -11,7 +11,13 @@
 
 static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 
+static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Every .* day|\\d+:\\d+[A|P]M)";
+
 @interface BTWHomeViewController ()
+
+@property (nonatomic, strong) BTWUserSettings *settings;
+
+@property (nonatomic, strong) NSMutableDictionary *rangesToConsider;
 
 @end
 
@@ -26,7 +32,7 @@ static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 }
 
 - (void)initializeSettingEnviroment {
-    settings = [BTWUserSettings new];
+    self.settings = [BTWUserSettings new];
 }
 
 - (void)adjustSwipeGestureForBack {
@@ -34,10 +40,70 @@ static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 }
 
 - (void)adjustAllComponents {
+    // currentLocationButton
+    [self.currentLocationButton setTitle:[self getCityNameBasedOnLocation] forState:UIControlStateNormal];
     
+    // mainDataField
+    [self processPlaceholdersOnLabel:self.mainDataField];
+    [self addTapUIGestureToLabel:self.mainDataField];
+    
+    // repeatIntervalField
+    [self processPlaceholdersOnLabel:self.repeatIntervalField];
+    [self addTapUIGestureToLabel:self.repeatIntervalField];
+}
+
+- (void)addTapUIGestureToLabel:(UILabel *)label {
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler:)];
+    
+    [label addGestureRecognizer:tapGesture];
+}
+
+- (void)tapHandler:(UITapGestureRecognizer *)tapGesture {
+    NSLog(@"Loguei agora carai");
+    
+    [self.rangesToConsider enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        NSLog(@"%@", key);
+    }];
+}
+
+- (void)processPlaceholdersOnLabel:(UILabel *)label {
+    NSError *errorsOnRegex;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kRegexForFindStringAttributes options:0 error:&errorsOnRegex];
+    
+    NSArray *matches = [regex matchesInString:label.text options:0 range:NSMakeRange(0, label.text.length)];
+    
+    NSDictionary *currentTextFormat = @{
+                                        NSForegroundColorAttributeName: [UIColor whiteColor],
+                                        NSFontAttributeName: label.font,
+                                        NSUnderlineStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleNone]
+                                        };
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text attributes:currentTextFormat];
+    
+    for (NSTextCheckingResult *match in matches) {
+        NSRange range = match.range;
+        
+        [attributedString addAttribute:NSForegroundColorAttributeName value:LinkedTextUIColor range:range];
+        [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:range];
+        
+        [self.rangesToConsider setObject:label.text forKey:[NSValue valueWithRange:range]];
+    }
+    
+    label.attributedText = attributedString;
 }
 
 - (IBAction)choiceCity:(UIButton *)sender {
+    NSString *city = [self getCityNameBasedOnLocation];
+    
+    if (!city) {
+        NSLog(@"Working with a list of all cities.");
+    }
+}
+
+- (NSString *)getCityNameBasedOnLocation {
+    
+    
+    return @"Sao Paulo";
 }
 
 - (IBAction)viewResult {
@@ -77,12 +143,13 @@ static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
     }];
     
     self.mainDataField.text = string;
+    [self processPlaceholdersOnLabel:self.mainDataField];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     BTWResultViewController *controller = (BTWResultViewController *)segue.destinationViewController;
     
-    controller.settings = settings;
+    controller.settings = self.settings;
 }
 
 @end

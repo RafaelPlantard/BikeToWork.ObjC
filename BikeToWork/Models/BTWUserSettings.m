@@ -24,15 +24,15 @@
 - (BOOL)canGoToWorkWithBike {
     NSNumber *currentTemperature = self.currentWeather.main.temperature;
     NSNumber *currentHumidity = self.currentWeather.main.humidity;
-    NSNumber *currentTime = [NSDate date];
+    NSDate *currentTime = [NSDate date];
     
     BOOL temperatureOk = (currentTemperature >= self.minimumTemperature) && (currentTemperature <= self.maximumTemperature);
     
     BOOL humidityOk = (currentHumidity >= self.minimumHumidity) && (currentHumidity <= self.maximumHumidity);
     
-    BOOL timeOk = YES;
+    BOOL timeOk = (currentTime);
     
-    return (temperatureOk && humidityOk);
+    return (temperatureOk && humidityOk && timeOk);
 }
 
 @end
