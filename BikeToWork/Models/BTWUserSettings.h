@@ -34,6 +34,7 @@
 /*! @brief The settings related with notification and its recurrence. */
 @property (nonatomic, strong) BTWUserNotify *notificationSettings;
 
+/*! @brief The current weather for compare in all logic processment. */
 @property (nonatomic, strong) BTWWheatherResponse *currentWeather;
 
 /*! @brief Contains the logic for know whether the user will can go to work with its bike. */

@@ -43,6 +43,9 @@
 /*! @brief The city id. */
 @property (nonatomic, strong) NSNumber *cityId;
 
+/*! @brief The internal parameters. */
+@property (nonatomic, strong) BTWSystemParameters *internalParameters;
+
 /*! @brief Based on the current weather return a tip. */
 - (NSString *)seeCurrentTip;
 

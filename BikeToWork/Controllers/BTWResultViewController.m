@@ -23,13 +23,16 @@ static NSString *const kDefaultBikeToWorkDayLabel = @"BIKE TO WORK DAY?";
 }
 
 - (void)doRequest {
-    //    [self colorizeToBike:[self.settings canGoToWorkWithBike:self.currentWeather]];
-    [self colorizeToBike:YES];
+    [self colorizeToBike:[self.settings canGoToWorkWithBike]];
 }
 
 - (void)adjustAllComponents {
     // showTipButton
     self.showTipButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    // temperatureImageView
+    UIImage *image = [UIImage imageNamed:[self.settings.currentWeather imageNameForTemperature]];
+    [self.temperatureImageView setImage:image];
 }
 
 - (void)colorizeToBike:(BOOL)canBike {
