@@ -8,7 +8,6 @@
 
 #import "BTWHomeViewController.h"
 #import "BTWResultViewController.h"
-#import "UITapGestureRecognizer+UILabel.h"
 
 static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 
@@ -17,8 +16,6 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 @interface BTWHomeViewController ()
 
 @property (nonatomic, strong) BTWUserSettings *settings;
-
-@property (nonatomic, strong) NSMutableDictionary *rangesToConsider;
 
 @end
 
@@ -29,7 +26,6 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     
     if (self) {
         self.settings = [BTWUserSettings new];
-        self.rangesToConsider = [NSMutableDictionary new];
     }
     
     return self;
@@ -67,15 +63,6 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 
 - (void)tapHandler:(UITapGestureRecognizer *)tapGesture {
     NSLog(@"Loguei agora carai");
-    
-    [self.rangesToConsider enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        NSValue *valueOnKey = (NSValue *)key;
-        NSRange range = valueOnKey.rangeValue;
-        
-        BOOL clickedOnLink = [tapGesture didTapAttributedTextInLabel:obj inRange:range];
-        
-        NSLog(@"%i", clickedOnLink);
-    }];
 }
 
 - (void)processPlaceholdersOnTextView:(UITextView *)textView {
@@ -97,8 +84,6 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
         
         [attributedString addAttribute:NSForegroundColorAttributeName value:LinkedTextUIColor range:range];
         [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:range];
-        
-        [self.rangesToConsider setObject:textView forKey:[NSValue valueWithRange:range]];
     }
     
     textView.attributedText = attributedString;
@@ -113,8 +98,6 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 }
 
 - (NSString *)getCityNameBasedOnLocation {
-    
-    
     return @"Sao Paulo";
 }
 

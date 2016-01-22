@@ -22,7 +22,6 @@
 		532D6E0A1C4EB95C002E8297 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFC1C4EB93A002E8297 /* SourceSansPro-Regular.ttf */; };
 		532D6E0B1C4EB95C002E8297 /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */; };
 		532D6E0C1C4EB95C002E8297 /* SourceSansPro-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */; };
-		53C38E3B1C517DA1002B1A73 /* UITapGestureRecognizer+UILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C38E3A1C517DA1002B1A73 /* UITapGestureRecognizer+UILabel.m */; };
 		53DEC8031C4E753C0069B2D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8021C4E753C0069B2D1 /* main.m */; };
 		53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8051C4E753C0069B2D1 /* BTWAppDelegate.m */; };
 		53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8081C4E753C0069B2D1 /* BTWHomeViewController.m */; };
@@ -73,8 +72,6 @@
 		532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
 		532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trocchi-Regular.ttf"; sourceTree = "<group>"; };
-		53C38E391C517DA1002B1A73 /* UITapGestureRecognizer+UILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITapGestureRecognizer+UILabel.h"; sourceTree = "<group>"; };
-		53C38E3A1C517DA1002B1A73 /* UITapGestureRecognizer+UILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITapGestureRecognizer+UILabel.m"; sourceTree = "<group>"; };
 		53DEC7FE1C4E753C0069B2D1 /* BikeToWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeToWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DEC8021C4E753C0069B2D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		53DEC8041C4E753C0069B2D1 /* BTWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTWAppDelegate.h; sourceTree = "<group>"; };
@@ -173,15 +170,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		53C38E341C517CE8002B1A73 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				53C38E391C517DA1002B1A73 /* UITapGestureRecognizer+UILabel.h */,
-				53C38E3A1C517DA1002B1A73 /* UITapGestureRecognizer+UILabel.m */,
-			);
-			name = Helpers;
-			sourceTree = "<group>";
-		};
 		53DEC7F51C4E753C0069B2D1 = {
 			isa = PBXGroup;
 			children = (
@@ -205,7 +193,6 @@
 		53DEC8001C4E753C0069B2D1 /* BikeToWork */ = {
 			isa = PBXGroup;
 			children = (
-				53C38E341C517CE8002B1A73 /* Helpers */,
 				532D6DF21C4EB90B002E8297 /* Resources */,
 				53DEC8261C4E75500069B2D1 /* Commons */,
 				53DEC8281C4E75570069B2D1 /* Controllers */,
@@ -470,7 +457,6 @@
 				53DEC8321C4E78110069B2D1 /* BTWModelBase.m in Sources */,
 				53DEC8441C4E92400069B2D1 /* BTWWeather.m in Sources */,
 				53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */,
-				53C38E3B1C517DA1002B1A73 /* UITapGestureRecognizer+UILabel.m in Sources */,
 				53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */,
 				53DEC8541C4E9EC60069B2D1 /* BTWWheatherResponse.m in Sources */,
 				53DEC82B1C4E76CC0069B2D1 /* BTWSessionManager.m in Sources */,
