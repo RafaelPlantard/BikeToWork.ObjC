@@ -145,44 +145,54 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bC-qN-bRL">
-                                        <rect key="frame" x="20" y="183" width="280" height="91"/>
-                                        <string key="text">than 10% chance of raining, the temperature is higher than 10ºC and lower than 26ºC, and the air humidity varies between 40% and 70%.</string>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify me..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8o-bg-0m1">
-                                        <rect key="frame" x="20" y="304" width="280" height="26"/>
+                                        <rect key="frame" x="20" y="318" width="280" height="26"/>
                                         <fontDescription key="fontDescription" name="Trocchi" family="Trocchi" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Every work day at 7:30AM." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVg-gj-cVg">
-                                        <rect key="frame" x="20" y="335" width="280" height="23"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Every work day at 7:30AM." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="D0W-cx-jRQ">
+                                        <rect key="frame" x="20" y="349" width="280" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="p6u-d7-JEs"/>
+                                        </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iQ-X8-gHw">
+                                        <rect key="frame" x="20" y="183" width="280" height="110"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="110" id="4i7-LN-S9f"/>
+                                        </constraints>
+                                        <string key="text">than 10% chance of raining, the temperature is higher than 10ºC and lower than 26ºC, and the air humidity varies between 40% and 70%.</string>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.086274509803921567" green="0.25490196078431371" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="PVg-gj-cVg" firstAttribute="top" secondItem="C8o-bg-0m1" secondAttribute="bottom" constant="5" id="0mZ-8c-JBE"/>
                                     <constraint firstItem="Mgd-ml-1ox" firstAttribute="top" secondItem="Pxx-xO-w3s" secondAttribute="top" constant="20" id="28Q-g4-KUX"/>
                                     <constraint firstItem="13p-GK-zgl" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="6iZ-vK-5mw"/>
                                     <constraint firstItem="C8o-bg-0m1" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="9AL-Xg-BbJ"/>
-                                    <constraint firstItem="1bC-qN-bRL" firstAttribute="top" secondItem="DPB-3B-bao" secondAttribute="bottom" constant="5" id="B1W-qw-2fu"/>
+                                    <constraint firstAttribute="trailing" secondItem="D0W-cx-jRQ" secondAttribute="trailing" constant="20" id="A8J-V6-4i2"/>
+                                    <constraint firstItem="0iQ-X8-gHw" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="Cgj-yU-B37"/>
                                     <constraint firstItem="iQP-v9-6ua" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="D4O-Ge-Q13"/>
-                                    <constraint firstItem="C8o-bg-0m1" firstAttribute="top" secondItem="1bC-qN-bRL" secondAttribute="bottom" constant="30" id="Du3-Pd-M0J"/>
+                                    <constraint firstItem="0iQ-X8-gHw" firstAttribute="top" secondItem="DPB-3B-bao" secondAttribute="bottom" constant="5" id="DSj-Wj-uaz"/>
                                     <constraint firstItem="DPB-3B-bao" firstAttribute="top" secondItem="iQP-v9-6ua" secondAttribute="bottom" constant="30" id="F2B-bQ-W2A"/>
-                                    <constraint firstAttribute="trailing" secondItem="1bC-qN-bRL" secondAttribute="trailing" constant="20" id="GZQ-NI-JxH"/>
-                                    <constraint firstAttribute="trailing" secondItem="PVg-gj-cVg" secondAttribute="trailing" constant="20" id="HgV-D8-YXe"/>
                                     <constraint firstAttribute="trailing" secondItem="13p-GK-zgl" secondAttribute="trailing" constant="20" id="JzT-aQ-Xfn"/>
                                     <constraint firstAttribute="trailing" secondItem="iQP-v9-6ua" secondAttribute="trailing" constant="20" id="LhT-xF-EBt"/>
+                                    <constraint firstItem="D0W-cx-jRQ" firstAttribute="top" secondItem="C8o-bg-0m1" secondAttribute="bottom" constant="5" id="MbF-PW-Fui"/>
                                     <constraint firstItem="p8a-Jn-Kxu" firstAttribute="top" secondItem="Mgd-ml-1ox" secondAttribute="bottom" constant="10" id="Msm-Dh-2Ys"/>
+                                    <constraint firstItem="C8o-bg-0m1" firstAttribute="top" secondItem="0iQ-X8-gHw" secondAttribute="bottom" constant="25" id="N1S-0i-NaI"/>
                                     <constraint firstItem="DPB-3B-bao" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="Nyj-vn-fqa"/>
-                                    <constraint firstItem="PVg-gj-cVg" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="Q88-HP-yBb"/>
-                                    <constraint firstItem="1bC-qN-bRL" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="QBy-Cr-tSK"/>
+                                    <constraint firstAttribute="trailing" secondItem="0iQ-X8-gHw" secondAttribute="trailing" constant="20" id="O4F-Fe-UbM"/>
+                                    <constraint firstItem="D0W-cx-jRQ" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="Q4y-za-fqP"/>
                                     <constraint firstItem="p8a-Jn-Kxu" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="Tgc-M8-JFT"/>
                                     <constraint firstAttribute="bottom" secondItem="13p-GK-zgl" secondAttribute="bottom" constant="17" id="WtP-m5-KTp"/>
                                     <constraint firstAttribute="trailing" secondItem="C8o-bg-0m1" secondAttribute="trailing" constant="20" id="cZ9-Wo-CZD"/>
@@ -190,7 +200,13 @@
                                     <constraint firstAttribute="trailing" secondItem="DPB-3B-bao" secondAttribute="trailing" constant="20" id="l1J-BV-ch9"/>
                                     <constraint firstAttribute="trailing" secondItem="p8a-Jn-Kxu" secondAttribute="trailing" constant="20" id="rcr-mJ-R7H"/>
                                     <constraint firstItem="iQP-v9-6ua" firstAttribute="top" secondItem="p8a-Jn-Kxu" secondAttribute="bottom" constant="5" id="t52-fd-kxF"/>
+                                    <constraint firstItem="C8o-bg-0m1" firstAttribute="top" secondItem="0iQ-X8-gHw" secondAttribute="bottom" constant="30" id="xTx-pf-LIc"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="xTx-pf-LIc"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.40784313725490196" green="0.70588235294117641" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
@@ -206,8 +222,6 @@
                         <outlet property="celsiusButton" destination="Bq2-S2-Nis" id="ofs-hF-s3b"/>
                         <outlet property="currentLocationButton" destination="iQP-v9-6ua" id="TCe-aR-Kug"/>
                         <outlet property="fahrenheitButton" destination="qmD-NT-4YC" id="Vvx-fF-gmF"/>
-                        <outlet property="mainDataField" destination="1bC-qN-bRL" id="npV-BW-7pA"/>
-                        <outlet property="repeatIntervalField" destination="PVg-gj-cVg" id="yYK-MH-X2t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

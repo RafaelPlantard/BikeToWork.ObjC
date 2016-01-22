@@ -29,9 +29,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *fahrenheitButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *mainDataField;
+@property (weak, nonatomic) IBOutlet UITextView *mainDataTextView;
 
-@property (weak, nonatomic) IBOutlet UILabel *repeatIntervalField;
+@property (weak, nonatomic) IBOutlet UITextView *repeatIntervalTextView;
 
 @property (weak, nonatomic) IBOutlet UIButton *currentLocationButton;
 

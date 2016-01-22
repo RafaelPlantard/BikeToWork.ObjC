@@ -51,18 +51,18 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     [self.currentLocationButton setTitle:[self getCityNameBasedOnLocation] forState:UIControlStateNormal];
     
     // mainDataField
-    [self processPlaceholdersOnLabel:self.mainDataField];
-    [self addTapUIGestureToLabel:self.mainDataField];
+    [self processPlaceholdersOnTextView:self.mainDataTextView];
+    [self addTapUIGestureToTextView:self.mainDataTextView];
     
     // repeatIntervalField
-    [self processPlaceholdersOnLabel:self.repeatIntervalField];
-    [self addTapUIGestureToLabel:self.repeatIntervalField];
+    [self processPlaceholdersOnTextView:self.repeatIntervalTextView];
+    [self addTapUIGestureToTextView:self.repeatIntervalTextView];
 }
 
-- (void)addTapUIGestureToLabel:(UILabel *)label {
+- (void)addTapUIGestureToTextView:(UITextView *)textView {
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler:)];
     
-    [label addGestureRecognizer:tapGesture];
+    [textView addGestureRecognizer:tapGesture];
 }
 
 - (void)tapHandler:(UITapGestureRecognizer *)tapGesture {
@@ -78,19 +78,19 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     }];
 }
 
-- (void)processPlaceholdersOnLabel:(UILabel *)label {
+- (void)processPlaceholdersOnTextView:(UITextView *)textView {
     NSError *errorsOnRegex;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kRegexForFindStringAttributes options:0 error:&errorsOnRegex];
     
-    NSArray *matches = [regex matchesInString:label.text options:0 range:NSMakeRange(0, label.text.length)];
+    NSArray *matches = [regex matchesInString:textView.text options:0 range:NSMakeRange(0, textView.text.length)];
     
     NSDictionary *currentTextFormat = @{
                                         NSForegroundColorAttributeName: [UIColor whiteColor],
-                                        NSFontAttributeName: label.font,
+                                        NSFontAttributeName: textView.font,
                                         NSUnderlineStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleNone]
                                         };
     
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text attributes:currentTextFormat];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:textView.text attributes:currentTextFormat];
     
     for (NSTextCheckingResult *match in matches) {
         NSRange range = match.range;
@@ -98,10 +98,10 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
         [attributedString addAttribute:NSForegroundColorAttributeName value:LinkedTextUIColor range:range];
         [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:range];
         
-        [self.rangesToConsider setObject:label forKey:[NSValue valueWithRange:range]];
+        [self.rangesToConsider setObject:textView forKey:[NSValue valueWithRange:range]];
     }
     
-    label.attributedText = attributedString;
+    textView.attributedText = attributedString;
 }
 
 - (IBAction)choiceCity:(UIButton *)sender {
@@ -134,7 +134,7 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     NSError *errorsOnRegex;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kRegexForTemperatureDegrees options:0 error:&errorsOnRegex];
     
-    __block NSString *string = self.mainDataField.text;
+    __block NSString *string = self.mainDataTextView.text;
     
     NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
     
@@ -154,8 +154,8 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
         string = [string stringByReplacingCharactersInRange:unitRange withString:newUnit];
     }];
     
-    self.mainDataField.text = string;
-    [self processPlaceholdersOnLabel:self.mainDataField];
+    self.mainDataTextView.text = string;
+    [self processPlaceholdersOnTextView:self.mainDataTextView];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
