@@ -8,6 +8,7 @@
 
 #import "BTWHomeViewController.h"
 #import "BTWResultViewController.h"
+#import "UITapGestureRecognizer+UILabel.h"
 
 static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 
@@ -22,17 +23,23 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 @end
 
 @implementation BTWHomeViewController
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    
+    if (self) {
+        self.settings = [BTWUserSettings new];
+        self.rangesToConsider = [NSMutableDictionary new];
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initializeSettingEnviroment];
     [self adjustSwipeGestureForBack];
     [self adjustAllComponents];
-}
-
-- (void)initializeSettingEnviroment {
-    self.settings = [BTWUserSettings new];
 }
 
 - (void)adjustSwipeGestureForBack {
@@ -62,7 +69,12 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     NSLog(@"Loguei agora carai");
     
     [self.rangesToConsider enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        NSLog(@"%@", key);
+        NSValue *valueOnKey = (NSValue *)key;
+        NSRange range = valueOnKey.rangeValue;
+        
+        BOOL clickedOnLink = [tapGesture didTapAttributedTextInLabel:obj inRange:range];
+        
+        NSLog(@"%i", clickedOnLink);
     }];
 }
 
@@ -86,7 +98,7 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
         [attributedString addAttribute:NSForegroundColorAttributeName value:LinkedTextUIColor range:range];
         [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:range];
         
-        [self.rangesToConsider setObject:label.text forKey:[NSValue valueWithRange:range]];
+        [self.rangesToConsider setObject:label forKey:[NSValue valueWithRange:range]];
     }
     
     label.attributedText = attributedString;
