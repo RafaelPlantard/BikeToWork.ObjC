@@ -20,8 +20,8 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 @end
 
 @implementation BTWHomeViewController
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     
     if (self) {
@@ -48,21 +48,9 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     
     // mainDataField
     [self processPlaceholdersOnTextView:self.mainDataTextView];
-    [self addTapUIGestureToTextView:self.mainDataTextView];
     
     // repeatIntervalField
     [self processPlaceholdersOnTextView:self.repeatIntervalTextView];
-    [self addTapUIGestureToTextView:self.repeatIntervalTextView];
-}
-
-- (void)addTapUIGestureToTextView:(UITextView *)textView {
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler:)];
-    
-    [textView addGestureRecognizer:tapGesture];
-}
-
-- (void)tapHandler:(UITapGestureRecognizer *)tapGesture {
-    NSLog(@"Loguei agora carai");
 }
 
 - (void)processPlaceholdersOnTextView:(UITextView *)textView {
@@ -77,16 +65,31 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
                                         NSUnderlineStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleNone]
                                         };
     
+    NSDictionary *linkAttributes = @{
+                                     NSForegroundColorAttributeName: LinkedTextUIColor,
+                                     NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSUnderlineStyleSingle]
+                                     };
+    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:textView.text attributes:currentTextFormat];
     
     for (NSTextCheckingResult *match in matches) {
         NSRange range = match.range;
+        NSString *stringTapped = [textView.text substringWithRange:range];
+        stringTapped = [stringTapped stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         
-        [attributedString addAttribute:NSForegroundColorAttributeName value:LinkedTextUIColor range:range];
-        [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:range];
+        textView.linkTextAttributes = linkAttributes;
+        [attributedString addAttribute:NSLinkAttributeName value:stringTapped range:range];
     }
     
     textView.attributedText = attributedString;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+    NSString *stringPassed = [[NSString stringWithFormat:@"%@", URL] stringByRemovingPercentEncoding];
+    
+    NSLog(@"%@", stringPassed);
+    
+    return NO;
 }
 
 - (IBAction)choiceCity:(UIButton *)sender {

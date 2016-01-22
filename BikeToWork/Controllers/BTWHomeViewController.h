@@ -17,7 +17,7 @@
 #define LinkedTextUIColor   [UIColor colorWithRed:(144.0 / 255.0) green:(219.0 / 255.0) blue:(135.0 / 255.0) alpha:1.0]
 
 /*! @brief The controller for orchestres the home view. */
-@interface BTWHomeViewController : UIViewController
+@interface BTWHomeViewController : UIViewController<UITextViewDelegate>
 
 - (IBAction)choiceCity:(UIButton *)sender;
 
