@@ -15,11 +15,14 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Semibold.ttf">
             <string>SourceSansPro-Semibold</string>
         </mutableArray>
         <mutableArray key="Trocchi-Regular.ttf">
+            <string>Trocchi</string>
             <string>Trocchi</string>
             <string>Trocchi</string>
             <string>Trocchi</string>
@@ -83,27 +86,6 @@
                                             <constraint firstItem="Bq2-S2-Nis" firstAttribute="top" secondItem="Mgd-ml-1ox" secondAttribute="top" id="zQm-iA-Yl4"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13p-GK-zgl">
-                                        <rect key="frame" x="20" y="491" width="280" height="40"/>
-                                        <color key="backgroundColor" red="0.40784313725490196" green="0.70588235294117641" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="KLS-Xh-Kn4"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Trocchi" family="Trocchi" pointSize="20"/>
-                                        <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
-                                        <state key="normal" title="ok">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="viewResult" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fzx-Q2-OmX"/>
-                                            <segue destination="CJb-d7-xpD" kind="show" id="FLo-Wt-yTc"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I live in..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8a-Jn-Kxu">
                                         <rect key="frame" x="20" y="60" width="280" height="22"/>
                                         <constraints>
@@ -145,6 +127,29 @@
                                             </mask>
                                         </variation>
                                     </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iQ-X8-gHw">
+                                        <rect key="frame" x="20" y="183" width="280" height="95"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="95" id="4i7-LN-S9f"/>
+                                        </constraints>
+                                        <string key="text">than 10% chance of raining, the temperature is higher than 10ºC and lower than 26ºC, and the air humidity varies between 40% and 70%.</string>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES" calendarEvent="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="textContainer.lineFragmentPadding">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="rect" keyPath="textContainerInset">
+                                                <rect key="value" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="4YX-ds-ed9"/>
+                                        </connections>
+                                    </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify me..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8o-bg-0m1">
                                         <rect key="frame" x="20" y="308" width="280" height="26"/>
                                         <fontDescription key="fontDescription" name="Trocchi" family="Trocchi" pointSize="20"/>
@@ -173,29 +178,59 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="K8h-vt-pdh"/>
                                         </connections>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iQ-X8-gHw">
-                                        <rect key="frame" x="20" y="183" width="280" height="95"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13p-GK-zgl">
+                                        <rect key="frame" x="20" y="491" width="280" height="40"/>
+                                        <color key="backgroundColor" red="0.40784313725490196" green="0.70588235294117641" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="95" id="4i7-LN-S9f"/>
+                                            <constraint firstAttribute="height" constant="40" id="KLS-Xh-Kn4"/>
                                         </constraints>
-                                        <string key="text">than 10% chance of raining, the temperature is higher than 10ºC and lower than 26ºC, and the air humidity varies between 40% and 70%.</string>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <dataDetectorType key="dataDetectorTypes" link="YES" calendarEvent="YES"/>
+                                        <fontDescription key="fontDescription" name="Trocchi" family="Trocchi" pointSize="20"/>
+                                        <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
+                                        <state key="normal" title="ok">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="textContainer.lineFragmentPadding">
-                                                <integer key="value" value="0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="rect" keyPath="textContainerInset">
-                                                <rect key="value" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="4YX-ds-ed9"/>
+                                            <action selector="viewResult" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fzx-Q2-OmX"/>
+                                            <segue destination="CJb-d7-xpD" kind="show" id="FLo-Wt-yTc"/>
                                         </connections>
-                                    </textView>
+                                    </button>
+                                    <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YtK-pk-I3N">
+                                        <rect key="frame" x="0.0" y="298" width="320" height="250"/>
+                                        <subviews>
+                                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="mN4-c7-3m4">
+                                                <rect key="frame" x="15" y="83" width="240" height="31"/>
+                                            </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxH-Vx-itd">
+                                                <rect key="frame" x="261" y="87" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                                <color key="textColor" red="0.086274509799999996" green="0.25490196079999999" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0U-wB-FhD">
+                                                <rect key="frame" x="20" y="194" width="283" height="40"/>
+                                                <color key="backgroundColor" red="0.40784313729999999" green="0.70588235290000001" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Trocchi" family="Trocchi" pointSize="20"/>
+                                                <state key="normal" title="save">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chance of raining..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldS-dJ-WH6">
+                                                <rect key="frame" x="8" y="20" width="304" height="21"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                                <color key="textColor" red="0.086274509799999996" green="0.25490196079999999" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="250" identifier="SettingsViewHeight" id="ies-nN-JzT"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.086274509803921567" green="0.25490196078431371" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -203,6 +238,7 @@
                                     <constraint firstItem="13p-GK-zgl" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="6iZ-vK-5mw"/>
                                     <constraint firstItem="C8o-bg-0m1" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="9AL-Xg-BbJ"/>
                                     <constraint firstAttribute="trailing" secondItem="D0W-cx-jRQ" secondAttribute="trailing" constant="20" id="A8J-V6-4i2"/>
+                                    <constraint firstAttribute="bottom" secondItem="YtK-pk-I3N" secondAttribute="bottom" id="BGt-rM-xXF"/>
                                     <constraint firstItem="0iQ-X8-gHw" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="Cgj-yU-B37"/>
                                     <constraint firstItem="iQP-v9-6ua" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="D4O-Ge-Q13"/>
                                     <constraint firstItem="0iQ-X8-gHw" firstAttribute="top" secondItem="DPB-3B-bao" secondAttribute="bottom" constant="5" id="DSj-Wj-uaz"/>
@@ -215,10 +251,12 @@
                                     <constraint firstItem="DPB-3B-bao" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="Nyj-vn-fqa"/>
                                     <constraint firstAttribute="trailing" secondItem="0iQ-X8-gHw" secondAttribute="trailing" constant="20" id="O4F-Fe-UbM"/>
                                     <constraint firstItem="D0W-cx-jRQ" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="Q4y-za-fqP"/>
+                                    <constraint firstItem="YtK-pk-I3N" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" id="SxQ-bD-0Tj"/>
                                     <constraint firstItem="p8a-Jn-Kxu" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="Tgc-M8-JFT"/>
                                     <constraint firstAttribute="bottom" secondItem="13p-GK-zgl" secondAttribute="bottom" constant="17" id="WtP-m5-KTp"/>
                                     <constraint firstAttribute="trailing" secondItem="C8o-bg-0m1" secondAttribute="trailing" constant="20" id="cZ9-Wo-CZD"/>
                                     <constraint firstAttribute="trailing" secondItem="Mgd-ml-1ox" secondAttribute="trailing" constant="20" id="guB-rB-hek"/>
+                                    <constraint firstAttribute="trailing" secondItem="YtK-pk-I3N" secondAttribute="trailing" id="kzD-84-m43"/>
                                     <constraint firstAttribute="trailing" secondItem="DPB-3B-bao" secondAttribute="trailing" constant="20" id="l1J-BV-ch9"/>
                                     <constraint firstAttribute="trailing" secondItem="p8a-Jn-Kxu" secondAttribute="trailing" constant="20" id="rcr-mJ-R7H"/>
                                     <constraint firstItem="iQP-v9-6ua" firstAttribute="top" secondItem="p8a-Jn-Kxu" secondAttribute="bottom" constant="5" id="t52-fd-kxF"/>
@@ -246,6 +284,8 @@
                         <outlet property="fahrenheitButton" destination="qmD-NT-4YC" id="Vvx-fF-gmF"/>
                         <outlet property="mainDataTextView" destination="0iQ-X8-gHw" id="KXD-jn-u6h"/>
                         <outlet property="repeatIntervalTextView" destination="D0W-cx-jRQ" id="N6O-Li-RWz"/>
+                        <outlet property="settingsView" destination="YtK-pk-I3N" id="B3Z-JN-uOn"/>
+                        <outlet property="settingsViewHeightConstraint" destination="ies-nN-JzT" id="CgD-xk-0WG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

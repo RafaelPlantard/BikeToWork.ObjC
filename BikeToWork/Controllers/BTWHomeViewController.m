@@ -51,6 +51,9 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     
     // repeatIntervalField
     [self processPlaceholdersOnTextView:self.repeatIntervalTextView];
+    
+    // settingsView
+    [self changeVisibilityOfSettingsViewToShow];
 }
 
 - (void)processPlaceholdersOnTextView:(UITextView *)textView {
@@ -77,8 +80,8 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
         NSString *stringTapped = [textView.text substringWithRange:range];
         stringTapped = [stringTapped stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         
-        textView.linkTextAttributes = linkAttributes;
         [attributedString addAttribute:NSLinkAttributeName value:stringTapped range:range];
+        textView.linkTextAttributes = linkAttributes;
     }
     
     textView.attributedText = attributedString;
@@ -89,7 +92,21 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     
     NSLog(@"%@", stringPassed);
     
+    [self showSettingsView];
+    
     return NO;
+}
+
+- (void)showSettingsView {
+    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self changeVisibilityOfSettingsViewToShow];
+        [self.settingsView layoutIfNeeded];
+        
+    } completion:nil];
+}
+
+- (void)changeVisibilityOfSettingsViewToShow{
+    self.settingsViewHeightConstraint.constant = (self.settingsViewHeightConstraint.constant == 0) ? 250 : 0;
 }
 
 - (IBAction)choiceCity:(UIButton *)sender {

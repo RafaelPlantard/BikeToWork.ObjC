@@ -35,4 +35,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *currentLocationButton;
 
+@property (weak, nonatomic) IBOutlet UIView *settingsView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *settingsViewHeightConstraint;
+
+
 @end
