@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E29D71C352E50A90761F265F'
-               BlueprintName = 'bricks-Mantle-bricks-Mantle'
+               BlueprintIdentifier = '2FB86407AAB208277E51B256'
+               BlueprintName = 'HexColors'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'bricks-Mantle.bundle'>
+               BuildableName = 'libHexColors.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

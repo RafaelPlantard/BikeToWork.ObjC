@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E29D71C352E50A90761F265F'
-               BlueprintName = 'bricks-Mantle-bricks-Mantle'
+               BlueprintIdentifier = 'B4578F828FAAEBF344879038'
+               BlueprintName = 'TSMessages'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'bricks-Mantle.bundle'>
+               BuildableName = 'libTSMessages.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
