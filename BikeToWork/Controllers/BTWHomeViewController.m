@@ -17,6 +17,10 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 
 @property (nonatomic, strong) BTWUserSettings *settings;
 
+@property (nonatomic, strong) CLLocationManager *locationManager;
+
+@property (nonatomic, strong) CLLocation *userLocation;
+
 @end
 
 @implementation BTWHomeViewController
@@ -34,8 +38,17 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setUpLocationManager];
     [self adjustSwipeGestureForBack];
     [self adjustAllComponents];
+}
+
+- (void)setUpLocationManager {
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    [self.locationManager requestWhenInUseAuthorization];
 }
 
 - (void)adjustSwipeGestureForBack {
@@ -118,6 +131,8 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 }
 
 - (NSString *)getCityNameBasedOnLocation {
+    [self.locationManager startUpdatingLocation];
+    
     return @"Sao Paulo";
 }
 
@@ -165,6 +180,20 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     BTWResultViewController *controller = (BTWResultViewController *)segue.destinationViewController;
     
     controller.settings = self.settings;
+}
+
+#pragma mark - CLLocationManagerDelegate methods
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Error on location: %@", error);
+    
+    // TODO: Using TSMessage.
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    self.userLocation = [locations lastObject];
+    
+    [self.locationManager stopUpdatingLocation];
 }
 
 @end

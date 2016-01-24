@@ -7,6 +7,7 @@ target 'BikeToWork' do
 	pod 'AFNetworking'
 	pod 'bricks-Mantle'
 	pod 'Mantle'
+	pod 'TSMessages'
 end
 
 target 'BikeToWorkTests' do

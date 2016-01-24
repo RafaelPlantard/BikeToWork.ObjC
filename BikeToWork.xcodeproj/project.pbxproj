@@ -22,6 +22,7 @@
 		532D6E0A1C4EB95C002E8297 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFC1C4EB93A002E8297 /* SourceSansPro-Regular.ttf */; };
 		532D6E0B1C4EB95C002E8297 /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */; };
 		532D6E0C1C4EB95C002E8297 /* SourceSansPro-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */; };
+		539EE1521C54407A0053C969 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539EE1511C54407A0053C969 /* CoreLocation.framework */; };
 		53DEC8031C4E753C0069B2D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8021C4E753C0069B2D1 /* main.m */; };
 		53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8051C4E753C0069B2D1 /* BTWAppDelegate.m */; };
 		53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8081C4E753C0069B2D1 /* BTWHomeViewController.m */; };
@@ -72,6 +73,7 @@
 		532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
 		532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trocchi-Regular.ttf"; sourceTree = "<group>"; };
+		539EE1511C54407A0053C969 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		53DEC7FE1C4E753C0069B2D1 /* BikeToWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeToWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DEC8021C4E753C0069B2D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		53DEC8041C4E753C0069B2D1 /* BTWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTWAppDelegate.h; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				539EE1521C54407A0053C969 /* CoreLocation.framework in Frameworks */,
 				920BF060AB7F10C59609CD54 /* libPods-BikeToWork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +168,7 @@
 		534983AEFB7D065E1E4D77B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				539EE1511C54407A0053C969 /* CoreLocation.framework */,
 				9597F1D8C18F3F733BFF9ED6 /* libPods-BikeToWork.a */,
 			);
 			name = Frameworks;

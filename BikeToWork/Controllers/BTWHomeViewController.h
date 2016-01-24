@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "BTWUserSettings.h"
 #import "BTWWheatherResponse.h"
 
@@ -17,7 +18,7 @@
 #define LinkedTextUIColor   [UIColor colorWithRed:(144.0 / 255.0) green:(219.0 / 255.0) blue:(135.0 / 255.0) alpha:1.0]
 
 /*! @brief The controller for orchestres the home view. */
-@interface BTWHomeViewController : UIViewController<UITextViewDelegate>
+@interface BTWHomeViewController : UIViewController<UITextViewDelegate, CLLocationManagerDelegate>
 
 - (IBAction)choiceCity:(UIButton *)sender;
 
