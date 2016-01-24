@@ -17,6 +17,17 @@
 
 #define LinkedTextUIColor   [UIColor colorWithRed:(144.0 / 255.0) green:(219.0 / 255.0) blue:(135.0 / 255.0) alpha:1.0]
 
+typedef NS_ENUM(NSInteger, BTWLabelLinkClicked)
+{
+    BTWLabelLinkClickedChanceOfRaining,
+    BTWLabelLinkClickedMinimumTemperature,
+    BTWLabelLinkClickedMaximumTemperature,
+    BTWLabelLinkClickedMinimumHumidity,
+    BTWLabelLinkClickedMaximumHumidity,
+    BTWLabelLinkClickedRecurrenceAlarm,
+    BTWLabelLinkClickedTimeToAlarm
+};
+
 /*! @brief The controller for orchestres the home view. */
 @interface BTWHomeViewController : UIViewController<UITextViewDelegate, CLLocationManagerDelegate>
 
@@ -40,5 +51,14 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *settingsViewHeightConstraint;
 
+@property (weak, nonatomic) IBOutlet UISlider *currentSlider;
+
+- (IBAction)currentSliderValueChanged:(UISlider *)sender;
+
+@property (weak, nonatomic) IBOutlet UILabel *currentValueOnSliderLabel;
+
+- (IBAction)saveChangeOnLabel:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet UILabel *currentLabelForSettingsView;
 
 @end

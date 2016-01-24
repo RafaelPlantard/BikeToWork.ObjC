@@ -202,11 +202,20 @@
                                     <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YtK-pk-I3N">
                                         <rect key="frame" x="0.0" y="298" width="320" height="250"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="mN4-c7-3m4">
-                                                <rect key="frame" x="15" y="83" width="240" height="31"/>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="mN4-c7-3m4">
+                                                <rect key="frame" x="18" y="90" width="232" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="kES-2c-YVN"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="currentSliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="7Dd-dB-GBM"/>
+                                                </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxH-Vx-itd">
-                                                <rect key="frame" x="261" y="87" width="42" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxH-Vx-itd">
+                                                <rect key="frame" x="268" y="95" width="32" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="BJd-er-Qu1"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                                 <color key="textColor" red="0.086274509799999996" green="0.25490196079999999" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -218,9 +227,20 @@
                                                 <state key="normal" title="save">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="saveChangeOnLabel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8eL-29-us2"/>
+                                                </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chance of raining..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldS-dJ-WH6">
-                                                <rect key="frame" x="8" y="20" width="304" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chance of raining..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldS-dJ-WH6">
+                                                <rect key="frame" x="20" y="20" width="280" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="9dh-lX-ICF"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                                 <color key="textColor" red="0.086274509799999996" green="0.25490196079999999" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -228,7 +248,15 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="mN4-c7-3m4" firstAttribute="leading" secondItem="YtK-pk-I3N" secondAttribute="leading" constant="20" id="1e0-mH-FcT"/>
+                                            <constraint firstAttribute="trailing" secondItem="fxH-Vx-itd" secondAttribute="trailing" constant="20" id="F6h-g9-V25"/>
+                                            <constraint firstItem="ldS-dJ-WH6" firstAttribute="leading" secondItem="YtK-pk-I3N" secondAttribute="leading" constant="20" id="IhS-nD-Tb7"/>
+                                            <constraint firstItem="ldS-dJ-WH6" firstAttribute="top" secondItem="YtK-pk-I3N" secondAttribute="top" constant="20" id="NaT-Ag-3Yp"/>
+                                            <constraint firstItem="mN4-c7-3m4" firstAttribute="top" secondItem="ldS-dJ-WH6" secondAttribute="bottom" constant="50" id="QLM-hX-I7O"/>
                                             <constraint firstAttribute="height" constant="250" identifier="SettingsViewHeight" id="ies-nN-JzT"/>
+                                            <constraint firstItem="fxH-Vx-itd" firstAttribute="top" secondItem="ldS-dJ-WH6" secondAttribute="bottom" constant="55" id="p5c-PA-izF"/>
+                                            <constraint firstItem="fxH-Vx-itd" firstAttribute="leading" secondItem="mN4-c7-3m4" secondAttribute="trailing" constant="20" id="urS-uM-Wbr"/>
+                                            <constraint firstAttribute="trailing" secondItem="ldS-dJ-WH6" secondAttribute="trailing" constant="20" id="xP3-0a-y79"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -280,7 +308,10 @@
                     <navigationItem key="navigationItem" id="c00-9b-25F"/>
                     <connections>
                         <outlet property="celsiusButton" destination="Bq2-S2-Nis" id="ofs-hF-s3b"/>
+                        <outlet property="currentLabelForSettingsView" destination="ldS-dJ-WH6" id="g6b-Uu-KrG"/>
                         <outlet property="currentLocationButton" destination="iQP-v9-6ua" id="TCe-aR-Kug"/>
+                        <outlet property="currentSlider" destination="mN4-c7-3m4" id="LDb-y6-bb5"/>
+                        <outlet property="currentValueOnSliderLabel" destination="fxH-Vx-itd" id="mWl-An-rPI"/>
                         <outlet property="fahrenheitButton" destination="qmD-NT-4YC" id="Vvx-fF-gmF"/>
                         <outlet property="mainDataTextView" destination="0iQ-X8-gHw" id="KXD-jn-u6h"/>
                         <outlet property="repeatIntervalTextView" destination="D0W-cx-jRQ" id="N6O-Li-RWz"/>

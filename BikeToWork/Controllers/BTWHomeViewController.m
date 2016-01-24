@@ -8,6 +8,7 @@
 
 #import "BTWHomeViewController.h"
 #import "BTWResultViewController.h"
+#import <TSMessages/TSMessage.h>
 
 static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 
@@ -20,6 +21,12 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) CLLocation *userLocation;
+
+@property (nonatomic, strong) CLGeocoder *geoCoder;
+
+@property (nonatomic, strong) CLPlacemark *placemark;
+
+@property (nonatomic, assign) NSString *currentLinkTapped;
 
 @end
 
@@ -44,11 +51,13 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 }
 
 - (void)setUpLocationManager {
-    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     [self.locationManager requestWhenInUseAuthorization];
+    
+    self.geoCoder = [CLGeocoder new];
 }
 
 - (void)adjustSwipeGestureForBack {
@@ -57,7 +66,7 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 
 - (void)adjustAllComponents {
     // currentLocationButton
-    [self.currentLocationButton setTitle:[self getCityNameBasedOnLocation] forState:UIControlStateNormal];
+    [self.currentLocationButton setTitle:@"City" forState:UIControlStateNormal];
     
     // mainDataField
     [self processPlaceholdersOnTextView:self.mainDataTextView];
@@ -103,6 +112,8 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
     NSString *stringPassed = [[NSString stringWithFormat:@"%@", URL] stringByRemovingPercentEncoding];
     
+    self.currentLinkTapped = stringPassed;
+    
     NSLog(@"%@", stringPassed);
     
     [self showSettingsView];
@@ -111,7 +122,7 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 }
 
 - (void)showSettingsView {
-    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self changeVisibilityOfSettingsViewToShow];
         [self.settingsView layoutIfNeeded];
         
@@ -119,21 +130,29 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 }
 
 - (void)changeVisibilityOfSettingsViewToShow{
-    self.settingsViewHeightConstraint.constant = (self.settingsViewHeightConstraint.constant == 0) ? 250 : 0;
-}
-
-- (IBAction)choiceCity:(UIButton *)sender {
-    NSString *city = [self getCityNameBasedOnLocation];
+    BOOL isToOpen = (self.settingsViewHeightConstraint.constant == 0);
     
-    if (!city) {
-        NSLog(@"Working with a list of all cities.");
+    self.settingsViewHeightConstraint.constant = isToOpen ? 250 : 0;
+    
+    if (isToOpen) {
+        [self performAnActionBasedLabelLinkTappedIsToChangeView:YES];
     }
 }
 
-- (NSString *)getCityNameBasedOnLocation {
+- (IBAction)choiceCity:(UIButton *)sender {
     [self.locationManager startUpdatingLocation];
-    
-    return @"Sao Paulo";
+}
+
+- (void)updateCityNameBasedOnLocation:(CLLocation *)currentLocation {
+    [self.geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        self.placemark = [placemarks lastObject];
+        
+        if (error || !self.placemark) {
+            [TSMessage showNotificationWithTitle:@"Bike 2 Work" subtitle:@"Impossible resolve your city based on your location" type:TSMessageNotificationTypeError];
+        } else {
+            [self.currentLocationButton setTitle:self.placemark.locality forState:UIControlStateNormal];
+        }
+    }];
 }
 
 - (IBAction)viewResult {
@@ -173,6 +192,7 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     }];
     
     self.mainDataTextView.text = string;
+    
     [self processPlaceholdersOnTextView:self.mainDataTextView];
 }
 
@@ -182,18 +202,142 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     controller.settings = self.settings;
 }
 
+#pragma mark - Settings View Change Selectors
+
+- (void)changeToChanceOfRaining {
+    
+}
+
+#pragma mark - Settings View Save Selectors
+
+- (void)saveChanceOfRaining {
+    
+}
+
 #pragma mark - CLLocationManagerDelegate methods
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    NSLog(@"Error on location: %@", error);
-    
-    // TODO: Using TSMessage.
+    [TSMessage showNotificationWithTitle:@"Bike 2 Work" subtitle:@"Error on location services." type:TSMessageNotificationTypeError];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     self.userLocation = [locations lastObject];
     
+    [self updateCityNameBasedOnLocation:self.userLocation];
+    
     [self.locationManager stopUpdatingLocation];
 }
 
+- (IBAction)currentSliderValueChanged:(UISlider *)sender {
+    [sender setValue:((int)((sender.value + 5) / 10) * 10) animated:YES];
+    
+    NSString *valueComplement;
+    
+    switch ([self convertLinkClickedFromString:self.currentLinkTapped]) {
+        case BTWLabelLinkClickedMinimumTemperature:
+        case BTWLabelLinkClickedMaximumTemperature:
+            valueComplement = @"ºC";
+            break;
+            
+        default:
+            valueComplement = @"%";
+            break;
+    }
+    
+    self.currentValueOnSliderLabel.text = [NSString stringWithFormat:@"%.0f%@", sender.value, valueComplement];
+}
+
+- (BTWLabelLinkClicked)convertLinkClickedFromString:(NSString *)stringTapped {
+    BTWLabelLinkClicked toReturn = BTWLabelLinkClickedTimeToAlarm;
+    
+    if ([self.currentLinkTapped isEqualToString:@"10%"]) {
+        toReturn = BTWLabelLinkClickedChanceOfRaining;
+    } else if ([self.currentLinkTapped isEqualToString:@"10ºC"]) {
+        toReturn = BTWLabelLinkClickedMinimumTemperature;
+    } else if ([self.currentLinkTapped isEqualToString:@"26ºC%"]) {
+        toReturn = BTWLabelLinkClickedMaximumTemperature;
+    } else if ([self.currentLinkTapped isEqualToString:@"40%"]) {
+        toReturn = BTWLabelLinkClickedMinimumHumidity;
+    } else if ([self.currentLinkTapped isEqualToString:@"70%"]) {
+        toReturn = BTWLabelLinkClickedMaximumHumidity;
+    } else if ([self.currentLinkTapped isEqualToString:@"Every work day"]) {
+        toReturn = BTWLabelLinkClickedRecurrenceAlarm;
+    }
+    
+    return toReturn;
+}
+
+- (IBAction)saveChangeOnLabel:(UIButton *)sender {
+    [self performAnActionBasedLabelLinkTappedIsToChangeView:NO];
+    
+    [self showSettingsView];
+}
+
+- (void) performAnActionBasedLabelLinkTappedIsToChangeView:(BOOL)isToChangeView {
+    BTWLabelLinkClicked referenceLink = [self convertLinkClickedFromString:self.currentLinkTapped];
+    
+    if (isToChangeView) {
+        switch (referenceLink) {
+            case BTWLabelLinkClickedChanceOfRaining:
+                [self performSelector:@selector(changeToChanceOfRaining)];
+                break;
+                
+            case BTWLabelLinkClickedMinimumTemperature:
+                
+                break;
+                
+            case BTWLabelLinkClickedMaximumTemperature:
+                
+                break;
+                
+            case BTWLabelLinkClickedMinimumHumidity:
+                
+                break;
+                
+            case BTWLabelLinkClickedMaximumHumidity:
+                
+                break;
+                
+            case BTWLabelLinkClickedRecurrenceAlarm:
+                
+                break;
+                
+            case BTWLabelLinkClickedTimeToAlarm:
+                
+                break;
+        }
+    } else {
+        switch (referenceLink) {
+            case BTWLabelLinkClickedChanceOfRaining:
+                [self performSelector:@selector(saveChanceOfRaining)];
+                break;
+                
+            case BTWLabelLinkClickedMinimumTemperature:
+                
+                break;
+                
+            case BTWLabelLinkClickedMaximumTemperature:
+                
+                break;
+                
+            case BTWLabelLinkClickedMinimumHumidity:
+                
+                break;
+                
+            case BTWLabelLinkClickedMaximumHumidity:
+                
+                break;
+                
+            case BTWLabelLinkClickedRecurrenceAlarm:
+                
+                break;
+                
+            case BTWLabelLinkClickedTimeToAlarm:
+                
+                break;
+        }
+    }
+    
+    
+}
 @end
