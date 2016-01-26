@@ -199,7 +199,7 @@
                                             <segue destination="CJb-d7-xpD" kind="show" id="FLo-Wt-yTc"/>
                                         </connections>
                                     </button>
-                                    <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YtK-pk-I3N">
+                                    <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YtK-pk-I3N">
                                         <rect key="frame" x="0.0" y="298" width="320" height="250"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chance of raining..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldS-dJ-WH6">
@@ -245,6 +245,16 @@
                                                     <!--2016-01-27 01:00:00 +0000-->
                                                 </date>
                                             </datePicker>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-iS-Fhd">
+                                                <rect key="frame" x="0.0" y="55" width="320" height="120"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="CiU-WZ-Wzp"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Esb-vD-OHK"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="u8J-Lf-gR5"/>
+                                                </connections>
+                                            </pickerView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZ3-K8-JYd">
                                                 <rect key="frame" x="20" y="190" width="280" height="40"/>
                                                 <color key="backgroundColor" red="0.40784313729999999" green="0.70588235290000001" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -276,12 +286,15 @@
                                             <constraint firstItem="nP1-OH-YGg" firstAttribute="leading" secondItem="YtK-pk-I3N" secondAttribute="leading" id="PX6-SE-c5w"/>
                                             <constraint firstItem="mN4-c7-3m4" firstAttribute="top" secondItem="ldS-dJ-WH6" secondAttribute="bottom" constant="50" id="QLM-hX-I7O"/>
                                             <constraint firstAttribute="trailing" secondItem="zZ3-K8-JYd" secondAttribute="trailing" constant="20" id="RhB-HC-OEE"/>
+                                            <constraint firstItem="IhI-iS-Fhd" firstAttribute="leading" secondItem="YtK-pk-I3N" secondAttribute="leading" id="bGH-c4-ado"/>
                                             <constraint firstItem="nP1-OH-YGg" firstAttribute="top" secondItem="ldS-dJ-WH6" secondAttribute="bottom" constant="15" id="h72-fb-cSS"/>
                                             <constraint firstAttribute="bottom" secondItem="zZ3-K8-JYd" secondAttribute="bottom" constant="20" id="hrP-VL-QTZ"/>
                                             <constraint firstAttribute="height" constant="250" identifier="SettingsViewHeight" id="ies-nN-JzT"/>
                                             <constraint firstItem="fxH-Vx-itd" firstAttribute="top" secondItem="ldS-dJ-WH6" secondAttribute="bottom" constant="55" id="p5c-PA-izF"/>
+                                            <constraint firstItem="IhI-iS-Fhd" firstAttribute="top" secondItem="ldS-dJ-WH6" secondAttribute="bottom" constant="15" id="qMw-K2-366"/>
                                             <constraint firstItem="fxH-Vx-itd" firstAttribute="leading" secondItem="mN4-c7-3m4" secondAttribute="trailing" constant="10" id="urS-uM-Wbr"/>
                                             <constraint firstAttribute="trailing" secondItem="ldS-dJ-WH6" secondAttribute="trailing" constant="20" id="xP3-0a-y79"/>
+                                            <constraint firstAttribute="trailing" secondItem="IhI-iS-Fhd" secondAttribute="trailing" id="yh8-mS-jYx"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -330,6 +343,7 @@
                         <outlet property="currentDatePicker" destination="nP1-OH-YGg" id="4f2-tG-z7P"/>
                         <outlet property="currentLabelForSettingsView" destination="ldS-dJ-WH6" id="g6b-Uu-KrG"/>
                         <outlet property="currentLocationButton" destination="iQP-v9-6ua" id="TCe-aR-Kug"/>
+                        <outlet property="currentPickerView" destination="IhI-iS-Fhd" id="vib-de-bwR"/>
                         <outlet property="currentSlider" destination="mN4-c7-3m4" id="LDb-y6-bb5"/>
                         <outlet property="currentValueOnSliderLabel" destination="fxH-Vx-itd" id="mWl-An-rPI"/>
                         <outlet property="fahrenheitButton" destination="qmD-NT-4YC" id="Vvx-fF-gmF"/>

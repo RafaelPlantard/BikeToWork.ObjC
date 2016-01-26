@@ -13,7 +13,7 @@
 
 static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 
-static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F]|AM|PM)|Every .* day|\\d+:\\d+[A|P]M)";
+static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F]|AM|PM)|Every .*day|Once time|\\d+:\\d+[A|P]M)";
 
 static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
 
@@ -40,6 +40,8 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
 @property (nonatomic, assign) NSInteger stepperForSlider;
 
 @property (nonatomic, assign) BOOL isToOpenSettingsView;
+
+@property (nonatomic, assign) NSInteger indexOfSelectedRecurrenceAlarm;
 
 @end
 
@@ -258,6 +260,7 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
 
 - (void)changeCurrentSliderEnviromnentWithLabel:(NSString *)label AndValue:(NSNumber *)value WithStepper: (NSInteger)stepper ToMinimumValue:(NSNumber *)minimumValue AndMaximumValue:(NSNumber *)maximumValue {
     self.currentDatePicker.hidden = YES;
+    self.currentPickerView.hidden = YES;
     
     self.currentLabelForSettingsView.text = label;
     
@@ -289,6 +292,7 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
 - (void)changeCurrentDatePickerEnrivomnentWithLabel:(NSString *)label AndTimeInterval:(NSInteger)minuteInterval WhereMinimumTime:(NSString *)minimumTime AndMaximumTime:(NSString *)maximumTime ForCurrentTime:(NSString *)currentTime {
     self.currentSlider.hidden = YES;
     self.currentValueOnSliderLabel.hidden = YES;
+    self.currentPickerView.hidden = YES;
     
     self.currentLabelForSettingsView.text = label;
     
@@ -371,8 +375,13 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
 }
 
 - (void)changeToRecurrenceAlarm {
+    self.currentSlider.hidden = YES;
+    self.currentValueOnSliderLabel.hidden = YES;
+    self.currentDatePicker.hidden = YES;
+    
     self.currentLabelForSettingsView.text = @"With a recurrence on alarm of...";
     
+    self.currentPickerView.hidden = NO;
 }
 
 - (void)changeAlarmTime {
@@ -435,7 +444,8 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
 }
 
 - (void)saveToRecurrenceAlarm {
-    NSLog(@"Falta salvar a recurrencia do alarme");
+    self.settings.notificationSettings.notificationRecurrence = [BTWUserNotify enumRepresentationFromIndex:self.indexOfSelectedRecurrenceAlarm];
+    [self updateSettingsForUITextView:self.repeatIntervalTextView WithStringValue:[BTWUserNotify stringRepresentation:self.settings.notificationSettings.notificationRecurrence]];
 }
 
 - (void)saveAlarmTime {
@@ -547,7 +557,7 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
                 break;
                 
             case BTWLabelLinkClickedRecurrenceAlarm:
-                
+                [self performSelector:@selector(changeToRecurrenceAlarm)];
                 break;
                 
             case BTWLabelLinkClickedTimeToAlarm:
@@ -585,7 +595,7 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
                 break;
                 
             case BTWLabelLinkClickedRecurrenceAlarm:
-                
+                [self performSelector:@selector(saveToRecurrenceAlarm)];
                 break;
                 
             case BTWLabelLinkClickedTimeToAlarm:
@@ -593,7 +603,26 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
                 break;
         }
     }
-    
-    
 }
+
+#pragma mark - UIPickerViewDataSource methods
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [[BTWUserNotify allStringRepresentation] count];
+}
+
+#pragma mark - UIPickerViewDelegate methods
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [BTWUserNotify allStringRepresentation][row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.indexOfSelectedRecurrenceAlarm = row;
+}
+
 @end

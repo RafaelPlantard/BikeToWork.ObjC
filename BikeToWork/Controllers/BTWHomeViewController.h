@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, BTWLabelLinkClicked)
 };
 
 /*! @brief The controller for orchestres the home view. */
-@interface BTWHomeViewController : UIViewController<UITextViewDelegate, CLLocationManagerDelegate>
+@interface BTWHomeViewController : UIViewController<UITextViewDelegate, CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 - (IBAction)choiceCity:(UIButton *)sender;
 
@@ -66,5 +66,7 @@ typedef NS_ENUM(NSInteger, BTWLabelLinkClicked)
 @property (weak, nonatomic) IBOutlet UILabel *currentLabelForSettingsView;
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *currentDatePicker;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *currentPickerView;
 
 @end

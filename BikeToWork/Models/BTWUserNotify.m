@@ -17,7 +17,7 @@ static NSArray *notificationRecurrenceStrings;
     self = [super init];
     
     if (self) {
-        notificationRecurrenceStrings = @[@"Every work day", @"Every sunday", @"Every monday", @"Every tuesday", @"Every wednesday", @"Every thursday", @"Every friday", @"Every saturday", @"Once time"];
+        notificationRecurrenceStrings = @[@"Every day", @"Every work day", @"Every sunday", @"Every monday", @"Every tuesday", @"Every wednesday", @"Every thursday", @"Every friday", @"Every saturday", @"Once time"];
     }
     
     return self;
@@ -29,6 +29,14 @@ static NSArray *notificationRecurrenceStrings;
 
 + (NSArray *)allStringRepresentation {
     return notificationRecurrenceStrings;
+}
+
++ (BTWNotificationRecurrence)enumRepresentationFromIndex:(NSUInteger)index {
+    return (BTWNotificationRecurrence)index;
+}
+
++ (BTWNotificationRecurrence)enumRepresentationFromString:(NSString *)string {
+    return [notificationRecurrenceStrings indexOfObject:string];
 }
 
 @end
