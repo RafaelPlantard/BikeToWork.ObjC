@@ -15,13 +15,15 @@
     self = [super init];
     
     if (self) {
+        self.startTime = @"8AM";
+        self.endTime = @"7PM";
         self.chanceOfRaining = @10;
         self.minimumTemperature = @10;
         self.maximumTemperature = @26;
         self.minimumHumidity = @40;
         self.maximumHumidity = @70;
         self.currentWeather = [BTWWheatherResponse new];
-        
+        self.notificationSettings = [BTWUserNotify new];
     }
     
     return self;

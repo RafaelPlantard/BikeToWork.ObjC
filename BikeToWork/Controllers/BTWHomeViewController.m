@@ -17,6 +17,8 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F]|AM|PM
 
 static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
 
+static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
+
 @interface BTWHomeViewController ()
 
 @property (nonatomic, strong) BTWUserSettings *settings;
@@ -233,41 +235,6 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
     [self processPlaceholdersOnTextView:self.mainDataTextView];
 }
 
-- (void)updateSettingsLabelBasedOnIndex:(NSUInteger)index WithValue:(NSNumber *)value {
-    switch (index) {
-        case 0:
-            
-            break;
-            
-        case 1:
-            
-            break;
-            
-        case 2:
-            
-            break;
-            
-        case 3:
-            
-            break;
-            
-        case 4:
-            
-            break;
-            
-        case 5:
-            
-            break;
-            
-        case 6:
-            
-            break;
-            
-        default:
-            break;
-    }
-}
-
 - (void)updateTemperatureSettingsBasedOnIndex:(NSUInteger)index WithValue:(NSNumber *)value {
     switch (index) {
         case 0:
@@ -319,8 +286,15 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
     self.currentValueOnSliderLabel.hidden = NO;
 }
 
-- (void)changeCurrentDatePickerEnrivomnentWithLabel:(NSString *)label {
+- (void)changeCurrentDatePickerEnrivomnentWithLabel:(NSString *)label AndTimeInterval:(NSInteger)minuteInterval WhereMinimumTime:(NSString *)minimumTime AndMaximumTime:(NSString *)maximumTime ForCurrentTime:(NSString *)currentTime {
+    self.currentSlider.hidden = YES;
+    self.currentValueOnSliderLabel.hidden = YES;
     
+    self.currentLabelForSettingsView.text = label;
+    
+    [self defineRangeOfTimeToDatePicker:self.currentDatePicker WithMinimumTime:minimumTime AndMaximumTime:maximumTime AndMinuteInterval:minuteInterval];
+    
+    self.currentDatePicker.hidden = NO;
 }
 
 #pragma mark - Settings View Change Selectors
@@ -336,6 +310,29 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
     return [dateFormatter dateFromString:dateString];
 }
 
+- (NSString *)getStringReprentationOfTimeOfADate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    
+    NSString *toReturn = [dateFormatter stringFromDate:date];
+    toReturn = [toReturn stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSError *errorsOnRegex;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kRegexForTime options:0 error:&errorsOnRegex];
+    
+    NSTextCheckingResult *match = [regex firstMatchInString:toReturn options:0 range:NSMakeRange(0, toReturn.length)];
+    
+    NSString *hours = [toReturn substringWithRange:[match rangeAtIndex:1]];
+    NSString *minutes = [toReturn substringWithRange:[match rangeAtIndex:2]];
+    NSString *pieceOfDay = [toReturn substringWithRange:[match rangeAtIndex:3]];
+    
+    if ([minutes isEqualToString:@"00"]) {
+        toReturn = [NSString stringWithFormat:@"%@%@", hours, pieceOfDay];
+    }
+    
+    return toReturn;
+}
+
 - (void)defineRangeOfTimeToDatePicker:(UIDatePicker *)datePicker WithMinimumTime:(NSString *)minimumTime AndMaximumTime:(NSString *)maximumTime AndMinuteInterval:(NSInteger)minuteInterval {
     NSDate *now = [NSDate date];
     
@@ -346,18 +343,11 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
 }
 
 - (void)changeToStartTime {
-    self.currentSlider.hidden = YES;
-    self.currentValueOnSliderLabel.hidden = YES;
-    
-    self.currentLabelForSettingsView.text = @"Starting at...";
-    
-    [self defineRangeOfTimeToDatePicker:self.currentDatePicker WithMinimumTime:@"00:00" AndMaximumTime:@"23:00" AndMinuteInterval:10];
-    
-    self.currentDatePicker.hidden = NO;
+    [self changeCurrentDatePickerEnrivomnentWithLabel:@"Starting at..." AndTimeInterval:10 WhereMinimumTime:@"00:00" AndMaximumTime:@"23:00" ForCurrentTime:self.settings.startTime];
 }
 
 - (void)changeToEndTime {
-    
+    [self changeCurrentDatePickerEnrivomnentWithLabel:@"Ending at..." AndTimeInterval:10 WhereMinimumTime:@"00:00" AndMaximumTime:@"23:00" ForCurrentTime:self.settings.endTime];
 }
 
 - (void)changeToChanceOfRaining {
@@ -386,8 +376,7 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
 }
 
 - (void)changeAlarmTime {
-    self.currentLabelForSettingsView.text = @"With an alarm time on...";
-    
+    [self changeCurrentDatePickerEnrivomnentWithLabel:@"With an alarm time on..." AndTimeInterval:10 WhereMinimumTime:@"00:00" AndMaximumTime:@"23:00" ForCurrentTime:self.settings.notificationSettings.time];
 }
 
 #pragma mark - Settings View Save Selectors
@@ -401,9 +390,23 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
     NSString *complementPiece = [self.currentLinkTapped substringWithRange:[match rangeAtIndex:1]];
     NSString *newString = [NSString stringWithFormat:@"%lu%@", [value integerValue], complementPiece];
     
-    textView.text = [textView.text stringByReplacingCharactersInRange:self.currentRange withString:newString];
+    [self updateSettingsForUITextView:textView WithStringValue:newString];
+}
+
+- (void)updateSettingsForUITextView:(UITextView *)textView WithStringValue:(NSString *)value {
+    textView.text = [textView.text stringByReplacingCharactersInRange:self.currentRange withString:value];
     
     [self processPlaceholdersOnTextView:textView];
+}
+
+- (void)saveStartTime {
+    self.settings.startTime = [self getStringReprentationOfTimeOfADate:self.currentDatePicker.date];
+    [self updateSettingsForUITextView:self.mainDataTextView WithStringValue:self.settings.startTime];
+}
+
+- (void)saveEndTime {
+    self.settings.endTime = [self getStringReprentationOfTimeOfADate:self.currentDatePicker.date];
+    [self updateSettingsForUITextView:self.mainDataTextView WithStringValue:self.settings.endTime];
 }
 
 - (void)saveChanceOfRaining {
@@ -436,7 +439,8 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
 }
 
 - (void)saveAlarmTime {
-    NSLog(@"Falta salvar a hora do alarme!");
+    self.settings.notificationSettings.time = [self getStringReprentationOfTimeOfADate:self.currentDatePicker.date];
+    [self updateSettingsForUITextView:self.repeatIntervalTextView WithStringValue:self.settings.notificationSettings.time];
 }
 
 #pragma mark - CLLocationManagerDelegate methods
@@ -482,9 +486,9 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
     NSString *minimumHumidity = [NSString stringWithFormat:@"%lu%%", [self.settings.minimumHumidity integerValue]];
     NSString *maximumHumidity = [NSString stringWithFormat:@"%lu%%", [self.settings.maximumHumidity integerValue]];
     
-    if ([self.currentLinkTapped isEqualToString:@"8AM"]) {
+    if ([self.currentLinkTapped isEqualToString:self.settings.startTime]) {
         toReturn = BTWLabelLinkClickedStartTime;
-    } else if ([self.currentLinkTapped isEqualToString:@"7PM"]) {
+    } else if ([self.currentLinkTapped isEqualToString:self.settings.endTime]) {
         toReturn = BTWLabelLinkClickedEndTime;
     } else if ([self.currentLinkTapped isEqualToString:chanceOfRaining]) {
         toReturn = BTWLabelLinkClickedChanceOfRaining;
@@ -519,6 +523,7 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
                 break;
                 
             case BTWLabelLinkClickedEndTime:
+                [self performSelector:@selector(changeToEndTime)];
                 break;
                 
             case BTWLabelLinkClickedChanceOfRaining:
@@ -546,15 +551,17 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
                 break;
                 
             case BTWLabelLinkClickedTimeToAlarm:
-                
+                [self performSelector:@selector(changeAlarmTime)];
                 break;
         }
     } else {
         switch (referenceLink) {
             case BTWLabelLinkClickedStartTime:
+                [self performSelector:@selector(saveStartTime)];
                 break;
                 
             case BTWLabelLinkClickedEndTime:
+                [self performSelector:@selector(saveEndTime)];
                 break;
                 
             case BTWLabelLinkClickedChanceOfRaining:
@@ -582,7 +589,7 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
                 break;
                 
             case BTWLabelLinkClickedTimeToAlarm:
-                
+                [self performSelector:@selector(saveAlarmTime)];
                 break;
         }
     }
