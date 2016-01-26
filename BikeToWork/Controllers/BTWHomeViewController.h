@@ -65,4 +65,6 @@ typedef NS_ENUM(NSInteger, BTWLabelLinkClicked)
 
 @property (weak, nonatomic) IBOutlet UILabel *currentLabelForSettingsView;
 
+@property (weak, nonatomic) IBOutlet UIDatePicker *currentDatePicker;
+
 @end

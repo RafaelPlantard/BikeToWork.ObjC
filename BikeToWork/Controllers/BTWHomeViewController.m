@@ -143,9 +143,17 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
 }
 
 - (void)changeVisibilityOfSettingsViewToShow{
+    static CGFloat maxHeightOnContraint;
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        maxHeightOnContraint = self.settingsViewHeightConstraint.constant;
+    });
+    
     BOOL isToOpen = (self.settingsViewHeightConstraint.constant == 0);
     
-    self.settingsViewHeightConstraint.constant = isToOpen ? 250 : 0;
+    self.settingsViewHeightConstraint.constant = isToOpen ? maxHeightOnContraint : 0;
     
     if (isToOpen) {
         [self performAnActionBasedLabelLinkTappedIsToChangeView:YES];
@@ -270,7 +278,9 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
     controller.settings = self.settings;
 }
 
-- (void)changeCurrentSliderEnvironmentWithLabel:(NSString *)label AndValue:(NSNumber *)value WithStepper: (NSInteger)stepper ToMinimumValue:(NSNumber *)minimumValue AndMaximumValue:(NSNumber *)maximumValue {
+- (void)changeCurrentSliderEnviromnentWithLabel:(NSString *)label AndValue:(NSNumber *)value WithStepper: (NSInteger)stepper ToMinimumValue:(NSNumber *)minimumValue AndMaximumValue:(NSNumber *)maximumValue {
+    self.currentDatePicker.hidden = YES;
+    
     self.currentLabelForSettingsView.text = label;
     
     self.currentSlider.minimumValue = [minimumValue floatValue];
@@ -298,26 +308,53 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
     self.currentValueOnSliderLabel.hidden = NO;
 }
 
+- (void)changeCurrentDatePickerEnrivomnentWithLabel:(NSString *)label {
+    
+}
+
 #pragma mark - Settings View Change Selectors
 
+- (void)changeToStartTime {
+    self.currentSlider.hidden = YES;
+    self.currentValueOnSliderLabel.hidden = YES;
+    
+    self.currentLabelForSettingsView.text = @"Starting at...";
+    
+    NSDate *now = [NSDate date];
+    
+    [now ]
+    
+    self.currentDatePicker.hidden = NO;
+    self.currentDatePicker.minuteInterval = 30;
+    
+    
+    
+    
+    
+}
+
+- (void)changeToEndTime {
+    
+}
+
 - (void)changeToChanceOfRaining {
-    [self changeCurrentSliderEnvironmentWithLabel:@"Chance of raining..." AndValue:self.settings.chanceOfRaining WithStepper:10 ToMinimumValue:@0 AndMaximumValue:@100];
+    [self changeCurrentSliderEnviromnentWithLabel:@"Chance of raining..." AndValue:self.settings.chanceOfRaining WithStepper:10 ToMinimumValue:@0 AndMaximumValue:@100];
 }
 
 - (void)changeToMinimumTemperature {
-    [self changeCurrentSliderEnvironmentWithLabel:@"With minimum temperature..." AndValue:self.settings.minimumTemperature WithStepper:1 ToMinimumValue:@0 AndMaximumValue:@40];
+    [self changeCurrentSliderEnviromnentWithLabel:@"With minimum temperature..." AndValue:self.settings.minimumTemperature WithStepper:1 ToMinimumValue:@0 AndMaximumValue:@40];
 }
 
 - (void)changeToMaximumTemperature {
-    [self changeCurrentSliderEnvironmentWithLabel:@"With maximum temperature..." AndValue:self.settings.maximumTemperature WithStepper:1 ToMinimumValue:@0 AndMaximumValue:@40];
+    [self changeCurrentSliderEnviromnentWithLabel:@"With maximum temperature..." AndValue:self.settings.maximumTemperature WithStepper:1 ToMinimumValue:@0 AndMaximumValue:@40];
 }
 
 - (void)changeToMinimumHumidity {
-    [self changeCurrentSliderEnvironmentWithLabel:@"With minimum humidity..." AndValue:self.settings.minimumHumidity WithStepper:5 ToMinimumValue:@0 AndMaximumValue:@100];
+    [self changeCurrentSliderEnviromnentWithLabel:@"With minimum humidity..." AndValue:self.settings.minimumHumidity WithStepper:5 ToMinimumValue:@0 AndMaximumValue:@100];
 }
 
 - (void)changeToMaximumHumidity {
-    [self changeCurrentSliderEnvironmentWithLabel:@"With maximum humidity..." AndValue:self.settings.maximumHumidity WithStepper:5 ToMinimumValue:@0 AndMaximumValue:@100];
+    [self changeCurrentSliderEnviromnentWithLabel:@"With maximum humidity..." AndValue:self.settings.maximumHumidity WithStepper:5 ToMinimumValue:@0 AndMaximumValue:@100];
 }
 
 - (void)changeToRecurrenceAlarm {
@@ -455,6 +492,7 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
     if (isToChangeView) {
         switch (referenceLink) {
             case BTWLabelLinkClickedStartTime:
+                [self performSelector:@selector(changeToStartTime)];
                 break;
                 
             case BTWLabelLinkClickedEndTime:
