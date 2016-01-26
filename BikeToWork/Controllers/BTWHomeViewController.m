@@ -37,6 +37,8 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
 
 @property (nonatomic, assign) NSInteger stepperForSlider;
 
+@property (nonatomic, assign) BOOL isToOpenSettingsView;
+
 @end
 
 @implementation BTWHomeViewController
@@ -139,25 +141,34 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
         [self changeVisibilityOfSettingsViewToShow];
         [self.settingsView layoutIfNeeded];
         
-    } completion:nil];
+    } completion:^(BOOL finished) {
+        if (!self.isToOpenSettingsView) {
+            self.settingsView.hidden = YES;
+        }
+    }];
 }
 
 - (void)changeVisibilityOfSettingsViewToShow{
     static CGFloat maxHeightOnContraint;
+    static CGFloat maxAlphaSettingsView;
     
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
         maxHeightOnContraint = self.settingsViewHeightConstraint.constant;
+        maxAlphaSettingsView = self.settingsView.alpha;
     });
     
-    BOOL isToOpen = (self.settingsViewHeightConstraint.constant == 0);
+    self.isToOpenSettingsView = (self.settingsViewHeightConstraint.constant == 0);
     
-    self.settingsViewHeightConstraint.constant = isToOpen ? maxHeightOnContraint : 0;
-    
-    if (isToOpen) {
+    if (self.isToOpenSettingsView) {
+        self.settingsView.hidden = NO;
+        
         [self performAnActionBasedLabelLinkTappedIsToChangeView:YES];
     }
+    
+    self.settingsView.alpha = (self.isToOpenSettingsView) ? maxAlphaSettingsView : 0;
+    self.settingsViewHeightConstraint.constant = (self.isToOpenSettingsView) ? maxHeightOnContraint : 0;
 }
 
 - (IBAction)choiceCity:(UIButton *)sender {
@@ -314,23 +325,35 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
 
 #pragma mark - Settings View Change Selectors
 
+- (NSDate *)getDateFromFormat:(NSString *)dateFormat BasedOnDate:(NSDate *)date WithTime:(NSString *)timeString AndTimeFormat:(NSString *)timeFormat {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = dateFormat;
+    
+    NSString *dateString = [NSString stringWithFormat:@"%@ %@", [dateFormatter stringFromDate:date], timeString];
+    
+    dateFormatter.dateFormat = [NSString stringWithFormat:@"%@ %@", dateFormat, timeFormat];
+    
+    return [dateFormatter dateFromString:dateString];
+}
+
+- (void)defineRangeOfTimeToDatePicker:(UIDatePicker *)datePicker WithMinimumTime:(NSString *)minimumTime AndMaximumTime:(NSString *)maximumTime AndMinuteInterval:(NSInteger)minuteInterval {
+    NSDate *now = [NSDate date];
+    
+    datePicker.minuteInterval = minuteInterval;
+    
+    datePicker.minimumDate = [self getDateFromFormat:@"dd/MM/yyyy" BasedOnDate:now WithTime:minimumTime AndTimeFormat:@"HH:mm"];
+    datePicker.maximumDate = [self getDateFromFormat:@"dd/MM/yyyy" BasedOnDate:now WithTime:maximumTime AndTimeFormat:@"HH:mm"];
+}
+
 - (void)changeToStartTime {
     self.currentSlider.hidden = YES;
     self.currentValueOnSliderLabel.hidden = YES;
     
     self.currentLabelForSettingsView.text = @"Starting at...";
     
-    NSDate *now = [NSDate date];
-    
-    [now ]
+    [self defineRangeOfTimeToDatePicker:self.currentDatePicker WithMinimumTime:@"00:00" AndMaximumTime:@"23:00" AndMinuteInterval:10];
     
     self.currentDatePicker.hidden = NO;
-    self.currentDatePicker.minuteInterval = 30;
-    
-    
-    
-    
-    
 }
 
 - (void)changeToEndTime {
