@@ -15,6 +15,8 @@ static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 
 static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F]|AM|PM)|Every .* day|\\d+:\\d+[A|P]M)";
 
+static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
+
 @interface BTWHomeViewController ()
 
 @property (nonatomic, strong) BTWUserSettings *settings;
@@ -315,7 +317,7 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F]|AM|PM
 }
 
 - (void)changeToMaximumHumidity {
-    [self changeCurrentSliderEnvironmentWithLabel:@"With minimum humidity..." AndValue:self.settings.maximumHumidity WithStepper:5 ToMinimumValue:@0 AndMaximumValue:@100];
+    [self changeCurrentSliderEnvironmentWithLabel:@"With maximum humidity..." AndValue:self.settings.maximumHumidity WithStepper:5 ToMinimumValue:@0 AndMaximumValue:@100];
 }
 
 - (void)changeToRecurrenceAlarm {
@@ -330,24 +332,43 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F]|AM|PM
 
 #pragma mark - Settings View Save Selectors
 
+- (void)updateSettingsForUITextView:(UITextView *)textView WithNumericValue:(NSNumber *)value {
+    NSError *errorOnRegex;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kRegexForNumericPiece options:0 error:&errorOnRegex];
+    
+    NSTextCheckingResult *match = [regex firstMatchInString:self.currentLinkTapped options:0 range:NSMakeRange(0, [self.currentLinkTapped length])];
+    
+    NSString *complementPiece = [self.currentLinkTapped substringWithRange:[match rangeAtIndex:1]];
+    NSString *newString = [NSString stringWithFormat:@"%lu%@", [value integerValue], complementPiece];
+    
+    textView.text = [textView.text stringByReplacingCharactersInRange:self.currentRange withString:newString];
+    
+    [self processPlaceholdersOnTextView:textView];
+}
+
 - (void)saveChanceOfRaining {
     self.settings.chanceOfRaining = [NSNumber numberWithFloat:self.currentSlider.value];
+    [self updateSettingsForUITextView:self.mainDataTextView WithNumericValue:self.settings.chanceOfRaining];
 }
 
 - (void)saveMinimumTemperature {
     self.settings.minimumTemperature = [NSNumber numberWithFloat:self.currentSlider.value];
+    [self updateSettingsForUITextView:self.mainDataTextView WithNumericValue:self.settings.minimumTemperature];
 }
 
 - (void)saveMaximumTemperature {
     self.settings.maximumTemperature = [NSNumber numberWithFloat:self.currentSlider.value];
+    [self updateSettingsForUITextView:self.mainDataTextView WithNumericValue:self.settings.maximumTemperature];
 }
 
 - (void)saveMinimumHumidity {
     self.settings.minimumHumidity = [NSNumber numberWithFloat:self.currentSlider.value];
+    [self updateSettingsForUITextView:self.mainDataTextView WithNumericValue:self.settings.minimumHumidity];
 }
 
 - (void)saveMaximumHumidity {
     self.settings.maximumHumidity = [NSNumber numberWithFloat:self.currentSlider.value];
+    [self updateSettingsForUITextView:self.mainDataTextView WithNumericValue:self.settings.maximumHumidity];
 }
 
 - (void)saveToRecurrenceAlarm {
@@ -395,22 +416,25 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F]|AM|PM
     BTWLabelLinkClicked toReturn = BTWLabelLinkClickedTimeToAlarm;
     
     NSString *unitToUse = (self.requestData.isInCelsius) ? @"C": @"F";
+    NSString *chanceOfRaining = [NSString stringWithFormat:@"%lu%%", [self.settings.chanceOfRaining integerValue]];
     NSString *minimumTemperature = [NSString stringWithFormat:@"%luº%@", [self.settings.minimumTemperature integerValue], unitToUse];
     NSString *maximumTemperature = [NSString stringWithFormat:@"%luº%@", [self.settings.maximumTemperature integerValue], unitToUse];
+    NSString *minimumHumidity = [NSString stringWithFormat:@"%lu%%", [self.settings.minimumHumidity integerValue]];
+    NSString *maximumHumidity = [NSString stringWithFormat:@"%lu%%", [self.settings.maximumHumidity integerValue]];
     
     if ([self.currentLinkTapped isEqualToString:@"8AM"]) {
         toReturn = BTWLabelLinkClickedStartTime;
     } else if ([self.currentLinkTapped isEqualToString:@"7PM"]) {
         toReturn = BTWLabelLinkClickedEndTime;
-    } else if ([self.currentLinkTapped isEqualToString:@"10%"]) {
+    } else if ([self.currentLinkTapped isEqualToString:chanceOfRaining]) {
         toReturn = BTWLabelLinkClickedChanceOfRaining;
     } else if ([self.currentLinkTapped isEqualToString:minimumTemperature]) {
         toReturn = BTWLabelLinkClickedMinimumTemperature;
     } else if ([self.currentLinkTapped isEqualToString:maximumTemperature]) {
         toReturn = BTWLabelLinkClickedMaximumTemperature;
-    } else if ([self.currentLinkTapped isEqualToString:@"40%"]) {
+    } else if ([self.currentLinkTapped isEqualToString:minimumHumidity]) {
         toReturn = BTWLabelLinkClickedMinimumHumidity;
-    } else if ([self.currentLinkTapped isEqualToString:@"70%"]) {
+    } else if ([self.currentLinkTapped isEqualToString:maximumHumidity]) {
         toReturn = BTWLabelLinkClickedMaximumHumidity;
     } else if ([self.currentLinkTapped isEqualToString:@"Every work day"]) {
         toReturn = BTWLabelLinkClickedRecurrenceAlarm;
