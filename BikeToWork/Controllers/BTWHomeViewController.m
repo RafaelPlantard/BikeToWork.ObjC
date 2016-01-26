@@ -8,15 +8,18 @@
 
 #import "BTWHomeViewController.h"
 #import "BTWResultViewController.h"
+#import "BTWWeatherRequest.h"
 #import <TSMessages/TSMessage.h>
 
 static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 
-static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Every .* day|\\d+:\\d+[A|P]M)";
+static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F]|AM|PM)|Every .* day|\\d+:\\d+[A|P]M)";
 
 @interface BTWHomeViewController ()
 
 @property (nonatomic, strong) BTWUserSettings *settings;
+
+@property (nonatomic, strong) BTWWeatherRequest *requestData;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
@@ -26,7 +29,11 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 
 @property (nonatomic, strong) CLPlacemark *placemark;
 
-@property (nonatomic, assign) NSString *currentLinkTapped;
+@property (nonatomic, strong) NSString *currentLinkTapped;
+
+@property (nonatomic, assign) NSRange currentRange;
+
+@property (nonatomic, assign) NSInteger stepperForSlider;
 
 @end
 
@@ -37,6 +44,11 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     
     if (self) {
         self.settings = [BTWUserSettings new];
+        
+        self.requestData = [BTWWeatherRequest new];
+        self.requestData.isInCelsius = YES;
+        
+        self.stepperForSlider = 10;
     }
     
     return self;
@@ -113,8 +125,7 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     NSString *stringPassed = [[NSString stringWithFormat:@"%@", URL] stringByRemovingPercentEncoding];
     
     self.currentLinkTapped = stringPassed;
-    
-    NSLog(@"%@", stringPassed);
+    self.currentRange = characterRange;
     
     [self showSettingsView];
     
@@ -150,6 +161,7 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
         if (error || !self.placemark) {
             [TSMessage showNotificationWithTitle:@"Bike 2 Work" subtitle:@"Impossible resolve your city based on your location" type:TSMessageNotificationTypeError];
         } else {
+            self.requestData.city = self.placemark.locality;
             [self.currentLocationButton setTitle:self.placemark.locality forState:UIControlStateNormal];
         }
     }];
@@ -163,6 +175,8 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     
     [self.celsiusButton setTitleColor:self.fahrenheitButton.titleLabel.textColor forState:UIControlStateNormal];
     [self.fahrenheitButton setTitleColor:newColor forState:UIControlStateNormal];
+    
+    self.requestData.isInCelsius = (self.celsiusButton.titleLabel.textColor == UsedUnitOnTemperatureUIColor);
     
     [self updateTemperatureUnitsOnText];
 }
@@ -189,11 +203,63 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
         
         string = [string stringByReplacingCharactersInRange:temperatureRange withString:temperatureString];
         string = [string stringByReplacingCharactersInRange:unitRange withString:newUnit];
+        
+        [self updateTemperatureSettingsBasedOnIndex:idx WithValue:[NSNumber numberWithDouble:round(temperature)]];
     }];
     
     self.mainDataTextView.text = string;
     
     [self processPlaceholdersOnTextView:self.mainDataTextView];
+}
+
+- (void)updateSettingsLabelBasedOnIndex:(NSUInteger)index WithValue:(NSNumber *)value {
+    switch (index) {
+        case 0:
+            
+            break;
+            
+        case 1:
+            
+            break;
+            
+        case 2:
+            
+            break;
+            
+        case 3:
+            
+            break;
+            
+        case 4:
+            
+            break;
+            
+        case 5:
+            
+            break;
+            
+        case 6:
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)updateTemperatureSettingsBasedOnIndex:(NSUInteger)index WithValue:(NSNumber *)value {
+    switch (index) {
+        case 0:
+            self.settings.minimumTemperature = value;
+            break;
+            
+        case 1:
+            self.settings.maximumTemperature = value;
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -202,16 +268,94 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     controller.settings = self.settings;
 }
 
+- (void)changeCurrentSliderEnvironmentWithLabel:(NSString *)label AndValue:(NSNumber *)value WithStepper: (NSInteger)stepper ToMinimumValue:(NSNumber *)minimumValue AndMaximumValue:(NSNumber *)maximumValue {
+    self.currentLabelForSettingsView.text = label;
+    
+    self.currentSlider.minimumValue = [minimumValue floatValue];
+    self.currentSlider.maximumValue = [maximumValue floatValue];
+    
+    switch ([self convertLinkClickedFromString:self.currentLinkTapped]) {
+        case BTWLabelLinkClickedMinimumTemperature:
+        case BTWLabelLinkClickedMaximumTemperature:
+            if (!self.requestData.isInCelsius) {
+                self.currentSlider.minimumValue = ToFahrenheit([minimumValue floatValue]);
+                self.currentSlider.maximumValue = ToFahrenheit([maximumValue floatValue]);
+            }
+            break;
+            
+        default:
+            break;
+    }
+    
+    self.stepperForSlider = stepper;
+    
+    self.currentSlider.value = [value floatValue];
+    [self currentSliderValueChanged:self.currentSlider];
+    
+    self.currentSlider.hidden = NO;
+    self.currentValueOnSliderLabel.hidden = NO;
+}
+
 #pragma mark - Settings View Change Selectors
 
 - (void)changeToChanceOfRaining {
+    [self changeCurrentSliderEnvironmentWithLabel:@"Chance of raining..." AndValue:self.settings.chanceOfRaining WithStepper:10 ToMinimumValue:@0 AndMaximumValue:@100];
+}
+
+- (void)changeToMinimumTemperature {
+    [self changeCurrentSliderEnvironmentWithLabel:@"With minimum temperature..." AndValue:self.settings.minimumTemperature WithStepper:1 ToMinimumValue:@0 AndMaximumValue:@40];
+}
+
+- (void)changeToMaximumTemperature {
+    [self changeCurrentSliderEnvironmentWithLabel:@"With maximum temperature..." AndValue:self.settings.maximumTemperature WithStepper:1 ToMinimumValue:@0 AndMaximumValue:@40];
+}
+
+- (void)changeToMinimumHumidity {
+    [self changeCurrentSliderEnvironmentWithLabel:@"With minimum humidity..." AndValue:self.settings.minimumHumidity WithStepper:5 ToMinimumValue:@0 AndMaximumValue:@100];
+}
+
+- (void)changeToMaximumHumidity {
+    [self changeCurrentSliderEnvironmentWithLabel:@"With minimum humidity..." AndValue:self.settings.maximumHumidity WithStepper:5 ToMinimumValue:@0 AndMaximumValue:@100];
+}
+
+- (void)changeToRecurrenceAlarm {
+    self.currentLabelForSettingsView.text = @"With a recurrence on alarm of...";
+    
+}
+
+- (void)changeAlarmTime {
+    self.currentLabelForSettingsView.text = @"With an alarm time on...";
     
 }
 
 #pragma mark - Settings View Save Selectors
 
 - (void)saveChanceOfRaining {
-    
+    self.settings.chanceOfRaining = [NSNumber numberWithFloat:self.currentSlider.value];
+}
+
+- (void)saveMinimumTemperature {
+    self.settings.minimumTemperature = [NSNumber numberWithFloat:self.currentSlider.value];
+}
+
+- (void)saveMaximumTemperature {
+    self.settings.maximumTemperature = [NSNumber numberWithFloat:self.currentSlider.value];
+}
+
+- (void)saveMinimumHumidity {
+    self.settings.minimumHumidity = [NSNumber numberWithFloat:self.currentSlider.value];
+}
+
+- (void)saveMaximumHumidity {
+    self.settings.maximumHumidity = [NSNumber numberWithFloat:self.currentSlider.value];
+}
+
+- (void)saveToRecurrenceAlarm {
+    NSLog(@"Falta salvar a recurrencia do alarme");
+}
+
+- (void)saveAlarmTime {
+    NSLog(@"Falta salvar a hora do alarme!");
 }
 
 #pragma mark - CLLocationManagerDelegate methods
@@ -229,14 +373,14 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 }
 
 - (IBAction)currentSliderValueChanged:(UISlider *)sender {
-    [sender setValue:((int)((sender.value + 5) / 10) * 10) animated:YES];
+    [sender setValue:((int)((sender.value + (self.stepperForSlider / 2)) / self.stepperForSlider) * self.stepperForSlider) animated:YES];
     
     NSString *valueComplement;
     
     switch ([self convertLinkClickedFromString:self.currentLinkTapped]) {
         case BTWLabelLinkClickedMinimumTemperature:
         case BTWLabelLinkClickedMaximumTemperature:
-            valueComplement = @"ºC";
+            valueComplement = (self.requestData.isInCelsius) ? @"ºC" : @"ºF";
             break;
             
         default:
@@ -250,11 +394,19 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
 - (BTWLabelLinkClicked)convertLinkClickedFromString:(NSString *)stringTapped {
     BTWLabelLinkClicked toReturn = BTWLabelLinkClickedTimeToAlarm;
     
-    if ([self.currentLinkTapped isEqualToString:@"10%"]) {
+    NSString *unitToUse = (self.requestData.isInCelsius) ? @"C": @"F";
+    NSString *minimumTemperature = [NSString stringWithFormat:@"%luº%@", [self.settings.minimumTemperature integerValue], unitToUse];
+    NSString *maximumTemperature = [NSString stringWithFormat:@"%luº%@", [self.settings.maximumTemperature integerValue], unitToUse];
+    
+    if ([self.currentLinkTapped isEqualToString:@"8AM"]) {
+        toReturn = BTWLabelLinkClickedStartTime;
+    } else if ([self.currentLinkTapped isEqualToString:@"7PM"]) {
+        toReturn = BTWLabelLinkClickedEndTime;
+    } else if ([self.currentLinkTapped isEqualToString:@"10%"]) {
         toReturn = BTWLabelLinkClickedChanceOfRaining;
-    } else if ([self.currentLinkTapped isEqualToString:@"10ºC"]) {
+    } else if ([self.currentLinkTapped isEqualToString:minimumTemperature]) {
         toReturn = BTWLabelLinkClickedMinimumTemperature;
-    } else if ([self.currentLinkTapped isEqualToString:@"26ºC%"]) {
+    } else if ([self.currentLinkTapped isEqualToString:maximumTemperature]) {
         toReturn = BTWLabelLinkClickedMaximumTemperature;
     } else if ([self.currentLinkTapped isEqualToString:@"40%"]) {
         toReturn = BTWLabelLinkClickedMinimumHumidity;
@@ -278,24 +430,30 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
     
     if (isToChangeView) {
         switch (referenceLink) {
+            case BTWLabelLinkClickedStartTime:
+                break;
+                
+            case BTWLabelLinkClickedEndTime:
+                break;
+                
             case BTWLabelLinkClickedChanceOfRaining:
                 [self performSelector:@selector(changeToChanceOfRaining)];
                 break;
                 
             case BTWLabelLinkClickedMinimumTemperature:
-                
+                [self performSelector:@selector(changeToMinimumTemperature)];
                 break;
                 
             case BTWLabelLinkClickedMaximumTemperature:
-                
+                [self performSelector:@selector(changeToMaximumTemperature)];
                 break;
                 
             case BTWLabelLinkClickedMinimumHumidity:
-                
+                [self performSelector:@selector(changeToMinimumHumidity)];
                 break;
                 
             case BTWLabelLinkClickedMaximumHumidity:
-                
+                [self performSelector:@selector(changeToMaximumHumidity)];
                 break;
                 
             case BTWLabelLinkClickedRecurrenceAlarm:
@@ -308,24 +466,30 @@ static NSString *const kRegexForFindStringAttributes = @"((\\d+)(%|º[C|F])|Ever
         }
     } else {
         switch (referenceLink) {
+            case BTWLabelLinkClickedStartTime:
+                break;
+                
+            case BTWLabelLinkClickedEndTime:
+                break;
+                
             case BTWLabelLinkClickedChanceOfRaining:
                 [self performSelector:@selector(saveChanceOfRaining)];
                 break;
                 
             case BTWLabelLinkClickedMinimumTemperature:
-                
+                [self performSelector:@selector(saveMinimumTemperature)];
                 break;
                 
             case BTWLabelLinkClickedMaximumTemperature:
-                
+                [self performSelector:@selector(saveMaximumTemperature)];
                 break;
                 
             case BTWLabelLinkClickedMinimumHumidity:
-                
+                [self performSelector:@selector(saveMinimumHumidity)];
                 break;
                 
             case BTWLabelLinkClickedMaximumHumidity:
-                
+                [self performSelector:@selector(saveMaximumHumidity)];
                 break;
                 
             case BTWLabelLinkClickedRecurrenceAlarm:

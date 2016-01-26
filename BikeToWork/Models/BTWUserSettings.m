@@ -15,7 +15,13 @@
     self = [super init];
     
     if (self) {
+        self.chanceOfRaining = @10;
+        self.minimumTemperature = @10;
+        self.maximumTemperature = @26;
+        self.minimumHumidity = @40;
+        self.maximumHumidity = @70;
         self.currentWeather = [BTWWheatherResponse new];
+        
     }
     
     return self;

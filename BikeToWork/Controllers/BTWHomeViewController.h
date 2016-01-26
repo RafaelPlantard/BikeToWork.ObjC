@@ -11,14 +11,18 @@
 #import "BTWUserSettings.h"
 #import "BTWWheatherResponse.h"
 
-#define ToCelsius(f)        ((f - 32.0) / 1.8)
+#define ToCelsius(f)                    ((f - 32.0) / 1.8)
 
-#define ToFahrenheit(c)     ((c * 1.8) + 32.0)
+#define ToFahrenheit(c)                 ((c * 1.8) + 32.0)
 
-#define LinkedTextUIColor   [UIColor colorWithRed:(144.0 / 255.0) green:(219.0 / 255.0) blue:(135.0 / 255.0) alpha:1.0]
+#define LinkedTextUIColor               [UIColor colorWithRed:(144.0 / 255.0) green:(219.0 / 255.0) blue:(135.0 / 255.0) alpha:1.0]
+
+#define UsedUnitOnTemperatureUIColor    [UIColor colorWithRed:(149.0 / 255.0) green:(219.0 / 255.0) blue:(135.0 / 255.0) alpha:1.0]
 
 typedef NS_ENUM(NSInteger, BTWLabelLinkClicked)
 {
+    BTWLabelLinkClickedStartTime,
+    BTWLabelLinkClickedEndTime,
     BTWLabelLinkClickedChanceOfRaining,
     BTWLabelLinkClickedMinimumTemperature,
     BTWLabelLinkClickedMaximumTemperature,

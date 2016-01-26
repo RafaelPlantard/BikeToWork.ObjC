@@ -19,6 +19,9 @@
 /*! @brief The end time. */
 @property (nonatomic, strong) NSString *endTime;
 
+/*! @brief The acceptable chance of raining. */
+@property (nonatomic, strong) NSNumber *chanceOfRaining;
+
 /*! @brief The minimum temperature. */
 @property (nonatomic, strong) NSNumber *minimumTemperature;
 
