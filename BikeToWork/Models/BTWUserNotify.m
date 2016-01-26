@@ -23,6 +23,17 @@ static NSArray *notificationRecurrenceStrings;
     return self;
 }
 
+- (instancetype)initWithRecurrence:(BTWNotificationRecurrence)recurrence WithAlarmTime:(NSString *)time {
+    self = [self init];
+    
+    if (self) {
+        self.notificationRecurrence = recurrence;
+        self.time = time;
+    }
+    
+    return self;
+}
+
 + (NSString *)stringRepresentation:(BTWNotificationRecurrence)recurrence {
     return notificationRecurrenceStrings[recurrence];
 }

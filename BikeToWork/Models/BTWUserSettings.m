@@ -23,7 +23,7 @@
         self.minimumHumidity = @40;
         self.maximumHumidity = @70;
         self.currentWeather = [BTWWheatherResponse new];
-        self.notificationSettings = [BTWUserNotify new];
+        self.notificationSettings = [[BTWUserNotify alloc] initWithRecurrence:BTWNotificationRecurrenceEveryDay WithAlarmTime:@"7:30AM"];
     }
     
     return self;
@@ -41,6 +41,14 @@
     BOOL timeOk = (currentTime);
     
     return (temperatureOk && humidityOk && timeOk);
+}
+
+- (BOOL)isReadyToProcess {
+    return ![self allErrorsOnValidation];
+}
+
+- (NSString *)allErrorsOnValidation {
+    return @"Where are you? Select the city...";
 }
 
 @end

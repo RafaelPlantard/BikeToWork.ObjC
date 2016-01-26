@@ -30,6 +30,8 @@ typedef NS_ENUM(NSInteger, BTWNotificationRecurrence) {
 /*! @brief The time for alarm the user. */
 @property (nonatomic, strong) NSString *time;
 
+- (instancetype)initWithRecurrence:(BTWNotificationRecurrence)recurrence WithAlarmTime:(NSString *)time;
+
 /*! @brief Returns a string representation for a specific element of the enum of recurrences.*/
 + (NSString *)stringRepresentation:(BTWNotificationRecurrence)recurrence;
 

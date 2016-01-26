@@ -19,6 +19,8 @@ static NSString *const kRegexForNumericPiece = @"\\d+(.*)";
 
 static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
 
+static NSString *const kTitleAlertMessage = @"Bike 2 Work";
+
 @interface BTWHomeViewController ()
 
 @property (nonatomic, strong) BTWUserSettings *settings;
@@ -184,7 +186,7 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
         self.placemark = [placemarks lastObject];
         
         if (error || !self.placemark) {
-            [TSMessage showNotificationWithTitle:@"Bike 2 Work" subtitle:@"Impossible resolve your city based on your location" type:TSMessageNotificationTypeError];
+            [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"Impossible resolve your city based on your location" type:TSMessageNotificationTypeError];
         } else {
             self.requestData.city = self.placemark.locality;
             [self.currentLocationButton setTitle:self.placemark.locality forState:UIControlStateNormal];
@@ -193,6 +195,9 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
 }
 
 - (IBAction)viewResult {
+    if (![self.settings isReadyToProcess]) {
+        [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:[self.settings allErrorsOnValidation] type:TSMessageNotificationTypeWarning];
+    }
 }
 
 - (IBAction)changeTemperatureUnit:(UIButton *)sender {
@@ -456,7 +461,7 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
 #pragma mark - CLLocationManagerDelegate methods
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    [TSMessage showNotificationWithTitle:@"Bike 2 Work" subtitle:@"Error on location services." type:TSMessageNotificationTypeError];
+    [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"Error on location services." type:TSMessageNotificationTypeError];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
@@ -623,6 +628,12 @@ static NSString *const kRegexForTime = @"(\\d)+:(\\d+)([A|P]M)";
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     self.indexOfSelectedRecurrenceAlarm = row;
+}
+
+#pragma mark - Navigation logic
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    return [self.settings isReadyToProcess];
 }
 
 @end
