@@ -47,6 +47,8 @@
 /*! @brief Contains the logic for know whether the user will can go to work with its bike. */
 - (BOOL)canGoToWorkWithBike;
 
+- (BOOL)isTodayGoToWorkWithBike;
+
 /*! @brief Will proccess a verification in all values to be sure that all fields are filled. */
 - (BOOL)isReadyToProcess;
 

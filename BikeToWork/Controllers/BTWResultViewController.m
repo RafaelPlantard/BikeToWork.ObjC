@@ -9,20 +9,35 @@
 #import "BTWResultViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-static NSString *const kDefaultWhenBikeLabelForToday = @"is today";
-
-static NSString *const kDefaultBikeToWorkDayLabel = @"BIKE TO WORK DAY?";
-
 @implementation BTWResultViewController
+
+static NSString *defaultWhenBikeLabelForToday;
+static NSString *defaultBikeToWorkDayLabel;
+static UIFont *bigFont;
+static NSString *originalText;
+
+#pragma mark - UIView methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self doRequest];
+    [self updateStatusOfApp];
+    [self saveDefaultValueOfComponents];
     [self adjustAllComponents];
 }
 
-- (void)doRequest {
+#pragma mark - UIView helper methods
+
+- (void)saveDefaultValueOfComponents {
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        defaultWhenBikeLabelForToday = self.whenBikeLabel.text;
+        defaultBikeToWorkDayLabel = self.bikeToWorkDayLabel.text;
+    });
+}
+
+- (void)updateStatusOfApp {
     [self colorizeToBike:[self.settings canGoToWorkWithBike]];
 }
 
@@ -33,6 +48,25 @@ static NSString *const kDefaultBikeToWorkDayLabel = @"BIKE TO WORK DAY?";
     // temperatureImageView
     UIImage *image = [UIImage imageNamed:[self.settings.currentWeather imageNameForTemperature]];
     [self.temperatureImageView setImage:image];
+    
+    // timeLabel
+    NSString *timeString = [NSString stringWithFormat:@"%@ - %@", self.settings.startTime, self.settings.endTime];
+    self.timeLabel.text = timeString;
+    
+    BTWWheatherResponse *weather = self.settings.currentWeather;
+    
+    // temperatureLabel
+    NSString *temperatureString = [NSString stringWithFormat:@"%luº", [weather.main.temperature integerValue]];
+    self.temperatureLabel.text = temperatureString;
+    
+    // humidityLabel
+    NSString *humidityString = [NSString stringWithFormat:@"%lu%%", [weather.main.humidity integerValue]];
+    self.humidityLabel.text = humidityString;
+    
+    // locationLabel
+    self.locationLabel.text = self.settings.requestData.city;
+    
+    self.whenBikeLabel.text = 
 }
 
 - (void)colorizeToBike:(BOOL)canBike {
@@ -44,6 +78,27 @@ static NSString *const kDefaultBikeToWorkDayLabel = @"BIKE TO WORK DAY?";
         self.shareButton.backgroundColor = HyperBlueDark;
     }
 }
+
+#pragma mark - Action helper methods
+
+- (void)changeLabelVisibilityBasedOnText:(UILabel *)label WhereDefaultText:(NSString *)defaultText IsToHidden:(BOOL)isToHidden {
+    if (isToHidden) {
+        [UIView animateWithDuration:0.5 delay:0 options:(UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
+            label.alpha = 0;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                label.text = nil;
+            }
+        }];
+    } else {
+        [UIView animateWithDuration:0.5 delay:0 options:(UIViewAnimationCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState) animations:^{
+            label.alpha = 1;
+            label.text = defaultText;
+        } completion:nil];
+    }
+}
+
+#pragma mark - Action methods
 
 - (IBAction)backToSettings {
     [self.navigationController popViewControllerAnimated:YES];
@@ -65,26 +120,8 @@ static NSString *const kDefaultBikeToWorkDayLabel = @"BIKE TO WORK DAY?";
     [self presentViewController:activityController animated:YES completion:nil];
 }
 
-- (void)changeLabelVisibilityBasedOnText:(UILabel *)label WhereDefaultText:(NSString *)defaultText IsToHidden:(BOOL)isToHidden {
-    if (isToHidden) {
-        [UIView animateWithDuration:0.5 delay:0 options:(UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
-            label.alpha = 0;
-        } completion:^(BOOL finished) {
-            if (finished) {
-                label.text = nil;
-            }
-        }];
-    } else {
-        [UIView animateWithDuration:0.5 delay:0 options:(UIViewAnimationCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState) animations:^{
-            label.alpha = 1;
-            label.text = defaultText;
-        } completion:nil];
-    }
-}
-
 - (IBAction)showTip:(UIButton *)sender {
-    static UIFont *bigFont;
-    static NSString *originalText;
+    
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -115,8 +152,8 @@ static NSString *const kDefaultBikeToWorkDayLabel = @"BIKE TO WORK DAY?";
         }
     }];
     
-    [self changeLabelVisibilityBasedOnText:self.whenBikeLabel WhereDefaultText:kDefaultWhenBikeLabelForToday IsToHidden:isToClose];
-    [self changeLabelVisibilityBasedOnText:self.bikeToWorkDayLabel WhereDefaultText:kDefaultBikeToWorkDayLabel IsToHidden:isToClose];
+    [self changeLabelVisibilityBasedOnText:self.whenBikeLabel WhereDefaultText:defaultWhenBikeLabelForToday IsToHidden:isToClose];
+    [self changeLabelVisibilityBasedOnText:self.bikeToWorkDayLabel WhereDefaultText:defaultBikeToWorkDayLabel IsToHidden:isToClose];
 }
 
 @end

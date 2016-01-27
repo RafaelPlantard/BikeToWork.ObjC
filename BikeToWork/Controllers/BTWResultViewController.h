@@ -44,6 +44,8 @@
 /*! @brief The settings to check if the user can go to work with bike. */
 @property (nonatomic, strong) BTWUserSettings *settings;
 
+#pragma mark - Actions methods
+
 - (IBAction)backToSettings;
 
 - (IBAction)shareContent;

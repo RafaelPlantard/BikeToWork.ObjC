@@ -60,4 +60,8 @@
     return nil;
 }
 
+- (BOOL)isTodayGoToWorkWithBike {
+	
+}
+
 @end

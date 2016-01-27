@@ -545,6 +545,8 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     
     self.settings.requestData.isInCelsius = (self.celsiusButton.titleLabel.textColor == UsedUnitOnTemperatureUIColor);
     
+    [self doRequest];
+    
     [self updateTemperatureUnitsOnText];
 }
 
