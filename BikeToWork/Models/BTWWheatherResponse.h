@@ -11,6 +11,8 @@
 #import "BTWTemperatures.h"
 #import "BTWWind.h"
 #import "BTWClouds.h"
+#import "BTWRain.h"
+#import "BTWSnow.h"
 #import "BTWSystemParameters.h"
 
 @interface BTWWheatherResponse : BTWModelBase
@@ -32,6 +34,12 @@
 
 /*! @brief The cloud data. */
 @property (nonatomic, strong) BTWClouds *clouds;
+
+/*! @brief The current rain data. */
+@property (nonatomic, strong) BTWRain *rain;
+
+/*! @brief The current snow data. */
+@property (nonatomic, strong) BTWSnow *snow;
 
 /*! @brief The time of data calculation. */
 @property (nonatomic, strong) NSNumber *timeCalculation;
