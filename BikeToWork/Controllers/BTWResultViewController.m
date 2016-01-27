@@ -22,8 +22,8 @@ static NSString *originalText;
     [super viewDidLoad];
     
     [self updateStatusOfApp];
-    [self saveDefaultValueOfComponents];
     [self adjustAllComponents];
+    [self saveDefaultValueOfComponents];
 }
 
 #pragma mark - UIView helper methods
@@ -66,7 +66,7 @@ static NSString *originalText;
     // locationLabel
     self.locationLabel.text = self.settings.requestData.city;
     
-    self.whenBikeLabel.text = 
+    self.whenBikeLabel.text = ([self.settings isTodayGoToWorkWithBike]) ? @"is today" : @"is tomorrow";
 }
 
 - (void)colorizeToBike:(BOOL)canBike {

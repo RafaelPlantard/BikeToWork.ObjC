@@ -61,7 +61,7 @@
 }
 
 - (BOOL)isTodayGoToWorkWithBike {
-	
+    return YES;
 }
 
 @end
