@@ -16,7 +16,8 @@
              @"coordinate": @"coord",
              @"timeCalculation": @"dt",
              @"cityId": @"id",
-             @"internalParameters": @"sys"
+             @"internalParameters": @"sys",
+             @"dateTimeString": @"dt_txt"
              };
 }
 

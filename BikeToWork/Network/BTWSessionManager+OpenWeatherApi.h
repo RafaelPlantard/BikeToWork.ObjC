@@ -20,4 +20,6 @@ typedef void(^BTWFailureBlock)(NSError * error);
 
 - (NSURLSessionDataTask *)getWeatherWith:(BTWWeatherRequest *)requestParameters OnSuccess:(BTWSuccessBlock)success OnFailure:(BTWFailureBlock)failure;
 
+- (NSURLSessionDataTask *)getForecastForFiveDaysWith:(BTWWeatherRequest *)requestParameters OnSuccess:(BTWSuccessBlock)success OnFailure:(BTWFailureBlock)failure;
+
 @end

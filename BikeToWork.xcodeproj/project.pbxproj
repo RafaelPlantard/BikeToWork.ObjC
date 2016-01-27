@@ -44,6 +44,8 @@
 		53DEC85A1C4EB1290069B2D1 /* BTWResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8591C4EB1290069B2D1 /* BTWResultViewController.m */; };
 		53DF89F01C5955B700A4DE6A /* BTWRain.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DF89EF1C5955B700A4DE6A /* BTWRain.m */; };
 		53DF89F31C5956BF00A4DE6A /* BTWSnow.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DF89F21C5956BF00A4DE6A /* BTWSnow.m */; };
+		53DF89F61C5958BD00A4DE6A /* BTWCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DF89F51C5958BD00A4DE6A /* BTWCity.m */; };
+		53DF89F91C59600A00A4DE6A /* BTWFiveDaysForecastResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DF89F81C59600A00A4DE6A /* BTWFiveDaysForecastResponse.m */; };
 		920BF060AB7F10C59609CD54 /* libPods-BikeToWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9597F1D8C18F3F733BFF9ED6 /* libPods-BikeToWork.a */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +119,10 @@
 		53DF89EF1C5955B700A4DE6A /* BTWRain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWRain.m; sourceTree = "<group>"; };
 		53DF89F11C5956BF00A4DE6A /* BTWSnow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWSnow.h; sourceTree = "<group>"; };
 		53DF89F21C5956BF00A4DE6A /* BTWSnow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWSnow.m; sourceTree = "<group>"; };
+		53DF89F41C5958BD00A4DE6A /* BTWCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWCity.h; sourceTree = "<group>"; };
+		53DF89F51C5958BD00A4DE6A /* BTWCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWCity.m; sourceTree = "<group>"; };
+		53DF89F71C59600A00A4DE6A /* BTWFiveDaysForecastResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWFiveDaysForecastResponse.h; sourceTree = "<group>"; };
+		53DF89F81C59600A00A4DE6A /* BTWFiveDaysForecastResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWFiveDaysForecastResponse.m; sourceTree = "<group>"; };
 		9597F1D8C18F3F733BFF9ED6 /* libPods-BikeToWork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BikeToWork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3237244D949E4B35E182207 /* Pods-BikeToWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeToWork.release.xcconfig"; path = "Pods/Target Support Files/Pods-BikeToWork/Pods-BikeToWork.release.xcconfig"; sourceTree = "<group>"; };
 		B6F2BDD62CA772C1C3834047 /* Pods-BikeToWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeToWork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BikeToWork/Pods-BikeToWork.debug.xcconfig"; sourceTree = "<group>"; };
@@ -294,6 +300,10 @@
 				53DF89EF1C5955B700A4DE6A /* BTWRain.m */,
 				53DF89F11C5956BF00A4DE6A /* BTWSnow.h */,
 				53DF89F21C5956BF00A4DE6A /* BTWSnow.m */,
+				53DF89F41C5958BD00A4DE6A /* BTWCity.h */,
+				53DF89F51C5958BD00A4DE6A /* BTWCity.m */,
+				53DF89F71C59600A00A4DE6A /* BTWFiveDaysForecastResponse.h */,
+				53DF89F81C59600A00A4DE6A /* BTWFiveDaysForecastResponse.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -472,6 +482,7 @@
 				53DEC8321C4E78110069B2D1 /* BTWModelBase.m in Sources */,
 				53DEC8441C4E92400069B2D1 /* BTWWeather.m in Sources */,
 				53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */,
+				53DF89F91C59600A00A4DE6A /* BTWFiveDaysForecastResponse.m in Sources */,
 				53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */,
 				53DF89F01C5955B700A4DE6A /* BTWRain.m in Sources */,
 				53DEC8541C4E9EC60069B2D1 /* BTWWheatherResponse.m in Sources */,
@@ -483,6 +494,7 @@
 				53DEC83D1C4E87130069B2D1 /* BTWWeatherRequest.m in Sources */,
 				53DEC8511C4E9C720069B2D1 /* BTWSystemParameters.m in Sources */,
 				53DEC8411C4E90F10069B2D1 /* BTWCoordinate.m in Sources */,
+				53DF89F61C5958BD00A4DE6A /* BTWCity.m in Sources */,
 				53DEC85A1C4EB1290069B2D1 /* BTWResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

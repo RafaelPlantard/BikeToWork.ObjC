@@ -14,7 +14,10 @@
     return @{
              @"temperature": @"temp",
              @"temperatureMinimum": @"temp_min",
-             @"temperatureMaximum": @"temp_max"
+             @"temperatureMaximum": @"temp_max",
+             @"pressureOnSeaLevel": @"sea_level",
+             @"pressureOnGroundLevel": @"grnd_level",
+             @"internalParameter": @"temp_kf"
              };
 }
 

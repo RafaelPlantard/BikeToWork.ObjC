@@ -41,7 +41,7 @@
 /*! @brief The current snow data. */
 @property (nonatomic, strong) BTWSnow *snow;
 
-/*! @brief The time of data calculation. */
+/*! @brief Time of data forecasted, unix, UTC. */
 @property (nonatomic, strong) NSNumber *timeCalculation;
 
 /*! @brief The name of the city. */
@@ -52,6 +52,9 @@
 
 /*! @brief The internal parameters. */
 @property (nonatomic, strong) BTWSystemParameters *internalParameters;
+
+/*! @brief  Data/time of calculation, UTC. */
+@property (nonatomic, strong) NSString *dateTimeString;
 
 /*! @brief Based on the current weather return a tip. */
 - (NSString *)seeCurrentTip;
