@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BTWUserNotify.h"
 #import "BTWWheatherResponse.h"
+#import "BTWWeatherRequest.h"
 
 /*! @brief A entity that encapusates all user settings. */
 @interface BTWUserSettings : NSObject
@@ -39,6 +40,9 @@
 
 /*! @brief The current weather for compare in all logic processment. */
 @property (nonatomic, strong) BTWWheatherResponse *currentWeather;
+
+/*! @brief The current request information. */
+@property (nonatomic, strong) BTWWeatherRequest *requestData;
 
 /*! @brief Contains the logic for know whether the user will can go to work with its bike. */
 - (BOOL)canGoToWorkWithBike;

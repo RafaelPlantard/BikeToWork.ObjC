@@ -25,8 +25,6 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 
 @property (nonatomic, strong) BTWUserSettings *settings;
 
-@property (nonatomic, strong) BTWWeatherRequest *requestData;
-
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) CLLocation *userLocation;
@@ -55,8 +53,9 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     if (self) {
         self.settings = [BTWUserSettings new];
         
-        self.requestData = [BTWWeatherRequest new];
-        self.requestData.isInCelsius = YES;
+        self.settings.requestData = [BTWWeatherRequest new];
+        self.settings.requestData.city = @"City";
+        self.settings.requestData.isInCelsius = YES;
         
         self.stepperForSlider = 10;
     }
@@ -88,7 +87,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 
 - (void)adjustAllComponents {
     // currentLocationButton
-    [self.currentLocationButton setTitle:@"City" forState:UIControlStateNormal];
+    [self.currentLocationButton setTitle:self.settings.requestData.city forState:UIControlStateNormal];
     
     // mainDataField
     [self processPlaceholdersOnTextView:self.mainDataTextView];
@@ -188,7 +187,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
         if (error || !self.placemark) {
             [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"Impossible resolve your city based on your location" type:TSMessageNotificationTypeError];
         } else {
-            self.requestData.city = self.placemark.locality;
+            self.settings.requestData.city = self.placemark.locality;
             [self.currentLocationButton setTitle:self.placemark.locality forState:UIControlStateNormal];
         }
     }];
@@ -206,7 +205,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     [self.celsiusButton setTitleColor:self.fahrenheitButton.titleLabel.textColor forState:UIControlStateNormal];
     [self.fahrenheitButton setTitleColor:newColor forState:UIControlStateNormal];
     
-    self.requestData.isInCelsius = (self.celsiusButton.titleLabel.textColor == UsedUnitOnTemperatureUIColor);
+    self.settings.requestData.isInCelsius = (self.celsiusButton.titleLabel.textColor == UsedUnitOnTemperatureUIColor);
     
     [self updateTemperatureUnitsOnText];
 }
@@ -275,7 +274,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     switch ([self convertLinkClickedFromString:self.currentLinkTapped]) {
         case BTWLabelLinkClickedMinimumTemperature:
         case BTWLabelLinkClickedMaximumTemperature:
-            if (!self.requestData.isInCelsius) {
+            if (!self.settings.requestData.isInCelsius) {
                 self.currentSlider.minimumValue = ToFahrenheit([minimumValue floatValue]);
                 self.currentSlider.maximumValue = ToFahrenheit([maximumValue floatValue]);
             }
@@ -480,7 +479,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     switch ([self convertLinkClickedFromString:self.currentLinkTapped]) {
         case BTWLabelLinkClickedMinimumTemperature:
         case BTWLabelLinkClickedMaximumTemperature:
-            valueComplement = (self.requestData.isInCelsius) ? @"ºC" : @"ºF";
+            valueComplement = (self.settings.requestData.isInCelsius) ? @"ºC" : @"ºF";
             break;
             
         default:
@@ -494,7 +493,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 - (BTWLabelLinkClicked)convertLinkClickedFromString:(NSString *)stringTapped {
     BTWLabelLinkClicked toReturn = BTWLabelLinkClickedTimeToAlarm;
     
-    NSString *unitToUse = (self.requestData.isInCelsius) ? @"C": @"F";
+    NSString *unitToUse = (self.settings.requestData.isInCelsius) ? @"C": @"F";
     NSString *chanceOfRaining = [NSString stringWithFormat:@"%lu%%", [self.settings.chanceOfRaining integerValue]];
     NSString *minimumTemperature = [NSString stringWithFormat:@"%luº%@", [self.settings.minimumTemperature integerValue], unitToUse];
     NSString *maximumTemperature = [NSString stringWithFormat:@"%luº%@", [self.settings.maximumTemperature integerValue], unitToUse];
