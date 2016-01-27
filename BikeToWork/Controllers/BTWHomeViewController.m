@@ -47,6 +47,8 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 
 @implementation BTWHomeViewController
 
+#pragma mark - Custom init
+
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     
@@ -63,6 +65,8 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     return self;
 }
 
+#pragma mark - UIView methods
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -70,6 +74,8 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     [self adjustSwipeGestureForBack];
     [self adjustAllComponents];
 }
+
+#pragma mark - Helpers methods for UIView methods
 
 - (void)setUpLocationManager {
     self.locationManager = [CLLocationManager new];
@@ -83,6 +89,41 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 
 - (void)adjustSwipeGestureForBack {
     [self.navigationController.interactivePopGestureRecognizer setDelegate:nil];
+}
+
+- (void)changeVisibilityOfSettingsViewToShow{
+    static CGFloat maxHeightOnContraint;
+    static CGFloat maxAlphaSettingsView;
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        maxHeightOnContraint = self.settingsViewHeightConstraint.constant;
+        maxAlphaSettingsView = self.settingsView.alpha;
+    });
+    
+    self.isToOpenSettingsView = (self.settingsViewHeightConstraint.constant == 0);
+    
+    if (self.isToOpenSettingsView) {
+        self.settingsView.hidden = NO;
+        
+        [self performAnActionBasedLabelLinkTappedIsToChangeView:YES];
+    }
+    
+    self.settingsView.alpha = (self.isToOpenSettingsView) ? maxAlphaSettingsView : 0;
+    self.settingsViewHeightConstraint.constant = (self.isToOpenSettingsView) ? maxHeightOnContraint : 0;
+}
+
+- (void)showSettingsView {
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self changeVisibilityOfSettingsViewToShow];
+        [self.settingsView layoutIfNeeded];
+        
+    } completion:^(BOOL finished) {
+        if (!self.isToOpenSettingsView) {
+            self.settingsView.hidden = YES;
+        }
+    }];
 }
 
 - (void)adjustAllComponents {
@@ -130,55 +171,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     textView.attributedText = attributedString;
 }
 
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
-    NSString *stringPassed = [[NSString stringWithFormat:@"%@", URL] stringByRemovingPercentEncoding];
-    
-    self.currentLinkTapped = stringPassed;
-    self.currentRange = characterRange;
-    
-    [self showSettingsView];
-    
-    return NO;
-}
-
-- (void)showSettingsView {
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self changeVisibilityOfSettingsViewToShow];
-        [self.settingsView layoutIfNeeded];
-        
-    } completion:^(BOOL finished) {
-        if (!self.isToOpenSettingsView) {
-            self.settingsView.hidden = YES;
-        }
-    }];
-}
-
-- (void)changeVisibilityOfSettingsViewToShow{
-    static CGFloat maxHeightOnContraint;
-    static CGFloat maxAlphaSettingsView;
-    
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        maxHeightOnContraint = self.settingsViewHeightConstraint.constant;
-        maxAlphaSettingsView = self.settingsView.alpha;
-    });
-    
-    self.isToOpenSettingsView = (self.settingsViewHeightConstraint.constant == 0);
-    
-    if (self.isToOpenSettingsView) {
-        self.settingsView.hidden = NO;
-        
-        [self performAnActionBasedLabelLinkTappedIsToChangeView:YES];
-    }
-    
-    self.settingsView.alpha = (self.isToOpenSettingsView) ? maxAlphaSettingsView : 0;
-    self.settingsViewHeightConstraint.constant = (self.isToOpenSettingsView) ? maxHeightOnContraint : 0;
-}
-
-- (IBAction)choiceCity:(UIButton *)sender {
-    [self.locationManager startUpdatingLocation];
-}
+#pragma mark - Location manager helper methods
 
 - (void)updateCityNameBasedOnLocation:(CLLocation *)currentLocation {
     [self.geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -193,11 +186,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     }];
 }
 
-- (IBAction)viewResult {
-    if (![self.settings isReadyToProcess]) {
-        [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:[self.settings allErrorsOnValidation] type:TSMessageNotificationTypeWarning];
-    }
-}
+#pragma mark - Helpers methods to control the temperature behavior on the page
 
 - (IBAction)changeTemperatureUnit:(UIButton *)sender {
     UIColor *newColor = self.celsiusButton.titleLabel.textColor;
@@ -256,10 +245,51 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    BTWResultViewController *controller = (BTWResultViewController *)segue.destinationViewController;
+#pragma mark - DateFormatter helper methods
+
+- (NSDate *)getDateFromFormat:(NSString *)dateFormat BasedOnDate:(NSDate *)date WithTime:(NSString *)timeString AndTimeFormat:(NSString *)timeFormat {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = dateFormat;
     
-    controller.settings = self.settings;
+    NSString *dateString = [NSString stringWithFormat:@"%@ %@", [dateFormatter stringFromDate:date], timeString];
+    
+    dateFormatter.dateFormat = [NSString stringWithFormat:@"%@ %@", dateFormat, timeFormat];
+    
+    return [dateFormatter dateFromString:dateString];
+}
+
+- (NSString *)getStringReprentationOfTimeOfADate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    
+    NSString *toReturn = [dateFormatter stringFromDate:date];
+    toReturn = [toReturn stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSError *errorsOnRegex;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kRegexForTime options:0 error:&errorsOnRegex];
+    
+    NSTextCheckingResult *match = [regex firstMatchInString:toReturn options:0 range:NSMakeRange(0, toReturn.length)];
+    
+    NSString *hours = [toReturn substringWithRange:[match rangeAtIndex:1]];
+    NSString *minutes = [toReturn substringWithRange:[match rangeAtIndex:2]];
+    NSString *pieceOfDay = [toReturn substringWithRange:[match rangeAtIndex:3]];
+    
+    if ([minutes isEqualToString:@"00"]) {
+        toReturn = [NSString stringWithFormat:@"%@%@", hours, pieceOfDay];
+    }
+    
+    return toReturn;
+}
+
+#pragma mark - Helpers methods for Chage to View Selectors
+
+- (void)defineRangeOfTimeToDatePicker:(UIDatePicker *)datePicker WithMinimumTime:(NSString *)minimumTime AndMaximumTime:(NSString *)maximumTime AndMinuteInterval:(NSInteger)minuteInterval {
+    NSDate *now = [NSDate date];
+    
+    datePicker.minuteInterval = minuteInterval;
+    
+    datePicker.minimumDate = [self getDateFromFormat:@"dd/MM/yyyy" BasedOnDate:now WithTime:minimumTime AndTimeFormat:@"HH:mm"];
+    datePicker.maximumDate = [self getDateFromFormat:@"dd/MM/yyyy" BasedOnDate:now WithTime:maximumTime AndTimeFormat:@"HH:mm"];
 }
 
 - (void)changeCurrentSliderEnviromnentWithLabel:(NSString *)label AndValue:(NSNumber *)value WithStepper: (NSInteger)stepper ToMinimumValue:(NSNumber *)minimumValue AndMaximumValue:(NSNumber *)maximumValue {
@@ -305,50 +335,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     self.currentDatePicker.hidden = NO;
 }
 
-#pragma mark - Settings View Change Selectors
-
-- (NSDate *)getDateFromFormat:(NSString *)dateFormat BasedOnDate:(NSDate *)date WithTime:(NSString *)timeString AndTimeFormat:(NSString *)timeFormat {
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = dateFormat;
-    
-    NSString *dateString = [NSString stringWithFormat:@"%@ %@", [dateFormatter stringFromDate:date], timeString];
-    
-    dateFormatter.dateFormat = [NSString stringWithFormat:@"%@ %@", dateFormat, timeFormat];
-    
-    return [dateFormatter dateFromString:dateString];
-}
-
-- (NSString *)getStringReprentationOfTimeOfADate:(NSDate *)date {
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.timeStyle = NSDateFormatterShortStyle;
-    
-    NSString *toReturn = [dateFormatter stringFromDate:date];
-    toReturn = [toReturn stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    NSError *errorsOnRegex;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kRegexForTime options:0 error:&errorsOnRegex];
-    
-    NSTextCheckingResult *match = [regex firstMatchInString:toReturn options:0 range:NSMakeRange(0, toReturn.length)];
-    
-    NSString *hours = [toReturn substringWithRange:[match rangeAtIndex:1]];
-    NSString *minutes = [toReturn substringWithRange:[match rangeAtIndex:2]];
-    NSString *pieceOfDay = [toReturn substringWithRange:[match rangeAtIndex:3]];
-    
-    if ([minutes isEqualToString:@"00"]) {
-        toReturn = [NSString stringWithFormat:@"%@%@", hours, pieceOfDay];
-    }
-    
-    return toReturn;
-}
-
-- (void)defineRangeOfTimeToDatePicker:(UIDatePicker *)datePicker WithMinimumTime:(NSString *)minimumTime AndMaximumTime:(NSString *)maximumTime AndMinuteInterval:(NSInteger)minuteInterval {
-    NSDate *now = [NSDate date];
-    
-    datePicker.minuteInterval = minuteInterval;
-    
-    datePicker.minimumDate = [self getDateFromFormat:@"dd/MM/yyyy" BasedOnDate:now WithTime:minimumTime AndTimeFormat:@"HH:mm"];
-    datePicker.maximumDate = [self getDateFromFormat:@"dd/MM/yyyy" BasedOnDate:now WithTime:maximumTime AndTimeFormat:@"HH:mm"];
-}
+#pragma mark - Settings View Change to a Specific View Selectors
 
 - (void)changeToStartTime {
     [self changeCurrentDatePickerEnrivomnentWithLabel:@"Starting at..." AndTimeInterval:10 WhereMinimumTime:@"00:00" AndMaximumTime:@"23:00" ForCurrentTime:self.settings.startTime];
@@ -392,7 +379,13 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     [self changeCurrentDatePickerEnrivomnentWithLabel:@"With an alarm time on..." AndTimeInterval:10 WhereMinimumTime:@"00:00" AndMaximumTime:@"23:00" ForCurrentTime:self.settings.notificationSettings.time];
 }
 
-#pragma mark - Settings View Save Selectors
+#pragma mark - Helpers methods to Save Selectors
+
+- (void)updateSettingsForUITextView:(UITextView *)textView WithStringValue:(NSString *)value {
+    textView.text = [textView.text stringByReplacingCharactersInRange:self.currentRange withString:value];
+    
+    [self processPlaceholdersOnTextView:textView];
+}
 
 - (void)updateSettingsForUITextView:(UITextView *)textView WithNumericValue:(NSNumber *)value {
     NSError *errorOnRegex;
@@ -406,11 +399,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     [self updateSettingsForUITextView:textView WithStringValue:newString];
 }
 
-- (void)updateSettingsForUITextView:(UITextView *)textView WithStringValue:(NSString *)value {
-    textView.text = [textView.text stringByReplacingCharactersInRange:self.currentRange withString:value];
-    
-    [self processPlaceholdersOnTextView:textView];
-}
+#pragma mark - Settings View Save Selectors
 
 - (void)saveStartTime {
     self.settings.startTime = [self getStringReprentationOfTimeOfADate:self.currentDatePicker.date];
@@ -457,38 +446,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     [self updateSettingsForUITextView:self.repeatIntervalTextView WithStringValue:self.settings.notificationSettings.time];
 }
 
-#pragma mark - CLLocationManagerDelegate methods
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"Error on location services." type:TSMessageNotificationTypeError];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    self.userLocation = [locations lastObject];
-    
-    [self updateCityNameBasedOnLocation:self.userLocation];
-    
-    [self.locationManager stopUpdatingLocation];
-}
-
-- (IBAction)currentSliderValueChanged:(UISlider *)sender {
-    [sender setValue:((int)((sender.value + (self.stepperForSlider / 2)) / self.stepperForSlider) * self.stepperForSlider) animated:YES];
-    
-    NSString *valueComplement;
-    
-    switch ([self convertLinkClickedFromString:self.currentLinkTapped]) {
-        case BTWLabelLinkClickedMinimumTemperature:
-        case BTWLabelLinkClickedMaximumTemperature:
-            valueComplement = (self.settings.requestData.isInCelsius) ? @"ºC" : @"ºF";
-            break;
-            
-        default:
-            valueComplement = @"%";
-            break;
-    }
-    
-    self.currentValueOnSliderLabel.text = [NSString stringWithFormat:@"%.0f%@", sender.value, valueComplement];
-}
+#pragma mark - Logic helper methods
 
 - (BTWLabelLinkClicked)convertLinkClickedFromString:(NSString *)stringTapped {
     BTWLabelLinkClicked toReturn = BTWLabelLinkClickedTimeToAlarm;
@@ -519,12 +477,6 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     }
     
     return toReturn;
-}
-
-- (IBAction)saveChangeOnLabel:(UIButton *)sender {
-    [self performAnActionBasedLabelLinkTappedIsToChangeView:NO];
-    
-    [self showSettingsView];
 }
 
 - (void) performAnActionBasedLabelLinkTappedIsToChangeView:(BOOL)isToChangeView {
@@ -609,6 +561,57 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     }
 }
 
+#pragma mark - Actions methods
+
+- (IBAction)choiceCity:(UIButton *)sender {
+    [self.locationManager startUpdatingLocation];
+}
+
+- (IBAction)currentSliderValueChanged:(UISlider *)sender {
+    [sender setValue:((int)((sender.value + (self.stepperForSlider / 2)) / self.stepperForSlider) * self.stepperForSlider) animated:YES];
+    
+    NSString *valueComplement;
+    
+    switch ([self convertLinkClickedFromString:self.currentLinkTapped]) {
+        case BTWLabelLinkClickedMinimumTemperature:
+        case BTWLabelLinkClickedMaximumTemperature:
+            valueComplement = (self.settings.requestData.isInCelsius) ? @"ºC" : @"ºF";
+            break;
+            
+        default:
+            valueComplement = @"%";
+            break;
+    }
+    
+    self.currentValueOnSliderLabel.text = [NSString stringWithFormat:@"%.0f%@", sender.value, valueComplement];
+}
+
+- (IBAction)saveChangeOnLabel:(UIButton *)sender {
+    [self performAnActionBasedLabelLinkTappedIsToChangeView:NO];
+    
+    [self showSettingsView];
+}
+
+- (IBAction)viewResult {
+    if (![self.settings isReadyToProcess]) {
+        [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:[self.settings allErrorsOnValidation] type:TSMessageNotificationTypeWarning];
+    }
+}
+
+#pragma mark - CLLocationManagerDelegate methods
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"Error on location services." type:TSMessageNotificationTypeError];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    self.userLocation = [locations lastObject];
+    
+    [self updateCityNameBasedOnLocation:self.userLocation];
+    
+    [self.locationManager stopUpdatingLocation];
+}
+
 #pragma mark - UIPickerViewDataSource methods
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -629,10 +632,29 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     self.indexOfSelectedRecurrenceAlarm = row;
 }
 
-#pragma mark - Navigation logic
+#pragma mark - UITextViewDelegate methods
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+    NSString *stringPassed = [[NSString stringWithFormat:@"%@", URL] stringByRemovingPercentEncoding];
+    
+    self.currentLinkTapped = stringPassed;
+    self.currentRange = characterRange;
+    
+    [self showSettingsView];
+    
+    return NO;
+}
+
+#pragma mark - Navigation logic control
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     return [self.settings isReadyToProcess];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    BTWResultViewController *controller = (BTWResultViewController *)segue.destinationViewController;
+    
+    controller.settings = self.settings;
 }
 
 @end

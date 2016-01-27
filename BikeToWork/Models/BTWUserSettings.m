@@ -53,7 +53,11 @@
 }
 
 - (NSString *)allErrorsOnValidation {
-    return @"Where are you? Select the city...";
+    if ([self.requestData.city isEqualToString:@"City"] || (!self.requestData.city.length)) {
+        return @"Where are you? Select the city...";
+    }
+    
+    return nil;
 }
 
 @end
