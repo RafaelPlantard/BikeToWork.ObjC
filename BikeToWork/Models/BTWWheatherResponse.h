@@ -9,7 +9,6 @@
 #import "BTWModelBase.h"
 #import "BTWCoordinate.h"
 #import "BTWTemperatures.h"
-#import "BTWWeather.h"
 #import "BTWWind.h"
 #import "BTWClouds.h"
 #import "BTWSystemParameters.h"
@@ -19,8 +18,8 @@
 /*! @brief The coordinates data. */
 @property (nonatomic, strong) BTWCoordinate *coordinate;
 
-/*! @brief The weather itself. */
-@property (nonatomic, strong) BTWWeather *weather;
+/*! @brief An array with the weather itself. */
+@property (nonatomic, strong) NSArray *weather;
 
 /*! @brief The base that this data was captured. */
 @property (nonatomic, strong) NSString *base;

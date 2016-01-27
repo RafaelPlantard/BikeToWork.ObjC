@@ -35,12 +35,6 @@ typedef NS_ENUM(NSInteger, BTWLabelLinkClicked)
 /*! @brief The controller for orchestres the home view. */
 @interface BTWHomeViewController : UIViewController<UITextViewDelegate, CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
-- (IBAction)choiceCity:(UIButton *)sender;
-
-- (IBAction)viewResult;
-
-- (IBAction)changeTemperatureUnit:(UIButton *)sender;
-
 @property (weak, nonatomic) IBOutlet UIButton *celsiusButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *fahrenheitButton;
@@ -57,16 +51,24 @@ typedef NS_ENUM(NSInteger, BTWLabelLinkClicked)
 
 @property (weak, nonatomic) IBOutlet UISlider *currentSlider;
 
-- (IBAction)currentSliderValueChanged:(UISlider *)sender;
-
 @property (weak, nonatomic) IBOutlet UILabel *currentValueOnSliderLabel;
-
-- (IBAction)saveChangeOnLabel:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *currentLabelForSettingsView;
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *currentDatePicker;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *currentPickerView;
+
+#pragma mark - Actions methods
+
+- (IBAction)choiceCity:(UIButton *)sender;
+
+- (IBAction)viewResult;
+
+- (IBAction)changeTemperatureUnit:(UIButton *)sender;
+
+- (IBAction)currentSliderValueChanged:(UISlider *)sender;
+
+- (IBAction)saveChangeOnLabel:(UIButton *)sender;
 
 @end

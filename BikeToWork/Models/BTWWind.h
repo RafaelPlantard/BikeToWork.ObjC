@@ -12,7 +12,7 @@
 @interface BTWWind : BTWModelBase
 
 /*! @brief The speed of wind. */
-@property (nonatomic, strong) NSNumber *wind;
+@property (nonatomic, strong) NSNumber *speed;
 
 /*! @brief The wind direction */
 @property (nonatomic, strong) NSNumber *degrees;

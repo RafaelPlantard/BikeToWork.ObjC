@@ -7,16 +7,21 @@
 //
 
 #import "BTWWheatherResponse.h"
+#import "BTWWeather.h"
 
 @implementation BTWWheatherResponse
 
 + (NSDictionary *)customJSONKeyPathsByPropertyKey {
     return @{
-             @"coordinate": @"cord",
+             @"coordinate": @"coord",
              @"timeCalculation": @"dt",
              @"cityId": @"id",
              @"internalParameters": @"sys"
              };
+}
+
++ (NSValueTransformer *)weatherJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:BTWWeather.class];
 }
 
 - (NSString *)seeCurrentTip {
@@ -34,7 +39,9 @@
         return @"it's night. be careful on traffic, and use flashlights.";
     }
     
-    if ([self.weather.main isEqualToString:@"Rain"]) {
+    BTWWeather *weather = [self.weather lastObject];
+    
+    if ([weather.main isEqualToString:@"Rain"]) {
         return @"it's rainy day. don't forget your umbrella.";
     }
     
@@ -46,11 +53,13 @@
 }
 
 - (NSString *)imageNameForTemperature {
-    if ([self.weather.main isEqualToString:@"Clear"]) {
+    BTWWeather *weather = [self.weather lastObject];
+    
+    if ([weather.main isEqualToString:@"Clear"]) {
         return @"Sun";
     }
     
-    if ([self.weather.main isEqualToString:@"Rain"]) {
+    if ([weather.main isEqualToString:@"Rain"]) {
         return @"Rain";
     }
     

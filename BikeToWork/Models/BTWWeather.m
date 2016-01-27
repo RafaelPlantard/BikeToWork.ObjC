@@ -12,8 +12,8 @@
 
 + (NSDictionary *)customJSONKeyPathsByPropertyKey {
     return @{
-             @"wheatherId": @"id",
-             @"wheatherDescription": @"description"
+             @"weatherId": @"id",
+             @"weatherDescription": @"description"
              };
 }
 

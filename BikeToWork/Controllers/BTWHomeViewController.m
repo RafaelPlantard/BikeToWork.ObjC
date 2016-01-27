@@ -8,7 +8,7 @@
 
 #import "BTWHomeViewController.h"
 #import "BTWResultViewController.h"
-#import "BTWWeatherRequest.h"
+#import "BTWSessionManager+OpenWeatherApi.h"
 #import <TSMessages/TSMessage.h>
 
 static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
@@ -171,33 +171,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     textView.attributedText = attributedString;
 }
 
-#pragma mark - Location manager helper methods
-
-- (void)updateCityNameBasedOnLocation:(CLLocation *)currentLocation {
-    [self.geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        self.placemark = [placemarks lastObject];
-        
-        if (error || !self.placemark) {
-            [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"Impossible resolve your city based on your location" type:TSMessageNotificationTypeError];
-        } else {
-            self.settings.requestData.city = self.placemark.locality;
-            [self.currentLocationButton setTitle:self.placemark.locality forState:UIControlStateNormal];
-        }
-    }];
-}
-
 #pragma mark - Helpers methods to control the temperature behavior on the page
-
-- (IBAction)changeTemperatureUnit:(UIButton *)sender {
-    UIColor *newColor = self.celsiusButton.titleLabel.textColor;
-    
-    [self.celsiusButton setTitleColor:self.fahrenheitButton.titleLabel.textColor forState:UIControlStateNormal];
-    [self.fahrenheitButton setTitleColor:newColor forState:UIControlStateNormal];
-    
-    self.settings.requestData.isInCelsius = (self.celsiusButton.titleLabel.textColor == UsedUnitOnTemperatureUIColor);
-    
-    [self updateTemperatureUnitsOnText];
-}
 
 - (void)updateTemperatureUnitsOnText {
     NSError *errorsOnRegex;
@@ -563,6 +537,17 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 
 #pragma mark - Actions methods
 
+- (IBAction)changeTemperatureUnit:(UIButton *)sender {
+    UIColor *newColor = self.celsiusButton.titleLabel.textColor;
+    
+    [self.celsiusButton setTitleColor:self.fahrenheitButton.titleLabel.textColor forState:UIControlStateNormal];
+    [self.fahrenheitButton setTitleColor:newColor forState:UIControlStateNormal];
+    
+    self.settings.requestData.isInCelsius = (self.celsiusButton.titleLabel.textColor == UsedUnitOnTemperatureUIColor);
+    
+    [self updateTemperatureUnitsOnText];
+}
+
 - (IBAction)choiceCity:(UIButton *)sender {
     [self.locationManager startUpdatingLocation];
 }
@@ -598,16 +583,54 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     }
 }
 
+#pragma mark - API Requests
+
+- (void)doRequest {
+    if (![self.settings.requestData.city isEqualToString:@"City"]) {
+        [[BTWSessionManager sharedManager] getWeatherWith:self.settings.requestData OnSuccess:^(id response) {
+            self.settings.currentWeather = response;
+            
+            [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"We find the wheather for your location and unit for temperature" type:TSMessageNotificationTypeSuccess];
+        } OnFailure:^(NSError *error) {
+            [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"We could not complete the request for Weather Open API" type:TSMessageNotificationTypeWarning];
+        }];
+    }
+}
+
+#pragma mark - Location manager helper methods
+
+- (void)updateCityNameBasedOnLocation:(CLLocation *)currentLocation {
+    self.userLocation = currentLocation;
+    
+    if (currentLocation) {
+        [self.geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+            self.placemark = [placemarks lastObject];
+            
+            if (error || !self.placemark) {
+                [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"Impossible resolve your city based on your location" type:TSMessageNotificationTypeError];
+            } else {
+                self.settings.requestData.city = self.placemark.locality;
+                [self.currentLocationButton setTitle:self.placemark.locality forState:UIControlStateNormal];
+                
+                [self doRequest];
+            }
+        }];
+    } else {
+        self.settings.requestData.city = @"City";
+        [self.currentLocationButton setTitle:self.settings.requestData.city forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark - CLLocationManagerDelegate methods
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    [self updateCityNameBasedOnLocation:nil];
+    
     [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"Error on location services." type:TSMessageNotificationTypeError];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    self.userLocation = [locations lastObject];
-    
-    [self updateCityNameBasedOnLocation:self.userLocation];
+    [self updateCityNameBasedOnLocation:locations.lastObject];
     
     [self.locationManager stopUpdatingLocation];
 }

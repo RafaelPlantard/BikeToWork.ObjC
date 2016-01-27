@@ -20,7 +20,7 @@ static NSString *const kWeatherApiEndPointBase = @"/data/2.5/%@";
     NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:requestParameters error:nil];
     
     NSMutableDictionary *parametersWithAppId = [NSMutableDictionary dictionaryWithDictionary:parameters];
-    [parameters setValue:kAppId forKey:@"APPID"];
+    [parametersWithAppId setValue:kAppId forKey:@"APPID"];
     
     NSString *endPoint = [NSString stringWithFormat:kWeatherApiEndPointBase, @"weather"];
     
@@ -28,9 +28,15 @@ static NSString *const kWeatherApiEndPointBase = @"/data/2.5/%@";
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
         
         NSError *errorsOnParse;
-        BTWWheatherResponse *response = [MTLJSONAdapter modelOfClass:[BTWWheatherResponse class] fromJSONDictionary:responseDictionary error:&errorsOnParse];
         
-        success(response);
+        BTWWheatherResponse *response = [BTWWheatherResponse parse:responseDictionary error:&errorsOnParse];
+        
+        if (response) {
+            success(response);
+        } else {
+            failure(errorsOnParse);
+        }
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
     }];
