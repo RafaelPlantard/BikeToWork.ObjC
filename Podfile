@@ -8,6 +8,7 @@ target 'BikeToWork' do
 	pod 'bricks-Mantle'
 	pod 'Mantle'
 	pod 'SSZipArchive'
+	pod 'TLJsonFactory'
 	pod 'TSMessages'
 end
 
