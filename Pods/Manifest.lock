@@ -20,6 +20,7 @@ PODS:
   - Mantle (2.0.6):
     - Mantle/extobjc (= 2.0.6)
   - Mantle/extobjc (2.0.6)
+  - SSZipArchive (1.1)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
 
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - AFNetworking
   - bricks-Mantle
   - Mantle
+  - SSZipArchive
   - TSMessages
 
 SPEC CHECKSUMS:
@@ -34,6 +36,7 @@ SPEC CHECKSUMS:
   bricks-Mantle: 164b915d059b0d8e9501f6e2fb479e0061401b61
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
+  SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
 
 COCOAPODS: 0.39.0
