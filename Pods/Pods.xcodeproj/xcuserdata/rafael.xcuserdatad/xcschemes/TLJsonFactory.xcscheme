@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'A64B5A9F707A8F1BA4FCB70B'
-               BlueprintName = 'Mantle'
+               BlueprintIdentifier = '6D12825C9475A763B13EF158'
+               BlueprintName = 'TLJsonFactory'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libMantle.a'>
+               BuildableName = 'libTLJsonFactory.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

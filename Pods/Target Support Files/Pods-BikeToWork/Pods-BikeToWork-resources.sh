@@ -75,6 +75,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "TSMessages/Pod/Assets/NotificationButtonBackground.png"
   install_resource "TSMessages/Pod/Assets/NotificationButtonBackground@2x.png"
   install_resource "TSMessages/Pod/Assets/TSMessagesDefaultDesign.json"
+  install_resource "${BUILT_PRODUCTS_DIR}/TLJsonFactory.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/bricks-Mantle.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -95,6 +96,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "TSMessages/Pod/Assets/NotificationButtonBackground.png"
   install_resource "TSMessages/Pod/Assets/NotificationButtonBackground@2x.png"
   install_resource "TSMessages/Pod/Assets/TSMessagesDefaultDesign.json"
+  install_resource "${BUILT_PRODUCTS_DIR}/TLJsonFactory.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/bricks-Mantle.bundle"
 fi
 

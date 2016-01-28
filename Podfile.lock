@@ -21,6 +21,7 @@ PODS:
     - Mantle/extobjc (= 2.0.6)
   - Mantle/extobjc (2.0.6)
   - SSZipArchive (1.1)
+  - TLJsonFactory (0.1.0)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
 
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - bricks-Mantle
   - Mantle
   - SSZipArchive
+  - TLJsonFactory
   - TSMessages
 
 SPEC CHECKSUMS:
@@ -37,6 +39,7 @@ SPEC CHECKSUMS:
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
   SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
+  TLJsonFactory: 3aeb73712e192997f76a11b75bc7600cdb4f5b75
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
 
 COCOAPODS: 0.39.0
