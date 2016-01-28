@@ -25,6 +25,7 @@
         self.maximumHumidity = @70;
         
         self.currentWeather = [BTWWheatherResponse new];
+        self.forecastWeather = [BTWFiveDaysForecastResponse new];
         
         self.notificationSettings = [[BTWUserNotify alloc] initWithRecurrence:BTWNotificationRecurrenceEveryDay WithAlarmTime:@"7:30AM"];
         

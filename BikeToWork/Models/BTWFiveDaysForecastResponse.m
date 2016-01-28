@@ -13,6 +13,7 @@
 
 + (NSDictionary *)customJSONKeyPathsByPropertyKey {
     return @{
+             @"code": @"cod",
              @"numberOfLines": @"cnt",
              @"forecast": @"list"
              };

@@ -588,13 +588,21 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 #pragma mark - API Requests
 
 - (void)doRequest {
+    BTWSessionManager *sessionManager = [BTWSessionManager sharedManager];
+    
     if (![self.settings.requestData.city isEqualToString:@"City"]) {
-        [[BTWSessionManager sharedManager] getWeatherWith:self.settings.requestData OnSuccess:^(id response) {
-            self.settings.currentWeather = response;
+        [sessionManager getWeatherWith:self.settings.requestData OnSuccess:^(id currentWeatherResponse) {
+            self.settings.currentWeather = currentWeatherResponse;
             
-            [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"We find the wheather for your location and unit for temperature" type:TSMessageNotificationTypeSuccess];
+            [sessionManager getForecastForFiveDaysWith:self.settings.requestData OnSuccess:^(id forecastWeatherResponse) {
+                self.settings.forecastWeather = forecastWeatherResponse;
+                
+                [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"We find the current weather and forecast weather for your location and unit for temperature" type:TSMessageNotificationTypeSuccess];
+            } OnFailure:^(NSError *error) {
+                [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"We could get the forecast for next 5 days weather from Weather Open API" type:TSMessageNotificationTypeWarning];
+            }];
         } OnFailure:^(NSError *error) {
-            [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"We could not complete the request for Weather Open API" type:TSMessageNotificationTypeWarning];
+            [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"We could get the current weather from Weather Open API" type:TSMessageNotificationTypeWarning];
         }];
     }
 }

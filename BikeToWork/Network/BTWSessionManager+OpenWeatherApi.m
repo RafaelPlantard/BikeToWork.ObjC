@@ -17,7 +17,7 @@ static NSString *const kWeatherApiEndPointBase = @"/data/2.5/%@";
 
 @implementation BTWSessionManager (OpenWeatherApi)
 
-- (NSURLSessionDataTask *)getResponseFromWeatherApiToEndPoint:(NSString *)apiEndPoint WhereParameters:(BTWWeatherRequest *)requestParameters AndResponseTypeIs:(BTWModelBase *)className OnSuccess:(BTWSuccessBlock)success OnFailure:(BTWFailureBlock)failure {
+- (NSURLSessionDataTask *)getResponseFromWeatherApiToEndPoint:(NSString *)apiEndPoint WhereParameters:(BTWWeatherRequest *)requestParameters StoreOnResponseType:(Class)responseType OnSuccess:(BTWSuccessBlock)success OnFailure:(BTWFailureBlock)failure {
     NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:requestParameters error:nil];
     
     NSMutableDictionary *parametersWithAppId = [NSMutableDictionary dictionaryWithDictionary:parameters];
@@ -30,7 +30,7 @@ static NSString *const kWeatherApiEndPointBase = @"/data/2.5/%@";
         
         NSError *errorsOnParse;
         
-        id response = [className.class parse:responseDictionary error:&errorsOnParse];
+        id response = [[responseType class] parse:responseDictionary error:&errorsOnParse];
         
         if (response) {
             success(response);
@@ -44,33 +44,11 @@ static NSString *const kWeatherApiEndPointBase = @"/data/2.5/%@";
 }
 
 - (NSURLSessionDataTask *)getWeatherWith:(BTWWeatherRequest *)requestParameters OnSuccess:(BTWSuccessBlock)success OnFailure:(BTWFailureBlock)failure {
-    NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:requestParameters error:nil];
-    
-    NSMutableDictionary *parametersWithAppId = [NSMutableDictionary dictionaryWithDictionary:parameters];
-    [parametersWithAppId setValue:kAppId forKey:@"APPID"];
-    
-    NSString *endPoint = [NSString stringWithFormat:kWeatherApiEndPointBase, @"weather"];
-    
-    return [self GET:endPoint parameters:parametersWithAppId progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSDictionary *responseDictionary = (NSDictionary *)responseObject;
-        
-        NSError *errorsOnParse;
-        
-        BTWWheatherResponse *response = [BTWWheatherResponse parse:responseDictionary error:&errorsOnParse];
-        
-        if (response) {
-            success(response);
-        } else {
-            failure(errorsOnParse);
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        failure(error);
-    }];
+    return [self getResponseFromWeatherApiToEndPoint:@"weather" WhereParameters:requestParameters StoreOnResponseType:[BTWWheatherResponse class] OnSuccess:success OnFailure:failure];
 }
 
 - (NSURLSessionDataTask *)getForecastForFiveDaysWith:(BTWWeatherRequest *)requestParameters OnSuccess:(BTWSuccessBlock)success OnFailure:(BTWFailureBlock)failure {
-    return [self getResponseFromWeatherApiToEndPoint:@"forecast" WhereParameters:requestParameters AndResponseTypeIs:[BTWWheatherResponse new] OnSuccess:success OnFailure:failure];
+    return [self getResponseFromWeatherApiToEndPoint:@"forecast" WhereParameters:requestParameters StoreOnResponseType:BTWFiveDaysForecastResponse.class OnSuccess:success OnFailure:failure];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BTWUserNotify.h"
 #import "BTWWheatherResponse.h"
+#import "BTWFiveDaysForecastResponse.h"
 #import "BTWWeatherRequest.h"
 
 /*! @brief A entity that encapusates all user settings. */
@@ -40,6 +41,9 @@
 
 /*! @brief The current weather for compare in all logic processment. */
 @property (nonatomic, strong) BTWWheatherResponse *currentWeather;
+
+/*! @brief The forecast of the next 5 days weather. */
+@property (nonatomic, strong) BTWFiveDaysForecastResponse *forecastWeather;
 
 /*! @brief The current request information. */
 @property (nonatomic, strong) BTWWeatherRequest *requestData;
