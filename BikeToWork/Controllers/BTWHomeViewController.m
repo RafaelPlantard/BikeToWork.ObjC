@@ -9,6 +9,7 @@
 #import "BTWHomeViewController.h"
 #import "BTWResultViewController.h"
 #import "BTWSessionManager+OpenWeatherApi.h"
+#import "BTWCityListDao.h"
 #import <TSMessages/TSMessage.h>
 
 static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
@@ -42,6 +43,8 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 @property (nonatomic, assign) BOOL isToOpenSettingsView;
 
 @property (nonatomic, assign) NSInteger indexOfSelectedRecurrenceAlarm;
+
+@property (nonatomic, strong) NSArray *citiesToUseOnSearch;
 
 @end
 
@@ -631,12 +634,18 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     }
 }
 
+- (void)showLocationGetterForTextField {
+    self.citiesToUseOnSearch = [BTWCityListDao getAllCities];
+}
+
 #pragma mark - CLLocationManagerDelegate methods
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     [self updateCityNameBasedOnLocation:nil];
     
     [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"Error on location services." type:TSMessageNotificationTypeError];
+    
+    [self showLocationGetterForTextField];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {

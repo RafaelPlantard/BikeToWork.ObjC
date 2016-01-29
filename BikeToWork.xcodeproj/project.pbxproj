@@ -24,9 +24,8 @@
 		532D6E0C1C4EB95C002E8297 /* SourceSansPro-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */; };
 		5336C4261C5ABD68003E17B6 /* BTWCityListDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 5336C4251C5ABD68003E17B6 /* BTWCityListDao.m */; };
 		5336C4291C5ABD93003E17B6 /* BTWCityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5336C4281C5ABD93003E17B6 /* BTWCityList.m */; };
-		5336C42B1C5AC472003E17B6 /* city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = 5336C42A1C5AC472003E17B6 /* city.list.json */; };
+		5336C42D1C5BE068003E17B6 /* CityListFromWeatherOpenAPI.json in Resources */ = {isa = PBXBuildFile; fileRef = 5336C42C1C5BE068003E17B6 /* CityListFromWeatherOpenAPI.json */; };
 		539EE1521C54407A0053C969 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539EE1511C54407A0053C969 /* CoreLocation.framework */; };
-		53BBC2E81C5AB9440006C077 /* city.list.json.zip in Resources */ = {isa = PBXBuildFile; fileRef = 53BBC2E71C5AB9440006C077 /* city.list.json.zip */; };
 		53DEC8031C4E753C0069B2D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8021C4E753C0069B2D1 /* main.m */; };
 		53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8051C4E753C0069B2D1 /* BTWAppDelegate.m */; };
 		53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8081C4E753C0069B2D1 /* BTWHomeViewController.m */; };
@@ -85,9 +84,8 @@
 		5336C4251C5ABD68003E17B6 /* BTWCityListDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWCityListDao.m; sourceTree = "<group>"; };
 		5336C4271C5ABD93003E17B6 /* BTWCityList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWCityList.h; sourceTree = "<group>"; };
 		5336C4281C5ABD93003E17B6 /* BTWCityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWCityList.m; sourceTree = "<group>"; };
-		5336C42A1C5AC472003E17B6 /* city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.json; sourceTree = "<group>"; };
+		5336C42C1C5BE068003E17B6 /* CityListFromWeatherOpenAPI.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityListFromWeatherOpenAPI.json; sourceTree = "<group>"; };
 		539EE1511C54407A0053C969 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		53BBC2E71C5AB9440006C077 /* city.list.json.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = city.list.json.zip; sourceTree = "<group>"; };
 		53DEC7FE1C4E753C0069B2D1 /* BikeToWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeToWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DEC8021C4E753C0069B2D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		53DEC8041C4E753C0069B2D1 /* BTWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTWAppDelegate.h; sourceTree = "<group>"; };
@@ -170,8 +168,7 @@
 		532D6DF21C4EB90B002E8297 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5336C42A1C5AC472003E17B6 /* city.list.json */,
-				53BBC2E71C5AB9440006C077 /* city.list.json.zip */,
+				5336C42C1C5BE068003E17B6 /* CityListFromWeatherOpenAPI.json */,
 				532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */,
 				532D6DF31C4EB93A002E8297 /* SourceSansPro-Black.ttf */,
 				532D6DF41C4EB93A002E8297 /* SourceSansPro-BlackItalic.ttf */,
@@ -421,11 +418,11 @@
 				532D6E061C4EB95C002E8297 /* SourceSansPro-ExtraLightItalic.ttf in Resources */,
 				532D6E071C4EB95C002E8297 /* SourceSansPro-Italic.ttf in Resources */,
 				532D6E021C4EB95C002E8297 /* SourceSansPro-BlackItalic.ttf in Resources */,
-				53BBC2E81C5AB9440006C077 /* city.list.json.zip in Resources */,
 				532D6E0A1C4EB95C002E8297 /* SourceSansPro-Regular.ttf in Resources */,
 				532D6E081C4EB95C002E8297 /* SourceSansPro-Light.ttf in Resources */,
 				53DEC8111C4E753C0069B2D1 /* LaunchScreen.storyboard in Resources */,
 				53DEC80E1C4E753C0069B2D1 /* Assets.xcassets in Resources */,
+				5336C42D1C5BE068003E17B6 /* CityListFromWeatherOpenAPI.json in Resources */,
 				532D6E051C4EB95C002E8297 /* SourceSansPro-ExtraLight.ttf in Resources */,
 				532D6E041C4EB95C002E8297 /* SourceSansPro-BoldItalic.ttf in Resources */,
 				532D6E001C4EB958002E8297 /* Trocchi-Regular.ttf in Resources */,
@@ -435,7 +432,6 @@
 				53DEC80C1C4E753C0069B2D1 /* Main.storyboard in Resources */,
 				532D6E091C4EB95C002E8297 /* SourceSansPro-LightItalic.ttf in Resources */,
 				532D6E0B1C4EB95C002E8297 /* SourceSansPro-Semibold.ttf in Resources */,
-				5336C42B1C5AC472003E17B6 /* city.list.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

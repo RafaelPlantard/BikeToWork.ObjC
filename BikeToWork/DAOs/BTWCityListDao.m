@@ -7,6 +7,8 @@
 //
 
 #import "BTWCityListDao.h"
+#import "BTWCity.h"
+#import <TLJsonFactory/TLJsonFactory.h>
 #import <SSZipArchive/ZipArchive.h>
 
 @implementation BTWCityListDao
@@ -17,14 +19,13 @@
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        [SSZipArchive unzipFileAtPath:@"Resources/city.list.json.zip" toDestination:@"Resources/city.list.json" progressHandler:nil completionHandler:^(NSString *path, BOOL succeeded, NSError *error) {
-            NSLog(@"path = %@, succeeded = %i, error = %@", path, succeeded, error);
-            
-            
-        }];
+        NSArray *jsonCityArray = [TLJsonFactory tl_jsonArrayFromFile:@"CityListFromWeatherOpenAPI"];
+        
+        NSError *errorsOnParse;
+        cities = [MTLJSONAdapter modelsOfClass:[BTWCity class] fromJSONArray:jsonCityArray error:&errorsOnParse];
     });
     
-    return nil;
+    return cities;
 }
 
 @end
