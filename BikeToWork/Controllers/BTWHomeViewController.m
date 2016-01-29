@@ -9,7 +9,6 @@
 #import "BTWHomeViewController.h"
 #import "BTWResultViewController.h"
 #import "BTWSessionManager+OpenWeatherApi.h"
-#import "BTWCityListDao.h"
 #import <TSMessages/TSMessage.h>
 
 static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";

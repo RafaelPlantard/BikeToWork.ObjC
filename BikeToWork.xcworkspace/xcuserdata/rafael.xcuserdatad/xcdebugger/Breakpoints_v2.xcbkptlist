@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BikeToWork/Controllers/BTWHomeViewController.m"
-            timestampString = "475784311.384444"
+            timestampString = "475785679.416194"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "646"
-            endingLineNumber = "646"
+            startingLineNumber = "641"
+            endingLineNumber = "641"
             landmarkName = "-locationManager:didFailWithError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BikeToWork/Controllers/BTWHomeViewController.m"
-            timestampString = "475784326.967902"
+            timestampString = "475785679.416194"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "557"
-            endingLineNumber = "557"
+            startingLineNumber = "554"
+            endingLineNumber = "554"
             landmarkName = "-choiceCity:"
             landmarkType = "5">
          </BreakpointContent>
