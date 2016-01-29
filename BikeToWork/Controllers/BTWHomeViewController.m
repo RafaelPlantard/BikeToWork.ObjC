@@ -44,8 +44,6 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 
 @property (nonatomic, assign) NSInteger indexOfSelectedRecurrenceAlarm;
 
-@property (nonatomic, strong) NSArray *citiesToUseOnSearch;
-
 @end
 
 @implementation BTWHomeViewController
@@ -635,7 +633,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 }
 
 - (void)showLocationGetterForTextField {
-    self.citiesToUseOnSearch = [BTWCityListDao getAllCities];
+    
 }
 
 #pragma mark - CLLocationManagerDelegate methods

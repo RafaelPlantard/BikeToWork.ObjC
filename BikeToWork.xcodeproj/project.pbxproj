@@ -22,9 +22,6 @@
 		532D6E0A1C4EB95C002E8297 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFC1C4EB93A002E8297 /* SourceSansPro-Regular.ttf */; };
 		532D6E0B1C4EB95C002E8297 /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */; };
 		532D6E0C1C4EB95C002E8297 /* SourceSansPro-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */; };
-		5336C4261C5ABD68003E17B6 /* BTWCityListDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 5336C4251C5ABD68003E17B6 /* BTWCityListDao.m */; };
-		5336C4291C5ABD93003E17B6 /* BTWCityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5336C4281C5ABD93003E17B6 /* BTWCityList.m */; };
-		5336C42D1C5BE068003E17B6 /* CityListFromWeatherOpenAPI.json in Resources */ = {isa = PBXBuildFile; fileRef = 5336C42C1C5BE068003E17B6 /* CityListFromWeatherOpenAPI.json */; };
 		539EE1521C54407A0053C969 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539EE1511C54407A0053C969 /* CoreLocation.framework */; };
 		53DEC8031C4E753C0069B2D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8021C4E753C0069B2D1 /* main.m */; };
 		53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8051C4E753C0069B2D1 /* BTWAppDelegate.m */; };
@@ -80,11 +77,6 @@
 		532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
 		532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trocchi-Regular.ttf"; sourceTree = "<group>"; };
-		5336C4241C5ABD68003E17B6 /* BTWCityListDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWCityListDao.h; sourceTree = "<group>"; };
-		5336C4251C5ABD68003E17B6 /* BTWCityListDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWCityListDao.m; sourceTree = "<group>"; };
-		5336C4271C5ABD93003E17B6 /* BTWCityList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWCityList.h; sourceTree = "<group>"; };
-		5336C4281C5ABD93003E17B6 /* BTWCityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWCityList.m; sourceTree = "<group>"; };
-		5336C42C1C5BE068003E17B6 /* CityListFromWeatherOpenAPI.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityListFromWeatherOpenAPI.json; sourceTree = "<group>"; };
 		539EE1511C54407A0053C969 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		53DEC7FE1C4E753C0069B2D1 /* BikeToWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeToWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DEC8021C4E753C0069B2D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -168,7 +160,6 @@
 		532D6DF21C4EB90B002E8297 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5336C42C1C5BE068003E17B6 /* CityListFromWeatherOpenAPI.json */,
 				532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */,
 				532D6DF31C4EB93A002E8297 /* SourceSansPro-Black.ttf */,
 				532D6DF41C4EB93A002E8297 /* SourceSansPro-BlackItalic.ttf */,
@@ -195,15 +186,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		53BBC2E91C5ABB4F0006C077 /* DAOs */ = {
-			isa = PBXGroup;
-			children = (
-				5336C4241C5ABD68003E17B6 /* BTWCityListDao.h */,
-				5336C4251C5ABD68003E17B6 /* BTWCityListDao.m */,
-			);
-			path = DAOs;
-			sourceTree = "<group>";
-		};
 		53DEC7F51C4E753C0069B2D1 = {
 			isa = PBXGroup;
 			children = (
@@ -227,7 +209,6 @@
 		53DEC8001C4E753C0069B2D1 /* BikeToWork */ = {
 			isa = PBXGroup;
 			children = (
-				53BBC2E91C5ABB4F0006C077 /* DAOs */,
 				532D6DF21C4EB90B002E8297 /* Resources */,
 				53DEC8261C4E75500069B2D1 /* Commons */,
 				53DEC8281C4E75570069B2D1 /* Controllers */,
@@ -323,8 +304,6 @@
 				53DF89F51C5958BD00A4DE6A /* BTWCity.m */,
 				53DF89F71C59600A00A4DE6A /* BTWFiveDaysForecastResponse.h */,
 				53DF89F81C59600A00A4DE6A /* BTWFiveDaysForecastResponse.m */,
-				5336C4271C5ABD93003E17B6 /* BTWCityList.h */,
-				5336C4281C5ABD93003E17B6 /* BTWCityList.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -422,7 +401,6 @@
 				532D6E081C4EB95C002E8297 /* SourceSansPro-Light.ttf in Resources */,
 				53DEC8111C4E753C0069B2D1 /* LaunchScreen.storyboard in Resources */,
 				53DEC80E1C4E753C0069B2D1 /* Assets.xcassets in Resources */,
-				5336C42D1C5BE068003E17B6 /* CityListFromWeatherOpenAPI.json in Resources */,
 				532D6E051C4EB95C002E8297 /* SourceSansPro-ExtraLight.ttf in Resources */,
 				532D6E041C4EB95C002E8297 /* SourceSansPro-BoldItalic.ttf in Resources */,
 				532D6E001C4EB958002E8297 /* Trocchi-Regular.ttf in Resources */,
@@ -506,13 +484,11 @@
 				53DEC8091C4E753C0069B2D1 /* BTWHomeViewController.m in Sources */,
 				53DF89F91C59600A00A4DE6A /* BTWFiveDaysForecastResponse.m in Sources */,
 				53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */,
-				5336C4261C5ABD68003E17B6 /* BTWCityListDao.m in Sources */,
 				53DF89F01C5955B700A4DE6A /* BTWRain.m in Sources */,
 				53DEC8541C4E9EC60069B2D1 /* BTWWheatherResponse.m in Sources */,
 				53DEC82B1C4E76CC0069B2D1 /* BTWSessionManager.m in Sources */,
 				53DEC8031C4E753C0069B2D1 /* main.m in Sources */,
 				531517BB1C4F3F8800AF64BF /* BTWUserSettings.m in Sources */,
-				5336C4291C5ABD93003E17B6 /* BTWCityList.m in Sources */,
 				53DEC84B1C4E9A2B0069B2D1 /* BTWWind.m in Sources */,
 				53DEC8481C4E93FB0069B2D1 /* BTWTemperatures.m in Sources */,
 				53DEC83D1C4E87130069B2D1 /* BTWWeatherRequest.m in Sources */,
