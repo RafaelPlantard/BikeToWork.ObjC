@@ -7,9 +7,8 @@ target 'BikeToWork' do
 	pod 'AFNetworking'
 	pod 'bricks-Mantle'
 	pod 'Mantle'
-	pod 'SSZipArchive'
-	pod 'TLJsonFactory'
 	pod 'TSMessages'
+	pod 'YONAutoComplete'
 end
 
 target 'BikeToWorkTests' do

@@ -59,6 +59,8 @@ typedef NS_ENUM(NSInteger, BTWLabelLinkClicked)
 
 @property (weak, nonatomic) IBOutlet UIPickerView *currentPickerView;
 
+@property (weak, nonatomic) IBOutlet UITextField *cityTextField;
+
 #pragma mark - Actions methods
 
 - (IBAction)choiceCity:(UIButton *)sender;

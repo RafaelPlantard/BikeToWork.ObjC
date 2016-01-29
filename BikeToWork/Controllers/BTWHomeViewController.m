@@ -10,6 +10,7 @@
 #import "BTWResultViewController.h"
 #import "BTWSessionManager+OpenWeatherApi.h"
 #import <TSMessages/TSMessage.h>
+#import <YONAutoComplete/YONAutoComplete.h>
 
 static NSString *const kRegexForTemperatureDegrees = @"(\\d+)º([A-Z])";
 
@@ -42,6 +43,8 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
 @property (nonatomic, assign) BOOL isToOpenSettingsView;
 
 @property (nonatomic, assign) NSInteger indexOfSelectedRecurrenceAlarm;
+
+@property (nonatomic, strong) YONAutoComplete *autoCompleteDelegate;
 
 @end
 
@@ -138,6 +141,9 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     
     // settingsView
     [self changeVisibilityOfSettingsViewToShow];
+    
+    // cityTextField
+    [self changeVisibilityOfCityTextField];
 }
 
 - (void)processPlaceholdersOnTextView:(UITextView *)textView {
@@ -169,6 +175,24 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     }
     
     textView.attributedText = attributedString;
+}
+
+- (void)changeVisibilityOfCityTextField {
+    NSString *value = self.settings.requestData.city;
+    
+    BOOL isEmpty = (!value) || ([value isEqualToString:@"City"]);
+    
+    if (!isEmpty) {
+        if (!self.autoCompleteDelegate) {
+            self.autoCompleteDelegate = [YONAutoComplete new];
+            self.autoCompleteDelegate.completionsFileName = @"CityListAutoComplete";
+            self.autoCompleteDelegate.freezeCompletionsFile = NO;
+        }
+        
+        self.cityTextField.delegate = self.autoCompleteDelegate;
+    }
+    
+    self.cityTextField.hidden = isEmpty;
 }
 
 #pragma mark - Helpers methods to control the temperature behavior on the page
@@ -255,7 +279,7 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     return toReturn;
 }
 
-#pragma mark - Helpers methods for Chage to View Selectors
+#pragma mark - Helpers methods for Change to View Selectors
 
 - (void)defineRangeOfTimeToDatePicker:(UIDatePicker *)datePicker WithMinimumTime:(NSString *)minimumTime AndMaximumTime:(NSString *)maximumTime AndMinuteInterval:(NSInteger)minuteInterval {
     NSDate *now = [NSDate date];
@@ -623,16 +647,15 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
                 [self.currentLocationButton setTitle:self.placemark.locality forState:UIControlStateNormal];
                 
                 [self doRequest];
+                [self changeVisibilityOfCityTextField];
             }
         }];
     } else {
         self.settings.requestData.city = @"City";
         [self.currentLocationButton setTitle:self.settings.requestData.city forState:UIControlStateNormal];
+        
+        [self changeVisibilityOfCityTextField];
     }
-}
-
-- (void)showLocationGetterForTextField {
-    
 }
 
 #pragma mark - CLLocationManagerDelegate methods
@@ -641,8 +664,6 @@ static NSString *const kTitleAlertMessage = @"Bike 2 Work";
     [self updateCityNameBasedOnLocation:nil];
     
     [TSMessage showNotificationWithTitle:kTitleAlertMessage subtitle:@"Error on location services." type:TSMessageNotificationTypeError];
-    
-    [self showLocationGetterForTextField];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {

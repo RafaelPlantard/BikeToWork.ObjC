@@ -297,6 +297,14 @@
                                             <constraint firstAttribute="trailing" secondItem="IhI-iS-Fhd" secondAttribute="trailing" id="yh8-mS-jYx"/>
                                         </constraints>
                                     </view>
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bOr-Mp-N2z">
+                                        <rect key="frame" x="20" y="90" width="280" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="C8D-R6-kbC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.086274509803921567" green="0.25490196078431371" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -309,6 +317,7 @@
                                     <constraint firstItem="iQP-v9-6ua" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="D4O-Ge-Q13"/>
                                     <constraint firstItem="0iQ-X8-gHw" firstAttribute="top" secondItem="DPB-3B-bao" secondAttribute="bottom" constant="5" id="DSj-Wj-uaz"/>
                                     <constraint firstItem="DPB-3B-bao" firstAttribute="top" secondItem="iQP-v9-6ua" secondAttribute="bottom" constant="30" id="F2B-bQ-W2A"/>
+                                    <constraint firstItem="bOr-Mp-N2z" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="J8G-7V-oM6"/>
                                     <constraint firstAttribute="trailing" secondItem="13p-GK-zgl" secondAttribute="trailing" constant="20" id="JzT-aQ-Xfn"/>
                                     <constraint firstAttribute="trailing" secondItem="iQP-v9-6ua" secondAttribute="trailing" constant="20" id="LhT-xF-EBt"/>
                                     <constraint firstItem="D0W-cx-jRQ" firstAttribute="top" secondItem="C8o-bg-0m1" secondAttribute="bottom" constant="5" id="MbF-PW-Fui"/>
@@ -320,8 +329,10 @@
                                     <constraint firstItem="YtK-pk-I3N" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" id="SxQ-bD-0Tj"/>
                                     <constraint firstItem="p8a-Jn-Kxu" firstAttribute="leading" secondItem="Pxx-xO-w3s" secondAttribute="leading" constant="20" id="Tgc-M8-JFT"/>
                                     <constraint firstAttribute="bottom" secondItem="13p-GK-zgl" secondAttribute="bottom" constant="20" id="WtP-m5-KTp"/>
+                                    <constraint firstAttribute="trailing" secondItem="bOr-Mp-N2z" secondAttribute="trailing" constant="20" id="bs5-Q5-cGE"/>
                                     <constraint firstAttribute="trailing" secondItem="C8o-bg-0m1" secondAttribute="trailing" constant="20" id="cZ9-Wo-CZD"/>
                                     <constraint firstAttribute="trailing" secondItem="Mgd-ml-1ox" secondAttribute="trailing" constant="20" id="guB-rB-hek"/>
+                                    <constraint firstItem="bOr-Mp-N2z" firstAttribute="top" secondItem="p8a-Jn-Kxu" secondAttribute="bottom" constant="8" id="k2Q-Pn-oYg"/>
                                     <constraint firstAttribute="trailing" secondItem="YtK-pk-I3N" secondAttribute="trailing" id="kzD-84-m43"/>
                                     <constraint firstAttribute="trailing" secondItem="DPB-3B-bao" secondAttribute="trailing" constant="20" id="l1J-BV-ch9"/>
                                     <constraint firstAttribute="trailing" secondItem="p8a-Jn-Kxu" secondAttribute="trailing" constant="20" id="rcr-mJ-R7H"/>
@@ -340,6 +351,7 @@
                     <navigationItem key="navigationItem" id="c00-9b-25F"/>
                     <connections>
                         <outlet property="celsiusButton" destination="Bq2-S2-Nis" id="ofs-hF-s3b"/>
+                        <outlet property="cityTextField" destination="bOr-Mp-N2z" id="cl7-QP-ta5"/>
                         <outlet property="currentDatePicker" destination="nP1-OH-YGg" id="4f2-tG-z7P"/>
                         <outlet property="currentLabelForSettingsView" destination="ldS-dJ-WH6" id="g6b-Uu-KrG"/>
                         <outlet property="currentLocationButton" destination="iQP-v9-6ua" id="TCe-aR-Kug"/>

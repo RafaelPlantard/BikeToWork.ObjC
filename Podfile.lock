@@ -20,26 +20,23 @@ PODS:
   - Mantle (2.0.6):
     - Mantle/extobjc (= 2.0.6)
   - Mantle/extobjc (2.0.6)
-  - SSZipArchive (1.1)
-  - TLJsonFactory (0.1.0)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
+  - YONAutoComplete (1.0.0)
 
 DEPENDENCIES:
   - AFNetworking
   - bricks-Mantle
   - Mantle
-  - SSZipArchive
-  - TLJsonFactory
   - TSMessages
+  - YONAutoComplete
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   bricks-Mantle: 164b915d059b0d8e9501f6e2fb479e0061401b61
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
-  SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
-  TLJsonFactory: 3aeb73712e192997f76a11b75bc7600cdb4f5b75
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
+  YONAutoComplete: 7ffff2c18aa98647bf6dd942052bee0f6bd1c930
 
 COCOAPODS: 0.39.0
