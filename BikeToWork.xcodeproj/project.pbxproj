@@ -22,6 +22,7 @@
 		532D6E0A1C4EB95C002E8297 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFC1C4EB93A002E8297 /* SourceSansPro-Regular.ttf */; };
 		532D6E0B1C4EB95C002E8297 /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */; };
 		532D6E0C1C4EB95C002E8297 /* SourceSansPro-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */; };
+		5336C42F1C5BEFD4003E17B6 /* CityListAutoComplete.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5336C42E1C5BEFD4003E17B6 /* CityListAutoComplete.txt */; };
 		539EE1521C54407A0053C969 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539EE1511C54407A0053C969 /* CoreLocation.framework */; };
 		53DEC8031C4E753C0069B2D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8021C4E753C0069B2D1 /* main.m */; };
 		53DEC8061C4E753C0069B2D1 /* BTWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DEC8051C4E753C0069B2D1 /* BTWAppDelegate.m */; };
@@ -77,6 +78,7 @@
 		532D6DFD1C4EB93A002E8297 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
 		532D6DFE1C4EB93A002E8297 /* SourceSansPro-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trocchi-Regular.ttf"; sourceTree = "<group>"; };
+		5336C42E1C5BEFD4003E17B6 /* CityListAutoComplete.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CityListAutoComplete.txt; sourceTree = "<group>"; };
 		539EE1511C54407A0053C969 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		53DEC7FE1C4E753C0069B2D1 /* BikeToWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeToWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DEC8021C4E753C0069B2D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		532D6DF21C4EB90B002E8297 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5336C42E1C5BEFD4003E17B6 /* CityListAutoComplete.txt */,
 				532D6DFF1C4EB958002E8297 /* Trocchi-Regular.ttf */,
 				532D6DF31C4EB93A002E8297 /* SourceSansPro-Black.ttf */,
 				532D6DF41C4EB93A002E8297 /* SourceSansPro-BlackItalic.ttf */,
@@ -400,6 +403,7 @@
 				532D6E0A1C4EB95C002E8297 /* SourceSansPro-Regular.ttf in Resources */,
 				532D6E081C4EB95C002E8297 /* SourceSansPro-Light.ttf in Resources */,
 				53DEC8111C4E753C0069B2D1 /* LaunchScreen.storyboard in Resources */,
+				5336C42F1C5BEFD4003E17B6 /* CityListAutoComplete.txt in Resources */,
 				53DEC80E1C4E753C0069B2D1 /* Assets.xcassets in Resources */,
 				532D6E051C4EB95C002E8297 /* SourceSansPro-ExtraLight.ttf in Resources */,
 				532D6E041C4EB95C002E8297 /* SourceSansPro-BoldItalic.ttf in Resources */,
